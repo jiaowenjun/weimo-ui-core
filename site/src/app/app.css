@@ -763,8 +763,13 @@
 }
 
 /* 画布前置区自演示(预览卡片页)：磨砂卡第三例启用 aboveCanvas，文本按钮示例行常驻磨砂画布上方；
-   共享画布 min-height:100% 按「独占内容区」设计，与前置区兄弟并存时会顶穿内容区，
-   与 frosted-border-preview 同样改为 flex 填充剩余高度。 */
+   行内 padding 归零,与磨砂画布的 1em 纵向间距挂在内容区 row-gap(两者是内容区
+   flex 列的直接兄弟);共享画布 min-height:100% 按「独占内容区」设计,与前置区
+   兄弟并存时会顶穿内容区,与 frosted-border-preview 同样改为 flex 填充剩余高度。 */
+.glass-canvas-preview .base-card__content {
+  row-gap: 1em;
+}
+
 .glass-canvas-preview .glass-preview-card__canvas {
   flex: 1 1 auto;
   min-height: 0;
@@ -776,7 +781,6 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  padding: 20px 16px 12px;
   /* 圆角对齐磨砂画布(--radius):行自身无背景常态不可见,DEBUG 描边随宿主圆角呈现同形 */
   border-radius: var(--radius);
 }
