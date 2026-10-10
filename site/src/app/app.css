@@ -418,6 +418,17 @@
   line-height: var(--font-line-height-reading);
 }
 
+/* 复刻迁移前 TagBar 的展示态排列；标签本体直接使用 core 的 CapsuleButton，
+   避免为了文档示例重新引入 weimo-ui-card 反向依赖。 */
+.base-card-docs-preview__tag-bar {
+  display: flex;
+  position: relative;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space-tag-gap);
+}
+
 .slider-preview {
   display: flex;
   width: 100%;

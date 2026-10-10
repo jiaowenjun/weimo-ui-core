@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Copy, Edit3, Trash2 } from 'lucide-react'
 
 import { BaseCard } from 'weimo-ui-core/components/base-card'
+import { CapsuleButton } from 'weimo-ui-core/components/capsule-button'
 import { GhostIconButton } from 'weimo-ui-core/components/ghost-icon-button'
 import {
   ActionMenu,
@@ -85,7 +86,17 @@ function BaseCardDemo() {
         actionSlot={renderTitleBarAction()}
         aria-label="BaseCard 标题栏元信息区底部栏基础卡片预览"
         className={cardClassName}
-        footerSlot={<span>笔记 · 设计 · weimo</span>}
+        footerSlot={
+          <div
+            aria-label="标签栏预览"
+            className="base-card-docs-preview__tag-bar"
+            role="group"
+          >
+            {['笔记', '设计', 'weimo'].map((tag) => (
+              <CapsuleButton key={tag}>{tag}</CapsuleButton>
+            ))}
+          </div>
+        }
         meta="3 条笔记 · 今天 14:06 更新"
         title="卡片标题"
       >
