@@ -64,9 +64,17 @@
       "types": "./dist/components/controls/capsule/capsule-frame.d.ts",
       "import": "./dist/components/controls/capsule/capsule-frame.js"
     },
+    "./components/base-card": {
+      "types": "./dist/components/composites/card/base-card.d.ts",
+      "import": "./dist/components/composites/card/base-card.js"
+    },
     "./components/card-surface": {
       "types": "./dist/components/surfaces/card-surface/card-surface.d.ts",
       "import": "./dist/components/surfaces/card-surface/card-surface.js"
+    },
+    "./components/component-preview-card": {
+      "types": "./dist/components/composites/card/component-preview-card.d.ts",
+      "import": "./dist/components/composites/card/component-preview-card.js"
     },
     "./components/coss/button": {
       "types": "./dist/components/primitives/button.d.ts",
@@ -127,6 +135,10 @@
     "./components/ghost-icon-button": {
       "types": "./dist/components/controls/icon-button/ghost-icon-button.d.ts",
       "import": "./dist/components/controls/icon-button/ghost-icon-button.js"
+    },
+    "./components/glass-preview-card": {
+      "types": "./dist/components/composites/card/glass-preview-card.d.ts",
+      "import": "./dist/components/composites/card/glass-preview-card.js"
     },
     "./components/icon-button-model": {
       "types": "./dist/components/controls/icon-button/icon-button-model.d.ts",
@@ -204,9 +216,17 @@
       "types": "./dist/components/controls/capsule/capsule-frame.d.css.ts",
       "default": "./dist/components/controls/capsule/capsule-frame.css"
     },
+    "./styles/base-card.css": {
+      "types": "./dist/components/composites/card/base-card.d.css.ts",
+      "default": "./dist/components/composites/card/base-card.css"
+    },
     "./styles/card-surface.css": {
       "types": "./dist/components/surfaces/card-surface/card-surface.d.css.ts",
       "default": "./dist/components/surfaces/card-surface/card-surface.css"
+    },
+    "./styles/component-preview-card.css": {
+      "types": "./dist/components/composites/card/component-preview-card.d.css.ts",
+      "default": "./dist/components/composites/card/component-preview-card.css"
     },
     "./styles/button.css": {
       "types": "./dist/components/primitives/button.d.css.ts",
@@ -247,6 +267,10 @@
     "./styles/frosted-surface.css": {
       "types": "./dist/components/surfaces/frosted-surface/frosted-surface.d.css.ts",
       "default": "./dist/components/surfaces/frosted-surface/frosted-surface.css"
+    },
+    "./styles/glass-preview-card.css": {
+      "types": "./dist/components/composites/card/glass-preview-card.d.css.ts",
+      "default": "./dist/components/composites/card/glass-preview-card.css"
     },
     "./styles/icon-button.css": {
       "types": "./dist/components/controls/icon-button/icon-button.d.css.ts",

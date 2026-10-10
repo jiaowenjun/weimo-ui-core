@@ -12,6 +12,7 @@
     "paths": {
       "weimo-ui-core/components/animated-inline-size": ["./src/behaviors/animated-inline-size/animated-inline-size.tsx"],
       "weimo-ui-core/components/animated-inline-size-model": ["./src/behaviors/animated-inline-size/animated-inline-size-model.ts"],
+      "weimo-ui-core/components/bg-color": ["./src/styles/variants/background/bg-color.ts"],
       "weimo-ui-core/components/bottom-bar": ["./src/components/layout/bars/bottom-bar.tsx"],
       "weimo-ui-core/components/card-surface": ["./src/components/surfaces/card-surface/card-surface.tsx"],
       "weimo-ui-core/components/coss/dialog": ["./src/components/primitives/dialog.tsx"],
@@ -20,7 +21,9 @@
       "weimo-ui-core/components/frosted-icon-button": ["./src/components/controls/icon-button/frosted-icon-button.tsx"],
       "weimo-ui-core/components/frosted-surface": ["./src/components/surfaces/frosted-surface/frosted-surface.tsx"],
       "weimo-ui-core/components/frosted-surface-model": ["./src/components/surfaces/frosted-surface/frosted-surface-model.ts"],
+      "weimo-ui-core/components/ghost-icon-button": ["./src/components/controls/icon-button/ghost-icon-button.tsx"],
       "weimo-ui-core/components/popup-surface": ["./src/components/surfaces/popup-surface/popup-surface.tsx"],
+      "weimo-ui-core/components/slider": ["./src/components/controls/slider/slider.tsx"],
       "weimo-ui-core/lib/utils": ["./src/lib/utils.ts"]
     },
     "skipLibCheck": true,

@@ -1,0 +1,14 @@
+@layer components {
+  .glass-preview-card__canvas {
+    display: grid;
+    min-height: 100%;
+    padding: 16px;
+    border-radius: var(--radius);
+    place-items: center;
+  }
+
+  .glass-preview-card__slider-row {
+    display: flex;
+    justify-content: center;
+  }
+}
