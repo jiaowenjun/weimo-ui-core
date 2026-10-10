@@ -2,7 +2,13 @@
 
 `weimo-ui-core` 是独立的基础组件包，拥有全局 token、语义样式变体、Surface、基础控件、布局壳和通用行为。它不依赖其他 `weimo-ui` workspace 包。
 
-包通过显式子路径导出组件、样式和工具；包根不提供 `.` 导出。
+包发布编译后的 ESM、类型声明和 CSS，并通过显式子路径导出组件、样式和工具；包根不提供 `.` 导出。
+
+## 安装
+
+```bash
+pnpm add weimo-ui-core @base-ui/react react react-dom
+```
 
 ## 主要入口
 
@@ -57,13 +63,14 @@ src/
 └── styles/                # 全局 token 与语义样式变体
 ```
 
-同一组件族的实现、模型和 CSS 放在同一目录。公开子路径直接指向真实实现，不增加包根 barrel 或扁平转发文件。
+同一组件族的实现、模型和 CSS 放在同一目录。发布时保持这套目录结构到 `dist/`，公开子路径不暴露 `src` 物理路径。
 
 ## 验证
 
 ```bash
 pnpm install
-pnpm test:typecheck
+pnpm verify
+npm pack --dry-run
 ```
 
-组件的公开入口和依赖边界以本仓库的 `package.json#exports` 为准。
+`verify` 会检查类型、构建产物、公开入口和类型声明解析；组件的公开入口和依赖边界以本仓库的 `package.json#exports` 为准。
