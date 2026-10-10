@@ -24,7 +24,7 @@ jobs:
           version: 12.4.2
       - uses: actions/setup-node@v4
         with:
-          node-version: 20.19.0
+          node-version: latest
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm site:build
