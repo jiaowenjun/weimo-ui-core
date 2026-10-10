@@ -770,6 +770,15 @@
   border-radius: var(--radius);
 }
 
+/* 底部控件栏自演示(预览卡片页)：组件预览卡第二例启用 footer，居中放两个幽灵图标按钮。 */
+.component-preview-card-demo__footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
 /* 胶囊材质卡(按钮胶囊页):普通/磨砂两例并列于灰度画布;磨砂文字色由
    组件自身 tone 采样自适应,画布仅提供灰度背景。 */
 .capsule-material-row {

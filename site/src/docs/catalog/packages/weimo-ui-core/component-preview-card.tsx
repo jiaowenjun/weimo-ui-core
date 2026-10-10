@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { Check, X } from 'lucide-react'
 
 import { bgColorToneMap } from 'weimo-ui-core/components/bg-color'
 import { borderRadiusScaleMap } from 'weimo-ui-core/components/border-radius'
 import { ComponentPreviewCard } from 'weimo-ui-core/components/component-preview-card'
+import { GhostIconButton } from 'weimo-ui-core/components/ghost-icon-button'
 import { FrostedSurface } from 'weimo-ui-core/components/frosted-surface'
 import { LabeledSwitch } from 'weimo-ui-core/components/labeled-switch'
 import { TextButton } from 'weimo-ui-core/components/text-button'
@@ -37,6 +39,27 @@ function PreviewCardDemo() {
         label={
           <ComponentCardTitle componentName="component-preview-card">
             组件预览卡
+          </ComponentCardTitle>
+        }
+      >
+        <TextButton>内容区示例</TextButton>
+      </ComponentPreviewCard>
+      <ComponentPreviewCard
+        align="center"
+        className={debugClassName}
+        footer={
+          <div className="component-preview-card-demo__footer-row">
+            <GhostIconButton aria-label="cancel" size="sm">
+              <X aria-hidden="true" />
+            </GhostIconButton>
+            <GhostIconButton aria-label="check" size="sm">
+              <Check aria-hidden="true" />
+            </GhostIconButton>
+          </div>
+        }
+        label={
+          <ComponentCardTitle componentName="component-preview-card">
+            组件预览卡·底部控件栏
           </ComponentCardTitle>
         }
       >
@@ -85,7 +108,7 @@ function PreviewCardDemo() {
 export const componentPreviewCardDefinition = {
   id: 'component-preview-card',
   summary:
-    '文档站预览卡外壳：标题栏 + 可选 token 行 + 内容画布；磨砂变体自带灰度滑块画布与可选画布前置区',
+    '文档站预览卡外壳：标题栏 + 可选 token 行 + 内容画布 + 可选底部控件栏；磨砂变体自带灰度滑块画布与可选画布前置区',
   status: 'Preview',
   frame: 'plain',
   preview: () => <PreviewCardDemo />,
