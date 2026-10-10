@@ -299,17 +299,25 @@
 }
 
 /* DEBUG 布局观察层(临时):outline 描出标题栏、元信息区、内容区与底部栏
-   (padding 以内)的边界,不占布局与交互。相比伪元素 border 方案,宿主自身的
-   outline 不会被内容画布的 overflow/border-radius 裁掉(伪元素是子盒,圆角
-   画布四角会被吞),并自动跟随宿主圆角(预览卡内容画布随其 16px 圆角)。
-   作用域类 base-card-debug 挂到演示页(基础卡片页/预览卡片页)的卡片上,
+   (padding 以内)的边界,磨砂卡另描磨砂画布与画布前置区行,不占布局与交互。
+   相比伪元素 border 方案,宿主自身的 outline 不会被内容画布的 overflow/border-radius
+   裁掉(伪元素是子盒,圆角画布四角会被吞),并自动跟随宿主圆角(预览卡内容画布随其
+   16px 圆角)。作用域类 base-card-debug 挂到演示页(基础卡片页/预览卡片页)的卡片上,
    页面底部开关关闭(加 --hidden)即隐藏;新增分区须同步补选择器。 */
 .base-card-debug:not(.base-card-debug--hidden) .base-card__header,
 .base-card-debug:not(.base-card-debug--hidden) .base-card__meta,
 .base-card-debug:not(.base-card-debug--hidden) .base-card__content,
-.base-card-debug:not(.base-card-debug--hidden) .base-card__footer {
+.base-card-debug:not(.base-card-debug--hidden) .base-card__footer,
+.base-card-debug:not(.base-card-debug--hidden) .glass-preview-card__canvas,
+.base-card-debug:not(.base-card-debug--hidden) .glass-canvas-preview__row {
   outline: 1px solid var(--color-border);
   outline-offset: -1px;
+}
+
+/* DEBUG 临时 padding:磨砂卡内容区描边与画布描边零间距紧贴难分辨,开启时给
+   内容区垫 2px 让两条描边分离;选择器随 --hidden 失配,关闭即自动清除。 */
+.base-card-debug:not(.base-card-debug--hidden).glass-preview-card .base-card__content {
+  padding: 2px;
 }
 
 /* 演示页底部的 DEBUG 开关行:居中 */
@@ -752,6 +760,25 @@
   .frosted-surface-preview__meta {
     transition-duration: 1ms;
   }
+}
+
+/* 画布前置区自演示(预览卡片页)：磨砂卡第三例启用 aboveCanvas，文本按钮示例行常驻磨砂画布上方；
+   共享画布 min-height:100% 按「独占内容区」设计，与前置区兄弟并存时会顶穿内容区，
+   与 frosted-border-preview 同样改为 flex 填充剩余高度。 */
+.glass-canvas-preview .glass-preview-card__canvas {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.glass-canvas-preview__row {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 16px 12px;
+  /* 圆角对齐磨砂画布(--radius):行自身无背景常态不可见,DEBUG 描边随宿主圆角呈现同形 */
+  border-radius: var(--radius);
 }
 
 /* 胶囊材质卡(按钮胶囊页):普通/磨砂两例并列于灰度画布;磨砂文字色由

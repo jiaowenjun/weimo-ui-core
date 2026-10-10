@@ -43,6 +43,20 @@ function PreviewCardDemo() {
           <span className="frosted-surface-preview__meta">拖动灰度滑块验证磨砂材质</span>
         </FrostedSurface>
       </GlassPreviewCard>
+      <GlassPreviewCard
+        aboveCanvas={
+          <div className="glass-canvas-preview__row">
+            <TextButton>前置区文本按钮</TextButton>
+          </div>
+        }
+        className={`${debugClassName} glass-canvas-preview`}
+        label="磨砂预览卡·画布前置区"
+      >
+        <FrostedSurface className="frosted-surface-preview__tile">
+          <span className="frosted-surface-preview__title">Glass Preview</span>
+          <span className="frosted-surface-preview__meta">前置区渲染于磨砂画布上方，灰度滑块照常生效</span>
+        </FrostedSurface>
+      </GlassPreviewCard>
       <div className="docs-debug-toggle">
         <LabeledSwitch
           ariaLabel="切换 DEBUG 边框显示"
@@ -58,7 +72,8 @@ function PreviewCardDemo() {
 
 export const componentPreviewCardDefinition = {
   id: 'component-preview-card',
-  summary: '文档站预览卡外壳：标题栏 + 可选 token 行 + 内容画布；磨砂变体自带灰度滑块画布',
+  summary:
+    '文档站预览卡外壳：标题栏 + 可选 token 行 + 内容画布；磨砂变体自带灰度滑块画布与可选画布前置区',
   status: 'Preview',
   frame: 'plain',
   preview: () => <PreviewCardDemo />,
