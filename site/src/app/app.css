@@ -314,12 +314,6 @@
   outline-offset: -1px;
 }
 
-/* DEBUG 临时 padding:磨砂卡内容区描边与画布描边零间距紧贴难分辨,开启时给
-   内容区垫 3px 让两条描边分离;选择器随 --hidden 失配,关闭即自动清除。 */
-.base-card-debug:not(.base-card-debug--hidden).glass-preview-card .base-card__content {
-  padding: 3px;
-}
-
 /* 演示页底部的 DEBUG 开关行:居中 */
 .docs-debug-toggle {
   display: flex;
