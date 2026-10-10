@@ -5,13 +5,16 @@ import { CapsuleButton } from 'weimo-ui-core/components/capsule-button'
 import { ComponentPreviewCard } from 'weimo-ui-core/components/component-preview-card'
 import { LabeledSwitch } from 'weimo-ui-core/components/labeled-switch'
 import type { ComponentDefinition } from '../../component-docs'
+import { ComponentCardTitle } from '../../component-card-title'
 import { GlassPreviewCard } from 'weimo-ui-core/components/glass-preview-card'
 
 // 胶囊材质:普通(default 态)、磨砂(frosted 态)两例并列于灰度画布,拖动滑块
 // 可对比两种材质随背景的表现,磨砂文字色随自身 tone 采样自适应。
 function CapsuleMaterialDemo() {
   return (
-    <GlassPreviewCard label="胶囊材质">
+    <GlassPreviewCard
+      label={<ComponentCardTitle componentName="capsule-button">胶囊材质</ComponentCardTitle>}
+    >
       <div aria-label="胶囊材质预览" className="capsule-material-row">
         <CapsuleButton prefix={null} state="default">普通胶囊</CapsuleButton>
         <CapsuleButton prefix={null} state="frosted">磨砂胶囊</CapsuleButton>
@@ -22,7 +25,10 @@ function CapsuleMaterialDemo() {
 
 function CapsuleSlotDemo() {
   return (
-    <ComponentPreviewCard align="center" label="胶囊插槽">
+    <ComponentPreviewCard
+      align="center"
+      label={<ComponentCardTitle componentName="capsule-button">胶囊插槽</ComponentCardTitle>}
+    >
       <div className="capsule-slot-preview" aria-label="CapsuleButton 前后缀预览">
         <CapsuleButton prefix={<Hash aria-hidden="true" />}>写作/日记</CapsuleButton>
         <CapsuleButton
@@ -56,7 +62,7 @@ function StateToggleCapsuleButtonDemo() {
         />
       }
       align="center"
-      label="胶囊材质切换"
+      label={<ComponentCardTitle componentName="capsule-button">胶囊材质切换</ComponentCardTitle>}
     >
       <div aria-label="CapsuleButton 状态预览">
         <CapsuleButton state={state}>写作/日记</CapsuleButton>
@@ -96,7 +102,7 @@ function WidthToggleCapsuleButtonDemo() {
         />
       }
       align="center"
-      label="胶囊长度切换"
+      label={<ComponentCardTitle componentName="capsule-button">胶囊长度切换</ComponentCardTitle>}
     >
       <div
         className="capsule-button-preview__width-example"

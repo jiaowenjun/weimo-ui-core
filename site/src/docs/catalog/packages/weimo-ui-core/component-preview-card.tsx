@@ -7,6 +7,7 @@ import { FrostedSurface } from 'weimo-ui-core/components/frosted-surface'
 import { LabeledSwitch } from 'weimo-ui-core/components/labeled-switch'
 import { TextButton } from 'weimo-ui-core/components/text-button'
 import type { ComponentDefinition } from '../../component-docs'
+import { ComponentCardTitle } from '../../component-card-title'
 import { GlassPreviewCard } from 'weimo-ui-core/components/glass-preview-card'
 
 // 示例 token 行直接取真实 token 表（通用 hover 底色 + 基础圆角）。
@@ -33,11 +34,18 @@ function PreviewCardDemo() {
         align="center"
         className={debugClassName}
         items={previewCardItems}
-        label="组件预览卡"
+        label={
+          <ComponentCardTitle componentName="component-preview-card">
+            组件预览卡
+          </ComponentCardTitle>
+        }
       >
         <TextButton>内容区示例</TextButton>
       </ComponentPreviewCard>
-      <GlassPreviewCard className={debugClassName} label="磨砂预览卡">
+      <GlassPreviewCard
+        className={debugClassName}
+        label={<ComponentCardTitle componentName="glass-preview-card">磨砂预览卡</ComponentCardTitle>}
+      >
         <FrostedSurface className="frosted-surface-preview__tile">
           <span className="frosted-surface-preview__title">Glass Preview</span>
           <span className="frosted-surface-preview__meta">拖动灰度滑块验证磨砂材质</span>
@@ -50,7 +58,11 @@ function PreviewCardDemo() {
           </div>
         }
         className={`${debugClassName} glass-canvas-preview`}
-        label="磨砂预览卡·画布前置区"
+        label={
+          <ComponentCardTitle componentName="glass-preview-card">
+            磨砂预览卡·画布前置区
+          </ComponentCardTitle>
+        }
       >
         <FrostedSurface className="frosted-surface-preview__tile">
           <span className="frosted-surface-preview__title">Glass Preview</span>

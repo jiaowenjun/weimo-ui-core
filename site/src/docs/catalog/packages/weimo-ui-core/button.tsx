@@ -11,6 +11,7 @@ import {
 import { TextButton } from 'weimo-ui-core/components/text-button'
 import { LabeledSwitch } from 'weimo-ui-core/components/labeled-switch'
 import type { ComponentDefinition } from '../../component-docs'
+import { ComponentCardTitle } from '../../component-card-title'
 import { GlassPreviewCard } from 'weimo-ui-core/components/glass-preview-card'
 
 function TextButtonPreview() {
@@ -28,7 +29,7 @@ function TextButtonPreview() {
         />
       }
       align="center"
-      label="文本按钮"
+      label={<ComponentCardTitle componentName="text-button">文本按钮</ComponentCardTitle>}
     >
       <div className="text-button-preview" aria-label="TextButton 状态预览">
         <TextButton disabled={disabled}>文本按钮</TextButton>
@@ -70,7 +71,7 @@ function GhostIconButtonPreview() {
           onCheckedChange={(checked) => setDisabled(!checked)}
         />
       }
-      label="幽灵图标按钮"
+      label={<ComponentCardTitle componentName="ghost-icon-button">幽灵图标按钮</ComponentCardTitle>}
     >
       <div className="icon-button-preview" aria-label="GhostIconButton 普通背景预览">
         <GhostIconButtonPreviewGroup disabled={disabled} />
@@ -106,7 +107,7 @@ function FrostedIconButtonPreview() {
           onCheckedChange={(checked) => setDisabled(!checked)}
         />
       }
-      label="磨砂图标按钮"
+      label={<ComponentCardTitle componentName="frosted-icon-button">磨砂图标按钮</ComponentCardTitle>}
     >
       <FrostedIconButtonPreviewGroup disabled={disabled} />
     </GlassPreviewCard>
@@ -150,7 +151,7 @@ function FrostedIconButtonGroupPreview() {
           onCheckedChange={(checked) => setDisabled(!checked)}
         />
       }
-      label="磨砂图标按钮组"
+      label={<ComponentCardTitle componentName="frosted-icon-button-group">磨砂图标按钮组</ComponentCardTitle>}
     >
       <FrostedIconButtonGroupPreviewGroup disabled={disabled} />
     </GlassPreviewCard>

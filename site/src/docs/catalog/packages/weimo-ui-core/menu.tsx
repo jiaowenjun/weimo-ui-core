@@ -12,6 +12,7 @@ import {
   type ActionMenuItem,
 } from 'weimo-ui-core/components/menu'
 import type { ComponentDefinition } from '../../component-docs'
+import { ComponentCardTitle } from '../../component-card-title'
 
 const MENU_PREVIEW_ITEMS = [
   {
@@ -65,7 +66,9 @@ const MENU_PREVIEW_ITEMS = [
 
 function renderMenuDemo() {
   return (
-    <ComponentPreviewCard label="操作菜单">
+    <ComponentPreviewCard
+      label={<ComponentCardTitle componentName="menu">操作菜单</ComponentCardTitle>}
+    >
       <div className="menu-preview" aria-label="ActionMenu 操作菜单预览">
         <ActionMenu
           ariaLabel="更多操作"

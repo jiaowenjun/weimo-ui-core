@@ -10,6 +10,7 @@ import {
 } from 'weimo-ui-core/components/menu'
 import { LabeledSwitch } from 'weimo-ui-core/components/labeled-switch'
 import type { ComponentDefinition } from '../../component-docs'
+import { ComponentCardTitle } from '../../component-card-title'
 
 const TITLE_BAR_MENU_ITEMS = [
   {
@@ -64,7 +65,9 @@ function BaseCardDemo() {
         actionSlot={renderTitleBarAction()}
         aria-label="BaseCard 带标题栏基础卡片预览"
         className={cardClassName}
-        title="卡片标题"
+        title={
+          <ComponentCardTitle componentName="base-card">卡片标题</ComponentCardTitle>
+        }
       >
         <p className="base-card-docs-preview__body">
           带标题栏变体在基础卡片上增加标题栏,标题栏与内容区之间保持 1em 纵向间隔,右侧可放置操作按钮。
@@ -76,7 +79,9 @@ function BaseCardDemo() {
         className={cardClassName}
         meta="3 条笔记 · 今天 14:06 更新"
         metaCollapsible
-        title="卡片标题"
+        title={
+          <ComponentCardTitle componentName="base-card">卡片标题</ComponentCardTitle>
+        }
       >
         <p className="base-card-docs-preview__body">
           元信息区默认折叠,点击标题栏右侧动作区前的按钮展开;折叠时图标为 chevron-right,展开时旋转为 chevron-down。
@@ -98,7 +103,9 @@ function BaseCardDemo() {
           </div>
         }
         meta="3 条笔记 · 今天 14:06 更新"
-        title="卡片标题"
+        title={
+          <ComponentCardTitle componentName="base-card">卡片标题</ComponentCardTitle>
+        }
       >
         <p className="base-card-docs-preview__body">
           标题栏+元信息区+底部栏变体在内容区之后追加一个底部栏(如标签栏),高度由内容自然撑开。

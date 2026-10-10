@@ -6,6 +6,7 @@ import { ComponentPreviewCard } from 'weimo-ui-core/components/component-preview
 import { GhostIconButton } from 'weimo-ui-core/components/ghost-icon-button'
 import { Slider } from 'weimo-ui-core/components/slider'
 import type { ComponentDefinition } from '../../component-docs'
+import { ComponentCardTitle } from '../../component-card-title'
 
 const SLIDER_INITIAL_VALUE = 50
 
@@ -47,7 +48,7 @@ function SliderDemo() {
         </GhostIconButton>
       }
       items={sliderItems}
-      label="滑块"
+      label={<ComponentCardTitle componentName="slider">滑块</ComponentCardTitle>}
     >
       <div className="slider-preview" aria-label="Slider 滑块预览">
         <Slider

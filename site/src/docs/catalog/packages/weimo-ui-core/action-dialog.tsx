@@ -7,12 +7,15 @@ import { DialogPanel } from 'weimo-ui-core/components/coss/dialog'
 import { FrostedIconButton } from 'weimo-ui-core/components/frosted-icon-button'
 import { TextButton } from 'weimo-ui-core/components/text-button'
 import type { ComponentDefinition } from '../../component-docs'
+import { ComponentCardTitle } from '../../component-card-title'
 
 function ActionDialogDemo({ defaultOpen = false }: { defaultOpen?: boolean }) {
   const [open, setOpen] = useState(defaultOpen)
 
   return (
-    <ComponentPreviewCard label="操作对话框">
+    <ComponentPreviewCard
+      label={<ComponentCardTitle componentName="action-dialog">操作对话框</ComponentCardTitle>}
+    >
       <div className="internal-dialog-preview">
         <TextButton onClick={() => setOpen(true)} type="button">
           打开内部对话框

@@ -1,5 +1,6 @@
 import { ComponentPreviewCard } from 'weimo-ui-core/components/component-preview-card'
 import type { ComponentDefinition } from '../../component-docs'
+import { ComponentCardTitle } from '../../component-card-title'
 import { SideBarDrawerPreview } from './sidebar-preview'
 
 function renderSideBarBlankPreview({
@@ -20,10 +21,14 @@ function renderSideBarBlankPreview({
 function SideBarDemo() {
   return (
     <>
-      <ComponentPreviewCard label="常驻侧边栏">
+      <ComponentPreviewCard
+        label={<ComponentCardTitle componentName="sidebar">常驻侧边栏</ComponentCardTitle>}
+      >
         <div className="sidebar-preview">{renderSideBarBlankPreview()}</div>
       </ComponentPreviewCard>
-      <ComponentPreviewCard label="抽屉侧边栏">
+      <ComponentPreviewCard
+        label={<ComponentCardTitle componentName="sidebar">抽屉侧边栏</ComponentCardTitle>}
+      >
         <div className="sidebar-preview">
           <SideBarDrawerPreview />
         </div>

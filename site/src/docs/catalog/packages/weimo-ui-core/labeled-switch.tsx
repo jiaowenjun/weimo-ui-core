@@ -5,6 +5,7 @@ import { borderColorToneMap } from 'weimo-ui-core/components/border-color'
 import { ComponentPreviewCard } from 'weimo-ui-core/components/component-preview-card'
 import { LabeledSwitch } from 'weimo-ui-core/components/labeled-switch'
 import type { ComponentDefinition } from '../../component-docs'
+import { ComponentCardTitle } from '../../component-card-title'
 
 // coss Switch 专属背景 token（定义在 switch.css 的 .coss-switch 内部，仅开关子树可用）：
 // 未选中轨道/选中轨道/滑块各一枚，值别名共享色板，展示行按亮暗主题给出解析后的色值。
@@ -33,7 +34,11 @@ function LabeledSwitchDemo() {
   const [enabled, setEnabled] = useState(true)
 
   return (
-    <ComponentPreviewCard align="center" items={switchItems} label="开关">
+    <ComponentPreviewCard
+      align="center"
+      items={switchItems}
+      label={<ComponentCardTitle componentName="labeled-switch">开关</ComponentCardTitle>}
+    >
       <div aria-label="LabeledSwitch 状态预览">
         <LabeledSwitch
           ariaLabel="启用"

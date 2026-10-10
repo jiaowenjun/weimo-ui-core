@@ -326,6 +326,15 @@
   justify-content: center;
 }
 
+/* 组件卡片标题里的组件类名:等宽小字,弱化为标题的补充说明 */
+.docs-component-class {
+  margin-left: 6px;
+  color: var(--color-text-subtle);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  font-weight: 400;
+}
+
 .base-card-docs-preview__body {
   color: var(--color-text-primary);
   font-size: var(--font-size-base);
