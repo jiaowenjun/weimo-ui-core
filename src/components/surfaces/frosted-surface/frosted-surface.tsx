@@ -32,11 +32,10 @@ export function useFrostedSurfaceBackgroundTone<ElementType extends HTMLElement>
   return backgroundSample?.tone ?? null
 }
 
-// 返回完整采样:backgroundTone 驱动 data-background-tone,backgroundLuminance 供
-// 演示页直接展示材质感知到的背景相对亮度(两者来自同一次采样,不会相互漂移)。
-// backgroundStyle 以 inline 自定义属性下发插值边框色——所有磨砂材质的边框
-// 亮度随感知亮度两段递增,直接声明 border-color 的规则(如禁用描边)优先级更高
-// 不受影响;采样前为 undefined,CSS 的 tone 二值声明作为回退。
+// backgroundTone 驱动 data-background-tone；backgroundStyle 以 inline 自定义属性
+// 下发插值边框色——所有磨砂材质的边框亮度随感知亮度两段递增，直接声明
+// border-color 的规则（如禁用描边）优先级更高，不受影响；采样前为
+// undefined，CSS 的 tone 二值声明作为回退。
 export function useFrostedSurfaceBackgroundToneRef<ElementType extends HTMLElement>(
   observe: boolean,
 ) {
@@ -53,7 +52,6 @@ export function useFrostedSurfaceBackgroundToneRef<ElementType extends HTMLEleme
   )
 
   return {
-    backgroundLuminance: backgroundSample?.luminance ?? null,
     backgroundStyle: interpolatedBorderColor
       ? ({ '--frosted-surface-border': interpolatedBorderColor }) as CSSProperties
       : undefined,

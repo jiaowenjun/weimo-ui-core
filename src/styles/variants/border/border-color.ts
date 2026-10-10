@@ -34,7 +34,7 @@ export const borderColorToneMap = {
     },
     className: 'border-color--default',
     description: '默认 surface 外框和控件边界，用于区分容器与页面背景。',
-    uiUsage: 'Card/SideBar/docs preview surface、MdEditor、Coss button outline、Markdown pre/image border、FrostedSurface border',
+    uiUsage: 'Card/SideBar surface、MdEditor、Coss button outline、Markdown pre/image border、FrostedSurface border',
     bijiUsage: 'Form controls、Auth shell、memo-list state、RefCard',
   },
   emphasis: {
