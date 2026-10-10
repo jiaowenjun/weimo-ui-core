@@ -1,0 +1,75 @@
+@import "tailwindcss";
+@import "weimo-ui-core/styles/tokens.css";
+
+@layer base {
+  :root {
+    color: var(--color-text-primary);
+    background: hsl(var(--background));
+    font: 16px/1.55 var(--font-sans);
+    font-synthesis: none;
+    letter-spacing: 0;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-width: 320px;
+    min-height: 100svh;
+    margin: 0;
+    background: hsl(var(--background));
+  }
+
+  button,
+  input {
+    font: inherit;
+  }
+
+  button {
+    color: inherit;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  h1,
+  h2,
+  h3 {
+    color: var(--color-text-primary);
+    font-weight: 560;
+    letter-spacing: 0;
+  }
+
+  code,
+  pre {
+    font-family: var(--font-mono);
+  }
+
+  code {
+    border-radius: var(--radius-xs);
+    color: var(--color-text-primary);
+  }
+}
+
+#root {
+  display: flex;
+  min-height: 100svh;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0;
+}
+
+@media (min-width: 700px) {
+  #root {
+    padding: 0 var(--space-gutter);
+  }
+}

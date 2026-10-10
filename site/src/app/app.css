@@ -1,0 +1,1184 @@
+.app-shell {
+  box-sizing: border-box;
+  min-height: 100svh;
+  width: 100%;
+  max-width: var(--size-layout-max-width);
+  padding: var(--space-main-offset-top) var(--space-gutter) var(--space-gutter);
+}
+
+.app-shell__layout {
+  display: flex;
+  gap: calc(var(--space-gutter) * 1.6);
+}
+
+.app-shell__sidebar-space {
+  display: none;
+  width: var(--size-sidebar-width);
+  flex: none;
+}
+
+.app-shell__content {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-gutter);
+  color: var(--color-text-primary);
+}
+
+.app-shell__content--token-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+  align-content: start;
+}
+
+.component-preview-card-demo__category {
+  grid-column: 1 / -1;
+  margin: 10px 0 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: 650;
+  line-height: 1.2;
+}
+
+.component-preview-card-demo__category:first-child {
+  margin-top: 0;
+}
+
+.docs-top-bar__sidebar-trigger {
+  display: inline-flex;
+}
+
+/* 站点顶栏:磨砂标题胶囊/侧边栏钮/搜索主题组,组件各自采样页面背景
+   tone;包装层只负责槽内排布。 */
+.docs-top-bar__slot {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.preview-stage .weimo-card {
+  max-width: 360px;
+}
+
+.doc-page {
+  min-width: 0;
+  gap: clamp(24px, 3vw, 34px);
+  padding: clamp(20px, 3vw, 32px);
+  color: var(--color-text-primary);
+}
+
+.doc-page__summary {
+  margin: 0;
+  max-width: 620px;
+  color: var(--color-text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.demo-block__panel {
+  overscroll-behavior: contain;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg-card);
+  box-shadow: var(--shadow-card);
+}
+
+.preview-stage {
+  width: 100%;
+  min-width: 0;
+  min-height: 100%;
+  padding: 24px;
+  overflow: visible;
+  background: var(--color-bg-page);
+}
+
+.preview-stage > * {
+  max-width: 100%;
+}
+
+.card-docs-preview,
+.card-composer-docs-preview {
+  width: min(100%, 960px);
+  min-width: 0;
+  align-self: center;
+  justify-self: stretch;
+}
+
+.card-docs-preview .weimo-card {
+  width: 100%;
+  max-width: none;
+}
+
+.card-composer-docs-preview .weimo-card-composer {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.card-composer-docs-preview .weimo-card {
+  width: 100%;
+  max-width: none;
+}
+
+/* 新建草稿壳层演示:composer 的 0fr 折叠进出场动画与 editable 的高度锁
+   依赖 overflow:hidden 做遮罩,磨砂 tone 投影被卡在卡内三层。演示级放开
+   稳态三层令投影画进外层卡片 padding;退出动画(data-state=closing)与
+   高度锁(data-height-lock)的遮罩保留,仅 180ms 进场折叠期间遮罩弱化
+   (动画自带透明度渐入,柔化大半)。组件级正解(settled 态:动画期裁切/
+   稳态放开)需动共享状态机,留待单独决策。 */
+.card-composer-docs-preview .weimo-card-composer:not([data-state='closing']),
+.card-composer-docs-preview .weimo-card-composer:not([data-state='closing']) .weimo-card-composer__frame,
+.card-composer-docs-preview .weimo-card-editable:not([data-height-lock='true']) {
+  overflow: visible;
+}
+
+.ocr-card-docs-preview {
+  width: min(100%, 360px);
+  min-width: 0;
+  align-self: center;
+  justify-self: center;
+}
+
+.ocr-card-docs-preview .weimo-ocr-card {
+  width: 100%;
+  max-width: none;
+}
+
+.md-editor-docs-preview {
+  width: 100%;
+  min-width: 0;
+  align-self: center;
+  justify-self: stretch;
+}
+
+.image-view-docs-preview {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  align-self: center;
+  justify-self: stretch;
+}
+
+.image-view-docs-preview__detail-shell {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  grid-column: 1 / -1;
+  gap: 12px;
+}
+
+.image-view-docs-preview__detail-toolbar {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.image-view-docs-preview__detail {
+  height: min(54vh, 420px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--color-bg-raised) 70%, transparent);
+}
+
+.image-uploader-docs-preview {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  align-content: center;
+  gap: 12px;
+}
+
+.image-uploader-docs-preview__actions {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding-top: 12px;
+}
+
+.canvas-transparency-docs-preview,
+.ocr-detail-docs-preview {
+  display: grid;
+  width: 100%;
+  min-height: 100%;
+  place-items: center;
+}
+
+.md-view-docs-preview {
+  width: 100%;
+  min-width: 0;
+  align-self: center;
+  justify-self: stretch;
+}
+
+.md-view-docs-preview .md-editor__viewport {
+  min-height: 0;
+  max-height: none;
+  padding-inline: 0;
+  padding-block-start: 0;
+  padding-block-end: var(--md-view-editor-bottom-safe-area, 100px);
+}
+
+/* 撑满画布高度让触发行垂直居中：画布 .base-card__content 是 flex 纵列且
+   overflow:hidden，触发行若顶贴画布上缘，按钮 :active 按压缩放
+   (scale(var(--press-scale)) 放大) 会向上溢出被裁掉顶部弧线。 */
+.sidebar-preview {
+  display: flex;
+  min-height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 图标按钮卡预览画布：无边框、继承 ComponentPreviewCard 通用子样式（圆角/溢出/最小高） */
+.icon-button-preview {
+  display: grid;
+  padding: 16px;
+  place-items: center;
+}
+
+.icon-preview__row {
+  grid-area: 1 / 1;
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.text-button-preview {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.internal-bottom-preview,
+.internal-card-top-bar-preview,
+.internal-card-tool-bar-preview,
+.internal-dialog-preview,
+.internal-tag-tree-row-preview {
+  display: grid;
+  width: 100%;
+  min-height: 100%;
+  place-items: center;
+}
+
+.internal-preview__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* FloatBar 组件自身绝对贴顶定位；文档示例改回画布网格流，
+   由 place-items 完成水平垂直居中，两侧留出空隙 */
+.internal-float-preview {
+  position: static;
+  justify-self: stretch;
+  margin-inline: 24px;
+}
+
+/* 示例容器交给 CardSurface 卡片材质(亮主题细微阴影、暗主题描边),这里只保留几何布局。
+   不设 overflow: hidden：贴底悬浮栏四周 12px 内缩不碰卡片圆角,磨砂 tone 投影
+   需溢出内嵌卡画进外层卡片 padding(外层画布已经 :has 放行)。 */
+.internal-bottom-preview__surface {
+  position: relative;
+  display: grid;
+  width: min(100%, 360px);
+  min-height: 220px;
+  align-items: start;
+  padding: 20px;
+}
+
+.internal-card-top-bar-preview__surface {
+  display: grid;
+  width: min(100%, 420px);
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg-card);
+}
+
+.internal-card-top-bar-preview .weimo-card__header {
+  margin-bottom: 0;
+}
+
+.internal-card-top-bar-preview__toggle {
+  align-self: center;
+  justify-self: center;
+}
+
+/* 不设 overflow: hidden：贴底工具栏(实为 BottomBar 封装)四周 12px 内缩不碰
+   卡片圆角,磨砂 tone 投影需溢出内嵌卡画进外层卡片 padding(外层画布已经
+   :has 放行);与底部操作栏演示卡同构。 */
+.internal-card-tool-bar-preview__surface {
+  position: relative;
+  display: grid;
+  width: min(100%, 380px);
+  min-height: 180px;
+  align-items: start;
+  padding: 20px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg-card);
+}
+
+.internal-card-tool-bar-preview__toggle {
+  justify-self: center;
+}
+
+.internal-bottom-preview__surface p,
+.internal-dialog-preview__panel p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+}
+
+.internal-dialog-preview {
+  gap: 12px;
+}
+
+.internal-dialog-preview__panel {
+  padding: 72px 20px 88px;
+}
+
+.internal-tag-tree-row-preview {
+  width: min(100%, 360px);
+  align-content: center;
+  justify-items: stretch;
+  padding: 16px 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg-card);
+  box-shadow: var(--shadow-card);
+}
+
+.menu-preview {
+  display: flex;
+  width: 100%;
+  min-height: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+/* 基础卡片页:预览不套 ComponentPreviewCard,BaseCard 直接作为页面内容渲染。
+   卡级 gap 留给组件的 1em 标题栏间隔,段间距挂在内容区上。 */
+.base-card-docs-preview .base-card__content {
+  gap: 4px;
+}
+
+/* 标题栏三点按钮(ActionMenu 触发器)图标与折叠 chevron 同取 placeholder 色,
+   不随卡片正文色走;参考 tag-tree__menu-trigger 的同款约定 */
+.base-card-docs-preview .base-card__header-action .icon-button {
+  color: var(--color-text-placeholder);
+}
+
+/* DEBUG 布局观察层(临时):outline 描出标题栏、元信息区、内容区与底部栏
+   (padding 以内)的边界,不占布局与交互。相比伪元素 border 方案,宿主自身的
+   outline 不会被内容画布的 overflow/border-radius 裁掉(伪元素是子盒,圆角
+   画布四角会被吞),并自动跟随宿主圆角(预览卡内容画布随其 16px 圆角)。
+   作用域类 base-card-debug 挂到演示页(基础卡片页/预览卡片页)的卡片上,
+   页面底部开关关闭(加 --hidden)即隐藏;新增分区须同步补选择器。 */
+.base-card-debug:not(.base-card-debug--hidden) .base-card__header,
+.base-card-debug:not(.base-card-debug--hidden) .base-card__meta,
+.base-card-debug:not(.base-card-debug--hidden) .base-card__content,
+.base-card-debug:not(.base-card-debug--hidden) .base-card__footer {
+  outline: 1px solid var(--color-border);
+  outline-offset: -1px;
+}
+
+/* 演示页底部的 DEBUG 开关行:居中 */
+.docs-debug-toggle {
+  display: flex;
+  justify-content: center;
+}
+
+.base-card-docs-preview__body {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-base);
+  line-height: var(--font-line-height-reading);
+}
+
+.base-card-docs-preview__note {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: var(--font-line-height-reading);
+}
+
+.slider-preview {
+  display: flex;
+  width: 100%;
+  min-height: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 16px;
+}
+
+/* 数值读数：tabular 数字 + 固定最小宽，拖动时滑块不随位数变化抖动 */
+.slider-preview__value {
+  min-width: 3ch;
+  font-variant-numeric: tabular-nums;
+}
+
+.tag-tree-preview {
+  display: flex;
+  width: 100%;
+  min-height: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+
+.tag-tree-preview--compact {
+  min-height: 220px;
+}
+
+.tag-tree-preview__panel {
+  display: grid;
+  width: min(100%, 340px);
+  min-height: 292px;
+  align-content: start;
+  padding: 14px 0;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg-card);
+  box-shadow: var(--shadow-card);
+}
+
+.tag-tree-preview--compact .tag-tree-preview__panel {
+  min-height: 232px;
+}
+
+.tag-tree-preview__tree {
+  padding-block: 2px;
+}
+
+.tag-bread-docs-preview {
+  display: grid;
+  width: 100%;
+  justify-items: center;
+  gap: 24px;
+}
+
+.tag-bread-docs-preview__ellipsis {
+  max-width: 100%;
+}
+
+.tag-bread-docs-preview__ellipsis-trigger {
+  width: 28px;
+  height: 28px;
+  min-height: 28px;
+  margin: -6px;
+  color: var(--color-text-secondary);
+}
+
+.top-bar-preview.top-bar {
+  position: relative;
+  inset: auto;
+  z-index: auto;
+  width: 100%;
+  padding: 0;
+}
+
+.sidebar-preview {
+  container: sidebar-preview / inline-size;
+  gap: 16px;
+}
+
+.docs-sidebar-nav {
+  display: flex;
+  min-height: calc(100svh - (var(--space-gutter) * 2));
+  flex-direction: column;
+  gap: 20px;
+  padding: 16px;
+}
+
+.docs-sidebar-nav__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.docs-sidebar-nav__top strong {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.95rem;
+}
+
+.docs-sidebar-nav__group {
+  display: grid;
+  gap: 7px;
+}
+
+.docs-sidebar-nav__group p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: 0.72rem;
+}
+
+.docs-sidebar-nav__group a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  padding: 0 9px;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+}
+
+.docs-sidebar-nav__group a.active {
+  color: var(--color-text-primary);
+  background: color-mix(in srgb, var(--color-bg-hover) 78%, transparent);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .docs-sidebar-nav__group a:hover {
+    color: var(--color-text-primary);
+    background: var(--color-bg-hover);
+  }
+}
+
+.docs-sidebar-nav__group svg {
+  width: 15px;
+  height: 15px;
+}
+
+.weimo-sidebar--drawer .docs-sidebar-nav {
+  min-height: 0;
+  height: 100%;
+  overflow: auto;
+}
+
+.sidebar-preview__panel.weimo-sidebar {
+  width: 188px;
+  height: 232px;
+  flex: none;
+  overflow: hidden;
+  pointer-events: auto;
+  position: relative;
+}
+
+.sidebar-preview__panel.weimo-sidebar--normal {
+  display: block;
+}
+
+.heatmap-preview {
+  display: flex;
+  width: 100%;
+  min-height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.heat-color-preview__group {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 2vw, 24px);
+}
+
+.heat-color-preview__swatch {
+  display: block;
+  width: min(42px, 15%);
+  aspect-ratio: 1;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 42px;
+  border-radius: var(--radius-sm);
+}
+
+.bg-color-preview__swatch-canvas {
+  width: 100%;
+  container-type: inline-size;
+}
+
+.bg-color-preview__swatch-group {
+  display: grid;
+  grid-template-columns: repeat(7, 42px);
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: clamp(12px, 2vw, 24px);
+  /* 左右内边距把色块挡在画布 16px 圆角之外 */
+  padding-inline: 16px;
+}
+
+.bg-color-preview__swatch {
+  display: block;
+  aspect-ratio: 1;
+  border-radius: var(--radius-sm);
+}
+
+/* 容器不足 8 枚一行(8×42px+7×24px 间隙+2×16px 内边距=536px,阈值沿用 620px 保守值)时改两行 4 枚,色块 42~48px 自适应 */
+@container (width < 620px) {
+  .bg-color-preview__swatch-group {
+    grid-template-columns: repeat(4, minmax(42px, 48px));
+  }
+}
+
+/* 背景模糊度卡:磨砂/遮罩两种模糊示例在条纹画布上并排 */
+.bg-blur-pair {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: clamp(24px, 4vw, 48px);
+}
+
+.bg-blur-pair__surface {
+  display: block;
+  min-width: 0;
+  /* 定宽与材质页磨砂材质瓦片 260px 一致,窄画布经 max-width 同步收缩 */
+  width: 260px;
+  max-width: 100%;
+  /* 高度与材质页磨砂材质瓦片(260×80)对齐,画布随共享 16px 内边距同节奏 */
+  height: 80px;
+  border-radius: var(--radius-sm);
+  /* 边框勾勒示例边界,便于观察模糊范围 */
+  border: 1px solid var(--color-border);
+}
+
+/* 两个示例统一样式,只有模糊度取值不同:遮罩示例在演示中不叠加遮罩底色 */
+.bg-blur-pair__surface.bg-blur--backdrop {
+  background: none;
+}
+
+/* 卡片底色与画布同为卡片材质本色,加边框让色块可辨 */
+.bg-color-preview__swatch.bg-color--card {
+  border: 1px solid var(--color-border);
+}
+
+.border-color-preview__samples {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  row-gap: 12px;
+  column-gap: clamp(12px, 4%, 24px);
+  padding: 24px 16px;
+}
+
+.border-color-preview__sample {
+  /* 六个方块均分扣掉 5 个 gap 后的剩余宽度，与 column-gap 共用同一 clamp，保证单行恰好铺满 */
+  width: clamp(24px, calc((100% - 5 * clamp(12px, 4%, 24px)) / 6), 48px);
+  aspect-ratio: 1;
+  border: 1px solid;
+  border-radius: var(--radius-sm);
+}
+
+/* 本卡专属画布覆盖：共享画布的 min-height: 100% 按「独占内容区」设计，与 aboveCanvas
+   兄弟并存时会按含兄弟的高度顶穿内容区（瓦片偏离视觉中心），改为 flex 填充剩余高度；
+   条纹区四角收 --radius-sm 作内嵌面板（其余 GlassPreviewCard 卡不受影响）。 */
+.frosted-border-preview .glass-preview-card__canvas {
+  flex: 1 1 auto;
+  min-height: 0;
+  border-radius: var(--radius-sm);
+}
+
+/* 四锚点静态方片行：置于 GlassPreviewCard 条纹画布上方（aboveCanvas 插槽）。 */
+.frosted-border-preview__row {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  padding: 24px 16px 12px;
+  row-gap: 12px;
+  column-gap: clamp(12px, 4%, 24px);
+}
+
+.frosted-border-preview__sample {
+  /* 四锚点方片一行均分扣掉 3 个 gap 后的剩余宽度，与 column-gap 共用同一 clamp；规格与边框色示例对齐 */
+  width: clamp(24px, calc((100% - 3 * clamp(12px, 4%, 24px)) / 4), 48px);
+  aspect-ratio: 1;
+  border: 1px solid;
+  border-radius: var(--radius-sm);
+}
+
+/* 透明探针 wrapper：与瓦片同矩形供采样（自身无背景，采样排除其子树后读到的正是
+   画布条纹），读数供 token 行实时显示瓦片插值边框色；宽度用与静态方片相同的
+   clamp 公式（基准=画布内容宽=方片行内容宽，均为卡宽扣 32px），瓦片以 100% 填满
+   探针保持同规格——公式放探针层避免瓦片对 shrink-to-fit 父级的百分比循环。 */
+.frosted-border-preview__probe {
+  display: grid;
+  width: clamp(24px, calc((100% - 3 * clamp(12px, 4%, 24px)) / 4), 48px);
+}
+
+/* 画布内的方形磨砂材质示例：真实 FrostedSurface，边框色随画布灰度采样插值动态变化。 */
+.frosted-border-preview__tile {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: var(--radius-sm);
+}
+
+.text-color-preview__samples {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  row-gap: 12px;
+  column-gap: clamp(12px, 4%, 24px);
+  padding: 24px 16px;
+}
+
+.text-color-preview__sample {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.font-size-preview__samples {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  row-gap: 12px;
+  column-gap: clamp(12px, 4%, 24px);
+  padding: 24px 16px;
+}
+
+.font-size-preview__sample {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-weight: 650;
+  line-height: 1.15;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.font-size-preview__sample--base {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.typography-preview__samples {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+}
+
+.typography-preview__sample {
+  min-width: 0;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-lg);
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+
+.typography-preview__sample--font-family {
+  font-family: var(--font-mono);
+}
+
+.typography-preview__sample--font-sans {
+  font-family: var(--font-sans);
+}
+
+.typography-preview__sample--font-mono {
+  font-family: var(--font-mono);
+}
+
+.typography-preview__sample--line-height {
+  line-height: var(--font-line-height-reading);
+}
+
+.border-radius-preview__samples {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  row-gap: 12px;
+  column-gap: clamp(12px, 4%, 24px);
+  padding: 24px 16px;
+}
+
+.border-radius-preview__sample {
+  /* 四个方块均分扣掉 3 个 gap 后的剩余宽度，与 column-gap 共用同一 clamp，保证单行恰好铺满 */
+  width: clamp(24px, calc((100% - 3 * clamp(12px, 4%, 24px)) / 4), 48px);
+  aspect-ratio: 1;
+  border: 1px solid var(--color-border-emphasis);
+}
+
+.tag-picker-preview {
+  display: grid;
+  width: 100%;
+  min-height: 100%;
+  place-items: center;
+}
+
+.tag-picker-preview__panel {
+  display: grid;
+  width: min(100%, 320px);
+  gap: 12px;
+  padding: 18px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg-card);
+  box-shadow: var(--shadow-card);
+}
+
+.tag-picker-preview__tags {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  gap: var(--space-tag-gap);
+}
+
+.tag-picker-preview__result {
+  margin: 0;
+  color: var(--color-text-placeholder);
+  font-size: var(--font-size-sm);
+}
+
+/* 瓦片取定宽 260px 而非 min(100%, 260px)：卡片/浮层瓦片的外包层是 align-center 画布里的收缩 flex 项，
+   百分比宽度在收缩容器内退化成文字内容宽，三个示例尺寸无法统一；max-width 保窄屏收缩。 */
+.card-surface-preview__tile,
+.frosted-surface-preview__tile,
+.popup-surface-preview__tile {
+  display: grid;
+  gap: 6px;
+  width: 260px;
+  max-width: 100%;
+  padding: 18px;
+  justify-items: center;
+  text-align: center;
+}
+
+.frosted-surface-preview__tile {
+  min-width: 0;
+  border-radius: var(--radius);
+}
+
+.frosted-surface-preview__title {
+  color: inherit;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.2;
+}
+
+.frosted-surface-preview__meta {
+  color: var(--frosted-surface-muted-color);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  line-height: 1.4;
+  transition: color 160ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .frosted-surface-preview__meta {
+    transition-duration: 1ms;
+  }
+}
+
+/* 胶囊材质卡(按钮胶囊页):普通/磨砂两例并列于灰度画布;磨砂文字色由
+   组件自身 tone 采样自适应,画布仅提供灰度背景。 */
+.capsule-material-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* 胶囊插槽卡(按钮胶囊页):前后缀两例的换行行布局,与 text-button-preview 同构。 */
+.capsule-slot-preview {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* 磨砂工具栏画布(浮动栏页):只负责网格排布,磨砂组件自采样
+   tone,无需画布持有前景色。 */
+.frosted-toolbar-preview {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+}
+
+/* 磨砂标签卡(浮动栏页):sm/lg 两档 FrostedLabel 居中并列于灰度画布,
+   标签自身采样 tone,行容器只负责排布。 */
+.frosted-label-preview {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* 画布与示例等高后,预览窗默认的 overflow: hidden 会把真实阴影整体裁掉
+   (卡片 --shadow-card 0 2px 8px、浮层 --shadow-overlay 0 12px 40px,与
+   磨砂亮背景 tone 投影数值对齐);让阴影画进卡片 padding,
+   浮层卡是页面最后一张卡,阴影透到页底空白处。
+   底部操作栏画布同例:示例容器已换成 CardSurface,阴影同样要落进卡片 padding。
+   磨砂瓦片在亮背景 tone 下投影同形,一并放行
+   (材质页方瓦片+边框页活方瓦片);磨砂图标按钮/按钮组卡共用
+   .icon-preview__row(幽灵图标卡同用该行类,幽灵无投影,放开无视觉差)。
+   胶囊家族走组件级 :has(.capsule-button):材质切换/可编辑胶囊/标签选择器
+   编辑态等卡的磨砂胶囊 tone 投影同源被裁,按组件匹配免去逐卡补类名
+   (默认态胶囊无投影,放开无视觉差)。抽屉侧边栏卡的触发磨砂图标钮
+   同理,经 .sidebar-preview 放行(常驻侧边栏卡共用该画布类,静态无影);
+   标签面包屑卡的磨砂胶囊链经 .tag-page__bread-preview 放行。
+   磨砂图标钮家族与胶囊同法走组件级 :has(.icon-button--frosted):
+   单钮与组内钮共用该变体类,覆盖图片上传/查看工具栏/菜单触发钮等卡
+   (Md 编辑器工具栏是 coss/toolbar,不受影响)。带标签卡片页两张真实卡
+   (笔记卡片/新建草稿壳层)经 .card-docs-preview 放行其卡片材质影与
+   tone 影。 */
+.component-preview-card:has(.card-surface-preview, .popup-surface-preview, .frosted-surface-preview__tile, .frosted-border-preview__tile, .icon-preview__row, .sidebar-preview, .tag-page__bread-preview, .internal-bottom-preview, .card-docs-preview, .card-composer-docs-preview, .capsule-button, .icon-button--frosted, .frosted-label-preview) .base-card__content {
+  overflow: visible;
+}
+
+/* 编辑器正文与光标贴着画布边缘,--radius 的圆角曲线会压住首行文本;
+   编辑器卡与视图卡画布圆角收窄到 --radius-xs,圆角只裁到角落极小范围 */
+.component-preview-card:has(.md-editor-docs-preview, .md-view-docs-preview) .base-card__content {
+  border-radius: var(--radius-xs);
+}
+
+.card-surface-preview__title,
+.popup-surface-preview__title {
+  font-size: var(--font-size-base);
+  font-weight: 650;
+  line-height: 1.2;
+}
+
+.card-surface-preview__meta,
+.popup-surface-preview__meta {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  line-height: 1.4;
+}
+
+.capsule-button-preview__width-example {
+  position: relative;
+  display: inline-grid;
+  min-width: 0;
+}
+
+.capsule-button-preview__width-slot {
+  --capsule-button-preview-width-transition-duration: 180ms;
+
+  display: inline-block;
+  max-width: 100%;
+  overflow: visible;
+  transition: inline-size var(--capsule-button-preview-width-transition-duration) cubic-bezier(0.2, 0, 0, 1);
+}
+
+.capsule-button-preview__width-slot .capsule-button {
+  width: 100%;
+}
+
+.capsule-button-preview__width-measure {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  inline-size: max-content;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.capsule-button-preview__width-measure .capsule-button {
+  width: max-content;
+  max-width: none;
+}
+
+.tag-bar-preview {
+  display: grid;
+  width: 100%;
+  min-height: 100%;
+  place-items: center;
+}
+
+.tag-bar-preview__panel {
+  display: grid;
+  width: min(100%, 420px);
+  min-width: 0;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: start;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg-card);
+}
+
+.tag-bar-preview__panel .tag-bar {
+  min-width: 0;
+}
+
+.tag-bar-preview__controls {
+  justify-self: center;
+}
+
+.sidebar-preview__panel.weimo-sidebar[data-preview-tone="compact"] {
+  height: 260px;
+}
+
+.sidebar-preview__title {
+  position: absolute;
+  inset-block-start: 24px;
+  inset-inline-start: 16px;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  font-weight: 560;
+}
+
+.sidebar-preview__drawer-title {
+  display: block;
+  padding: 24px 56px 0 16px;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  font-weight: 560;
+}
+
+.sidebar-preview__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.sidebar-preview__trigger-label {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  font-weight: 560;
+}
+
+@container sidebar-preview (max-width: 344px) {
+  .sidebar-preview__trigger-label {
+    display: none;
+  }
+}
+
+.md-style-preview__group-effect {
+  display: flex;
+  min-width: 0;
+  min-height: 112px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 16px;
+  color: var(--color-text-primary);
+}
+
+.md-style-preview__content-wrapper {
+  box-sizing: border-box;
+  width: 80%;
+  min-width: 0;
+  margin-inline: auto;
+  overflow: hidden;
+  padding: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.md-style-preview__content-wrapper > * {
+  width: 100%;
+}
+
+.md-style-preview__image {
+  display: block;
+  width: 120px;
+  height: 72px;
+  background:
+    linear-gradient(135deg, hsl(198 72% 72%), hsl(160 48% 76%));
+}
+
+.md-style-preview__group-effect .weimo-card-markdown__image-placeholder {
+  background: hsl(0 0% 50% / 0.08);
+}
+
+.md-style-preview__math .katex {
+  padding: 4px 8px;
+  border-radius: var(--md-math-border-radius);
+  background: var(--md-math-hover-bg);
+}
+
+.md-style-preview__selection-sample {
+  display: flex;
+  height: 80px;
+  align-items: center;
+  padding-inline: 14px;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-md);
+  line-height: 1.8;
+  user-select: text;
+}
+
+.md-style-preview__selection-copy {
+  display: block;
+  cursor: text;
+}
+
+.md-style-preview__selection-highlight {
+  padding-block: 0.4em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  background: var(--md-selection-bg);
+}
+
+.md-style-preview__selection-sample ::selection {
+  background: var(--md-selection-bg);
+}
+
+@media (min-width: 700px) {
+  .app-shell__sidebar-space {
+    display: block;
+  }
+
+  .app-shell__content {
+    max-width: var(--size-content-max-width);
+  }
+
+  .docs-top-bar__sidebar-trigger {
+    display: none;
+  }
+
+  .docs-top-bar__title {
+    margin-inline-start: calc(var(--size-sidebar-width) + var(--space-gutter) * 1.6);
+  }
+}
+
+@media (max-width: 660px) {
+  .app-shell {
+    padding-inline: var(--space-gutter);
+  }
+
+  .image-view-docs-preview {
+    grid-template-columns: 1fr;
+  }
+
+  .preview-stage {
+    min-height: 100%;
+    padding: 12px;
+  }
+
+}
