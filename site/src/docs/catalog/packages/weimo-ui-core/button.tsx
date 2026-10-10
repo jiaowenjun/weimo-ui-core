@@ -177,16 +177,5 @@ export const buttonDefinition = {
   summary: '文本按钮、幽灵/磨砂图标按钮与磨砂图标按钮组的按钮总览',
   status: 'Ready',
   frame: 'plain',
-  searchAliases: [
-    'TextButton',
-    'GhostIconButton',
-    'FrostedIconButton',
-    'FrostedIconButtonGroup',
-    '文本按钮',
-    '幽灵文本按钮',
-    '幽灵图标按钮',
-    '磨砂图标按钮',
-    '磨砂图标按钮组',
-  ],
   preview: () => <ButtonDemo />,
 } satisfies ComponentDefinition

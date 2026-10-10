@@ -70,6 +70,5 @@ export const sliderDefinition = {
   summary: '透明原生 range 交互层 + 单一 --fill 驱动自绘轨道的受控滑块',
   status: 'Ready',
   frame: 'plain',
-  searchAliases: ['Slider', 'range'],
   preview: () => <SliderDemo />,
 } satisfies ComponentDefinition

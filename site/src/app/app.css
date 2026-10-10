@@ -50,7 +50,7 @@
   display: inline-flex;
 }
 
-/* 站点顶栏:磨砂标题胶囊/侧边栏钮/搜索主题组,组件各自采样页面背景
+/* 站点顶栏:磨砂标题胶囊/侧边栏钮/主题按钮,组件各自采样页面背景
    tone;包装层只负责槽内排布。 */
 .docs-top-bar__slot {
   display: inline-flex;

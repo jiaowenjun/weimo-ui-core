@@ -38,6 +38,5 @@ export const sidebarDefinition = {
   summary: '侧边栏总览',
   status: 'Ready',
   frame: 'plain',
-  searchAliases: ['SideBar', '侧边栏'],
   preview: () => <SideBarDemo />,
 } satisfies ComponentDefinition

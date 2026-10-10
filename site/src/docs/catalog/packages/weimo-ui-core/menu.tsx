@@ -85,6 +85,5 @@ export const menuDefinition = {
   summary: 'Coss/Base UI 行为的磨砂弹出操作菜单',
   status: 'Ready',
   frame: 'plain',
-  searchAliases: ['Menu'],
   preview: () => renderMenuDemo(),
 } satisfies ComponentDefinition

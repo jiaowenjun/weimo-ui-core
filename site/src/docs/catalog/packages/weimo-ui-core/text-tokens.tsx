@@ -1,5 +1,4 @@
 import {
-  fontSizeScaleMap,
   fontSizeScales,
   getFontSizeClassName,
   getFontSizeToken,
@@ -111,18 +110,5 @@ export const textTokensDefinition = {
   id: 'text-tokens',
   status: 'Ready',
   frame: 'plain',
-  searchAliases: fontSizeScales.flatMap((scale) => {
-    const item = fontSizeScaleMap[scale]
-
-    return ['FontSize', '文字', '字体', '字号', scale, item.label, item.token, item.description, item.uiUsage, item.bijiUsage]
-  }).concat(
-    previewTextColorTones.flatMap((tone) => {
-      const item = textColorToneMap[tone]
-
-      return ['TextColor', '字色', tone, item.label, item.token, item.description]
-    }),
-  ).concat(
-    fontFamilyTokens.flatMap((font) => ['FontFamily', '字体', '字型', font.token, font.label]),
-  ),
   preview: () => <FontPreview />,
 } satisfies ComponentDefinition

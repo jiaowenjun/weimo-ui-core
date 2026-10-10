@@ -41,6 +41,5 @@ export const actionDialogDefinition = {
   summary: '内部操作对话框骨架，组合 FloatBar 标题栏、右侧工具按钮、关闭按钮和可选 BottomBar',
   status: 'Ready',
   frame: 'plain',
-  searchAliases: ['ActionDialog'],
   preview: () => <ActionDialogDemo />,
 } satisfies ComponentDefinition

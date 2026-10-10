@@ -135,17 +135,5 @@ export const capsuleButtonDefinition = {
   summary: '按钮形态的交互胶囊：前后缀、磨砂状态与内容宽度切换',
   status: 'Preview',
   frame: 'plain',
-  searchAliases: [
-    'Chip',
-    'CapsuleButton',
-    '按钮胶囊',
-    '标签胶囊',
-    '状态标签胶囊',
-    '胶囊材质切换',
-    '胶囊长度切换',
-    '胶囊前缀',
-    '胶囊后缀',
-    '胶囊材质',
-  ],
   preview: () => <CapsuleButtonDemo />,
 } satisfies ComponentDefinition

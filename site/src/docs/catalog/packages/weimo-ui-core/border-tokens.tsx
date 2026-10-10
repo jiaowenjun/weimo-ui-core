@@ -1,13 +1,10 @@
 import {
   borderColorToneMap,
-  borderColorTones,
   frostedSurfaceBorderColorMap,
   getBorderColorClassName,
   getBorderColorToken,
-  type BorderColorTone,
 } from 'weimo-ui-core/components/border-color'
 import {
-  borderRadiusScaleMap,
   borderRadiusScales,
   getBorderRadiusToken,
   getBorderRadiusValue,
@@ -22,41 +19,6 @@ import {
 } from 'weimo-ui-core/components/frosted-surface-model'
 import { GlassPreviewCard } from 'weimo-ui-core/components/glass-preview-card'
 import type { ComponentDefinition } from '../../component-docs'
-
-type BorderContextToken = {
-  label: string
-  token: string
-}
-
-const borderContextTokens: Partial<Record<BorderColorTone, readonly BorderContextToken[]>> = {
-  disable: [
-    {
-      label: '亮背景',
-      token: '--color-border-disabled-on-light',
-    },
-    {
-      label: '暗背景',
-      token: '--color-border-disabled-on-dark',
-    },
-  ],
-  divider: [
-    {
-      label: '主题默认',
-      token: '--color-border-divider-menu',
-    },
-    {
-      label: '亮背景',
-      token: '--color-border-divider-menu-on-light',
-    },
-    {
-      label: '暗背景',
-      token: '--color-border-divider-menu-on-dark',
-    },
-  ],
-  default: [
-    { label: '主题默认', token: '--frosted-surface-border' },
-  ],
-}
 
 const borderColorToneOrder = [
   'default',
@@ -80,23 +42,6 @@ const frostedBorderAnchorOrder = [
 const frostedBorderAnchorTokens = frostedBorderAnchorOrder.map(
   (anchor) => frostedSurfaceBorderAnchorMap[anchor].token,
 )
-
-const borderColorSearchAliases = borderColorTones.flatMap((tone) => {
-  const item = borderColorToneMap[tone]
-  const contexts = borderContextTokens[tone] ?? []
-
-  return [
-    'BorderColor',
-    '边框色',
-    tone,
-    item.label,
-    item.token,
-    item.description,
-    item.uiUsage,
-    item.bijiUsage,
-    ...contexts.flatMap((context) => [context.label, context.token]),
-  ]
-})
 
 // --frosted-surface-border 行的色值实时跟随画布内磨砂瓦片：透明探针 wrapper 与瓦片同
 // 矩形采样（采样排除探针自身子树，读到的正是画布条纹，与瓦片内部插值同源）；采样
@@ -193,15 +138,5 @@ export const borderTokensDefinition = {
   id: 'border-tokens',
   status: 'Ready',
   frame: 'plain',
-  searchAliases: borderColorSearchAliases.concat(
-    ['磨砂材质边框色', '磨砂边框', ...frostedBorderAnchorOrder.map(
-      (anchor) => frostedSurfaceBorderAnchorMap[anchor].token,
-    )],
-    borderRadiusScales.flatMap((scale) => {
-      const item = borderRadiusScaleMap[scale]
-
-      return ['BorderRadius', '边框圆角', '圆角', scale, item.label, item.token, item.description, item.uiUsage, item.bijiUsage]
-    }),
-  ),
   preview: () => <BorderColorPreview />,
 } satisfies ComponentDefinition

@@ -1,6 +1,6 @@
 # weimo-ui-core site
 
-`site` 是 `weimo-ui-core` 的文档与组件预览应用，复用组件包公开入口，负责组件目录、搜索、主题切换和 GitHub Pages 展示。
+`site` 是 `weimo-ui-core` 的文档与组件预览应用，复用组件包公开入口，负责组件目录、主题切换和 GitHub Pages 展示。
 
 ## 开发
 

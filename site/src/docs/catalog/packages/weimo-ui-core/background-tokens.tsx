@@ -1,5 +1,4 @@
 import {
-  bgBlurToneMap,
   bgBlurTones,
   getBgBlurBlurToken,
   getBgBlurBlurValue,
@@ -11,7 +10,6 @@ import {
   getBgColorToken,
   type BgColorTone,
 } from 'weimo-ui-core/components/bg-color'
-import { pressableToneMap, pressableTones } from 'weimo-ui-core/components/pressable'
 import { ComponentPreviewCard } from 'weimo-ui-core/components/component-preview-card'
 import {
   GlassPreviewCard,
@@ -91,31 +89,5 @@ export const backgroundTokensDefinition = {
   id: 'background-tokens',
   status: 'Ready',
   frame: 'plain',
-  searchAliases: bgColorSwatchTones.flatMap((tone) => {
-    const item = bgColorToneMap[tone]
-
-    return ['BgColor', '背景', '背景色', tone, item.label, item.token, item.description, item.uiUsage, item.bijiUsage]
-  }).concat(
-    pressableTones.flatMap((tone) => {
-      const item = pressableToneMap[tone]
-
-      return ['Pressable', tone, item.label, item.description, item.uiUsage, item.bijiUsage]
-    }),
-    bgBlurTones.flatMap((tone) => {
-      const item = bgBlurToneMap[tone]
-
-      return [
-        'BgBlur',
-        '背景模糊度',
-        tone,
-        item.label,
-        item.backgroundToken,
-        item.blurToken,
-        item.description,
-        item.uiUsage,
-        item.bijiUsage,
-      ]
-    }),
-  ),
   preview: () => <BgColorPreview />,
 } satisfies ComponentDefinition

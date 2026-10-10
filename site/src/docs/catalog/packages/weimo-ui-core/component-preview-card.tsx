@@ -61,11 +61,5 @@ export const componentPreviewCardDefinition = {
   summary: '文档站预览卡外壳：标题栏 + 可选 token 行 + 内容画布；磨砂变体自带灰度滑块画布',
   status: 'Preview',
   frame: 'plain',
-  searchAliases: [
-    'ComponentPreviewCard',
-    'GlassPreviewCard',
-    'TokenPreviewCard',
-    '预览卡',
-  ],
   preview: () => <PreviewCardDemo />,
 } satisfies ComponentDefinition

@@ -148,15 +148,5 @@ export const barDefinition = {
   summary: '磨砂标签与浮动/顶部/底部工具栏总览',
   status: 'Ready',
   frame: 'plain',
-  searchAliases: [
-    'BottomBar',
-    'FloatBar',
-    'FrostedLabel',
-    'TopBar',
-    '磨砂标签',
-    '底部操作栏',
-    '浮动工具栏',
-    '顶部工具栏',
-  ],
   preview: () => <BarDemo />,
 } satisfies ComponentDefinition

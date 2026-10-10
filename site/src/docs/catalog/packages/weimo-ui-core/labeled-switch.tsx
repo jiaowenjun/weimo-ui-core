@@ -52,6 +52,5 @@ export const labeledSwitchDefinition = {
   summary: '开/关状态文案随选中态切换的 coss Switch 标题栏开关',
   status: 'Ready',
   frame: 'plain',
-  searchAliases: ['LabeledSwitch', 'Switch', '开关', '切换'],
   preview: () => <LabeledSwitchDemo />,
 } satisfies ComponentDefinition
