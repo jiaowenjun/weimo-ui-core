@@ -551,14 +551,20 @@
 
 /* 本卡专属画布覆盖：共享画布的 min-height: 100% 按「独占内容区」设计，与 aboveCanvas
    兄弟并存时会按含兄弟的高度顶穿内容区（瓦片偏离视觉中心），改为 flex 填充剩余高度；
-   条纹区四角收 --radius-sm 作内嵌面板（其余 GlassPreviewCard 卡不受影响）。 */
+   圆角沿用共享默认 --radius,与磨砂预览卡布局完全统一（其余 GlassPreviewCard 卡不受影响）。 */
 .frosted-border-preview .glass-preview-card__canvas {
   flex: 1 1 auto;
   min-height: 0;
-  border-radius: var(--radius-sm);
 }
 
-/* 四锚点静态方片行：置于 GlassPreviewCard 条纹画布上方（aboveCanvas 插槽）。 */
+/* 对齐磨砂预览卡的默认布局：前置区行内 padding 归零,与画布的 1em 纵向间距挂内容区
+   row-gap(两者是内容区 flex 列的直接兄弟)。 */
+.frosted-border-preview .base-card__content {
+  row-gap: 1em;
+}
+
+/* 四锚点静态方片行：置于 GlassPreviewCard 条纹画布上方（aboveCanvas 插槽）。
+   行内 padding 已归零,row-gap/column-gap 是方片自身换行/列间距,与行-画布间距无关。 */
 .frosted-border-preview__row {
   display: flex;
   width: 100%;
@@ -566,7 +572,6 @@
   align-items: center;
   align-content: center;
   justify-content: center;
-  padding: 24px 16px 12px;
   row-gap: 12px;
   column-gap: clamp(12px, 4%, 24px);
 }
@@ -581,8 +586,9 @@
 
 /* 透明探针 wrapper：与瓦片同矩形供采样（自身无背景，采样排除其子树后读到的正是
    画布条纹），读数供 token 行实时显示瓦片插值边框色；宽度用与静态方片相同的
-   clamp 公式（基准=画布内容宽=方片行内容宽，均为卡宽扣 32px），瓦片以 100% 填满
-   探针保持同规格——公式放探针层避免瓦片对 shrink-to-fit 父级的百分比循环。 */
+   clamp 公式（基准=画布内容宽=卡宽扣 32px；方片行 padding 归零后方片基准为全
+   卡宽，常规卡宽下两基准同处 48px 上限故同规格），瓦片以 100% 填满探针保持
+   同规格——公式放探针层避免瓦片对 shrink-to-fit 父级的百分比循环。 */
 .frosted-border-preview__probe {
   display: grid;
   width: clamp(24px, calc((100% - 3 * clamp(12px, 4%, 24px)) / 4), 48px);
