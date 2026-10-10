@@ -1,0 +1,71 @@
+@layer components {
+  .capsule-button__prefix,
+  .capsule-button__suffix {
+    flex: none;
+  }
+
+  .capsule-button__text {
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
+  }
+
+  /* 后缀小部件为幽灵图标按钮等嵌套交互时,hover/active 色改走嵌套层级
+     token,与胶囊按钮自身的 bg-hover 反馈区分。 */
+  .capsule-button__suffix .icon-button {
+    --icon-button-ghost-hover-bg: var(--color-bg-nested-hover);
+  }
+
+  /* 后缀槽收展:suffixCollapsed(EditableCapsule 展示态)时后缀收拢为 0 宽,
+     胶囊保持无后缀的自然宽度;展开时槽宽与胶囊 inline-size 过渡同时长同
+     曲线,文字区宽度全程恒定、永不被后缀挤切。槽宽钉 16px = icon-button
+     xs 圆框直径(icon-button.css 同值对齐,不引用);clip-path 横向裁在槽
+     界内,过渡期 X 越出槽界的部分不压字,纵向 -100% 放开,保留更高圆框
+     垂直溢出的既定可见性。 */
+  .capsule-frame__slot.capsule-button__suffix {
+    inline-size: 16px;
+    clip-path: inset(-100% 0);
+    transition:
+      inline-size var(--animated-inline-size-transition-duration) cubic-bezier(0.2, 0, 0, 1),
+      opacity var(--capsule-frame-state-transition-duration) ease;
+  }
+
+  .capsule-frame[data-suffix-collapsed] .capsule-button__suffix {
+    inline-size: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* 测量克隆里的后缀槽禁用过渡:宽度测量发生在属性翻转后的过渡第 0 帧,
+     克隆若也播放收展动画,量到的是起始宽度,胶囊会过渡到错误的目标宽。
+     克隆仅测量不可见,槽直接落在终态宽度。 */
+  .animated-inline-size__measure .capsule-frame__slot.capsule-button__suffix {
+    transition: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .capsule-frame__slot.capsule-button__suffix {
+      transition-duration: 1ms;
+    }
+  }
+}
+
+/* 只放几何。color/line-height 不能落在无层区:无层声明无条件压过
+   @layer components 里 glass 变体的 tone 自适应 color(--frosted-surface-fg),
+   基类在 .capsule-frame(同层同值)已有声明,这里再写会把磨砂态文字钉死。 */
+button.capsule-button {
+  gap: 1px;
+}
+
+/* 前后缀图标位置:图标圆框距胶囊左/右边框 6px,图标与文字的 gap 收紧到
+   1px——三档字号统一,两侧对称;padding 仅在带对应插槽时收窄,无前后缀
+   胶囊保持共享 10px 内边距。 */
+button.capsule-button[data-has-prefix] {
+  padding-left: 6px;
+}
+
+button.capsule-button[data-has-suffix] {
+  padding-right: 6px;
+}

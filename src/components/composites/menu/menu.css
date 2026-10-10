@@ -1,0 +1,222 @@
+@layer components {
+  .weimo-menu__trigger {
+    cursor: pointer;
+  }
+
+  .weimo-menu__default-trigger {
+    display: inline-grid;
+    width: 34px;
+    height: 34px;
+    box-sizing: border-box;
+    place-items: center;
+    padding: 0;
+    color: var(--color-text-secondary);
+    font: inherit;
+    cursor: pointer;
+    border: 0;
+    border-radius: var(--radius-sm);
+    background: transparent;
+  }
+
+  .weimo-menu__default-trigger:hover,
+  .weimo-menu__default-trigger[data-popup-open] {
+    color: var(--color-text-primary);
+    background: var(--color-bg-hover);
+  }
+
+  .weimo-menu__default-trigger > svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .weimo-menu__positioner {
+    z-index: 90;
+  }
+
+  .weimo-menu__popup {
+    --weimo-menu-item-hover-bg: color-mix(in srgb, var(--frosted-surface-fg) 12%, transparent);
+    --weimo-menu-separator-bg: var(--color-border-divider-menu);
+
+    min-width: 180px;
+    max-width: min(280px, calc(100vw - 24px));
+    padding: 4px 8px;
+    border-radius: var(--radius);
+    outline: none;
+    opacity: 1;
+    transform: scale(1);
+    transform-origin: var(--transform-origin, top right);
+    transition:
+      opacity 200ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 280ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: opacity, transform;
+  }
+
+  /* MenuPopup composes FrostedSurface on the same node. Own the complete
+     transition list so foreground tone does not depend on stylesheet order;
+     shadow motion must be restated too, or tone flips jump instead of
+     interpolating alpha. */
+  .weimo-menu__popup.frosted-surface {
+    transition:
+      color var(--frosted-surface-tone-transition-duration, 160ms) ease,
+      border-color var(--frosted-surface-tone-transition-duration, 160ms) ease,
+      box-shadow var(--frosted-surface-tone-transition-duration, 160ms) ease,
+      opacity 200ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 280ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .weimo-menu__popup[data-background-tone="light"] {
+    --weimo-menu-separator-bg: var(--color-border-divider-menu-on-light);
+  }
+
+  .weimo-menu__popup[data-background-tone="dark"] {
+    --weimo-menu-separator-bg: var(--color-border-divider-menu-on-dark);
+  }
+
+  .weimo-menu__popup[data-starting-style],
+  .weimo-menu__popup[data-ending-style] {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+
+  .weimo-menu__popup[data-ending-style] {
+    transition:
+      opacity 130ms cubic-bezier(0.4, 0, 1, 1),
+      transform 130ms cubic-bezier(0.4, 0, 1, 1);
+  }
+
+  .weimo-menu__popup.frosted-surface[data-ending-style] {
+    transition:
+      color var(--frosted-surface-tone-transition-duration, 160ms) ease,
+      border-color var(--frosted-surface-tone-transition-duration, 160ms) ease,
+      box-shadow var(--frosted-surface-tone-transition-duration, 160ms) ease,
+      opacity 130ms cubic-bezier(0.4, 0, 1, 1),
+      transform 130ms cubic-bezier(0.4, 0, 1, 1);
+  }
+
+  .weimo-menu__group,
+  .weimo-menu__radio-group {
+    display: grid;
+    gap: 2px;
+  }
+
+  .weimo-menu__group-label {
+    padding: 8px 12px 4px;
+    color: var(--color-text-placeholder);
+    font-size: var(--font-size-xs);
+    line-height: 1.25;
+  }
+
+  .weimo-menu__item {
+    display: flex;
+    min-height: 38px;
+    width: 100%;
+    min-width: 0;
+    align-items: center;
+    gap: 10px;
+    box-sizing: border-box;
+    padding: 0 12px;
+    color: inherit;
+    font: inherit;
+    font-size: var(--font-size-md);
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+    border: 0;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    outline: none;
+  }
+
+  .weimo-menu__item[data-highlighted],
+  .weimo-menu__item:hover {
+    background: var(--weimo-menu-item-hover-bg);
+  }
+
+  .weimo-menu__item[data-disabled] {
+    cursor: default;
+    opacity: 0.56;
+  }
+
+  .weimo-menu__item > svg,
+  .weimo-menu__item-content > svg {
+    width: 16px;
+    height: 16px;
+    flex: none;
+    opacity: 0.82;
+  }
+
+  .weimo-menu__item--inset {
+    padding-left: 38px;
+  }
+
+  .weimo-menu__item--destructive {
+    color: var(--color-text-danger);
+  }
+
+  .weimo-menu__indicator {
+    display: inline-grid;
+    width: 14px;
+    height: 14px;
+    flex: none;
+    place-items: center;
+    color: currentColor;
+  }
+
+  .weimo-menu__indicator svg {
+    width: 14px;
+    height: 14px;
+    stroke-width: 2.2;
+  }
+
+  .weimo-menu__indicator:empty {
+    visibility: hidden;
+  }
+
+  .weimo-menu__item-content {
+    display: inline-flex;
+    min-width: 0;
+    flex: 1;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .weimo-menu__shortcut {
+    margin-left: auto;
+    color: var(--color-text-placeholder);
+    font-size: var(--font-size-xs);
+    line-height: 1;
+  }
+
+  .weimo-menu__separator {
+    height: 1px;
+    margin: 4px 8px;
+    background: var(--weimo-menu-separator-bg);
+  }
+
+  .weimo-menu__sub-trigger {
+    padding-right: 8px;
+  }
+
+  .weimo-menu__sub-chevron {
+    display: inline-grid;
+    width: 18px;
+    height: 18px;
+    flex: none;
+    place-items: center;
+    color: currentColor;
+    opacity: 0.78;
+  }
+
+  .weimo-menu__sub-chevron svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .weimo-menu__popup.frosted-surface,
+    .weimo-menu__popup.frosted-surface[data-ending-style] {
+      transition-duration: 1ms;
+    }
+  }
+}

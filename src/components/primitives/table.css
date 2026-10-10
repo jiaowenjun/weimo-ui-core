@@ -1,0 +1,66 @@
+@layer components {
+  .coss-table-container {
+    width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+  }
+
+  .coss-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-size-md);
+  }
+
+  .coss-table--card {
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  .coss-table__row {
+    border-bottom: 1px solid var(--color-border-divider, var(--color-border));
+  }
+
+  .coss-table__row:last-child {
+    border-bottom: 0;
+  }
+
+  .coss-table__cell {
+    min-width: 0;
+    padding: 10px 14px;
+    vertical-align: middle;
+  }
+
+  .coss-table__cell strong {
+    color: var(--color-text-primary);
+    font-size: var(--font-size-md);
+  }
+
+  .coss-table__cell code {
+    display: inline-block;
+    max-width: 100%;
+    overflow: auto;
+    padding: 3px 6px;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-xs);
+    white-space: nowrap;
+    background: color-mix(in srgb, var(--color-bg-page) 84%, transparent);
+  }
+
+  .coss-table__cell:last-child {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+  }
+
+  @media (max-width: 660px) {
+    .coss-table__row {
+      display: grid;
+      gap: 4px;
+      padding: 8px 0;
+    }
+
+    .coss-table__cell {
+      display: block;
+      padding: 2px 14px;
+    }
+  }
+}

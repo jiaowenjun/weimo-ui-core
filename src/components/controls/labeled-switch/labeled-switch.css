@@ -1,0 +1,14 @@
+@layer components {
+  /* 标题栏开关与其可见状态标签 */
+  .labeled-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .labeled-switch__label {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-xs);
+    line-height: 1.2;
+  }
+}

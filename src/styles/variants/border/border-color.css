@@ -1,0 +1,23 @@
+.border-color--divider {
+  border-color: var(--color-border-divider);
+}
+
+.border-color--default {
+  border-color: var(--color-border);
+}
+
+.border-color--emphasis {
+  border-color: var(--color-border-emphasis);
+}
+
+.border-color--accent {
+  border-color: var(--color-border-accent);
+}
+
+.border-color--disable {
+  border-color: var(--color-border-disabled);
+}
+
+.border-color--danger {
+  border-color: var(--color-border-danger);
+}

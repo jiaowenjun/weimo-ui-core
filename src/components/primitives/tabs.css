@@ -1,0 +1,69 @@
+@layer components {
+  .coss-tabs {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .coss-tabs__list {
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    gap: 2px;
+    min-width: 0;
+    padding: 0;
+    color: var(--color-text-subtle);
+    background: transparent;
+  }
+
+  .coss-tabs__tab {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 32px;
+    padding: 0 10px;
+    color: inherit;
+    font: inherit;
+    font-size: var(--font-size-md);
+    font-weight: 500;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    transition: color 140ms ease;
+  }
+
+  .coss-tabs__tab:hover {
+    color: var(--color-text-primary);
+  }
+
+  /* active tab = soft filled pill (coss bg-accent), not an underline */
+  .coss-tabs__tab[data-selected],
+  .coss-tabs__tab[aria-selected='true'] {
+    color: var(--color-text-primary);
+    background: var(--color-bg-raised);
+  }
+
+  .coss-tabs__tab:focus-visible {
+    outline: 2px solid var(--color-border-accent);
+    outline-offset: -2px;
+  }
+
+  .coss-tabs__tab svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .coss-tabs__panel {
+    min-width: 0;
+  }
+
+  .coss-tabs__panel[hidden] {
+    display: none;
+  }
+}

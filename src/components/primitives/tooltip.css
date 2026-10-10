@@ -1,0 +1,28 @@
+@import 'weimo-ui-core/styles/popup-surface.css';
+
+@layer components {
+  .coss-tooltip__positioner {
+    z-index: 60;
+  }
+
+  .coss-tooltip__popup {
+    z-index: 60;
+    max-width: min(240px, calc(100vw - 24px));
+    padding: 6px 8px;
+    color: var(--color-text-primary);
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    line-height: 1.25;
+    white-space: nowrap;
+    transform-origin: var(--transform-origin);
+    transition:
+      opacity 120ms ease,
+      transform 120ms ease;
+  }
+
+  .coss-tooltip__popup[data-starting-style],
+  .coss-tooltip__popup[data-ending-style] {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}

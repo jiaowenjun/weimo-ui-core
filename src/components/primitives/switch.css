@@ -1,0 +1,58 @@
+@layer components {
+  .coss-switch {
+    /* 组件专属背景 token：定义在 .coss-switch 内部、仅开关子树可用，
+       值别名共享色板（禁裸色值），视觉与共享 token 保持单源同步。
+       选中轨道向宿主卡片底色收敛 15%：亮主题 15%→28%、暗主题 96%→83%
+       （解析值 27.75%/83.4%，展示取整），降低选中态与滑块的极端对比，
+       开/关区分仍一目了然。 */
+    --switch-track-bg: var(--color-border);
+    --switch-track-checked-bg: color-mix(in srgb, var(--color-bg-primary), var(--color-bg-card) 15%);
+    --switch-thumb-bg: var(--color-bg-page);
+    --switch-thumb-size: 14px;
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    width: calc(var(--switch-thumb-size) * 2 + 6px);
+    height: calc(var(--switch-thumb-size) + 4px);
+    padding: 2px;
+    background: var(--switch-track-bg);
+    border-radius: var(--radius-round);
+    cursor: pointer;
+    transition: background 160ms ease;
+  }
+
+  .coss-switch[data-checked] {
+    background: var(--switch-track-checked-bg);
+  }
+
+  .coss-switch__thumb {
+    width: var(--switch-thumb-size);
+    height: var(--switch-thumb-size);
+    border-radius: var(--radius-round);
+    background: var(--switch-thumb-bg);
+    transform: translateX(0);
+    transition: transform 160ms ease;
+  }
+
+  .coss-switch[data-checked] .coss-switch__thumb {
+    transform: translateX(calc(100% + 2px));
+  }
+
+  .coss-switch:focus-visible {
+    outline: 2px solid var(--color-bg-primary);
+    outline-offset: 2px;
+  }
+
+  .coss-switch:disabled,
+  .coss-switch[data-disabled] {
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .coss-switch,
+    .coss-switch__thumb {
+      transition-duration: 1ms;
+    }
+  }
+}

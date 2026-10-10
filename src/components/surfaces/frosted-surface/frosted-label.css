@@ -1,0 +1,21 @@
+@layer components {
+  /* 磨砂标题标签:span 直接持有磨砂材质(frosted-surface 基类的 tone 规则
+     切换文字/边框/投影)与胶囊几何,内边距镜像磨砂胶囊的 6px 10px。 */
+  .frosted-label {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: var(--radius-round);
+    font-family: var(--font-sans);
+    font-size: var(--font-size-sm);
+    font-weight: 400;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .frosted-label--lg {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+  }
+}

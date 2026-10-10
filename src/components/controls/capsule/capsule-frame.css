@@ -1,0 +1,172 @@
+@layer components {
+  .capsule-frame {
+    --animated-inline-size-transition-duration: 180ms;
+    --capsule-frame-state-transition-duration: 180ms;
+    --capsule-frame-hover-background: var(--color-bg-hover);
+    --capsule-frame-active-background: var(--color-bg-hover);
+    --capsule-frame-chip-background: hsl(40 12% 92%);
+
+    position: relative;
+    z-index: 0;
+    isolation: isolate;
+    display: inline-flex;
+    max-width: 100%;
+    min-width: 0;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 4px;
+    box-sizing: border-box;
+    padding: 6px 10px;
+    overflow: hidden;
+    border-radius: var(--radius-round);
+    background: transparent;
+    font-size: var(--font-size-sm);
+    line-height: 1;
+    /* box-shadow 只为 frosted→solid 切换服务：切换后按本列表插值，缺行则
+       亮态投影瞬跳消失；solid 自身无影。 */
+    transition:
+      inline-size var(--animated-inline-size-transition-duration) cubic-bezier(0.2, 0, 0, 1),
+      border-color var(--capsule-frame-state-transition-duration) ease,
+      transform 150ms ease,
+      color var(--capsule-frame-state-transition-duration) ease,
+      box-shadow var(--capsule-frame-state-transition-duration) ease;
+  }
+
+  .dark .capsule-frame {
+    --capsule-frame-chip-background: hsl(0 0% 19%);
+  }
+
+  .capsule-frame::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: var(--capsule-frame-chip-background);
+    content: '';
+    transition:
+      opacity var(--capsule-frame-state-transition-duration) ease,
+      transform var(--capsule-frame-state-transition-duration) ease,
+      background-color var(--capsule-frame-state-transition-duration) ease;
+  }
+
+  .capsule-frame::after {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    content: '';
+    transition:
+      opacity var(--capsule-frame-state-transition-duration) ease,
+      transform var(--capsule-frame-state-transition-duration) ease,
+      background-color var(--capsule-frame-state-transition-duration) ease;
+  }
+
+  /* Solid capsules keep the same 1px geometry as frosted capsules. The
+     frosted branch receives its complete border from FrostedSurface, so this
+     transparent shorthand cannot win by stylesheet import order. */
+  .capsule-frame[data-material="solid"] {
+    border: 1px solid transparent;
+    /* --color-primary 只在 @theme inline 里定义,Tailwind 按需发射、组件 CSS
+       引用会解析失效回退继承;前景须直接引用底层通道 --primary。 */
+    color: hsl(var(--primary));
+  }
+
+  .capsule-frame[data-material="solid"]::before {
+    opacity: 1;
+  }
+
+  .capsule-frame[data-material="solid"]::after {
+    opacity: 0;
+  }
+
+  .capsule-frame[data-material="frosted"]::before {
+    opacity: 0;
+  }
+
+  .capsule-frame[data-material="frosted"]::after {
+    opacity: 1;
+  }
+
+  /* CapsuleFrame owns width and press motion while FrostedSurface owns the
+     material's foreground, border, and backdrop blur on the same element.
+     完整列表会整体顶掉 FrostedSurface 基类里含 box-shadow 的过渡声明，必须
+     在此重述，tone 翻转时亮态投影才能走 alpha 插值而非瞬跳。 */
+  .capsule-frame.frosted-surface {
+    --capsule-frame-hover-background: var(--frosted-surface-hover-bg);
+    --capsule-frame-active-background: var(--frosted-surface-hover-bg);
+
+    transition:
+      inline-size var(--animated-inline-size-transition-duration) cubic-bezier(0.2, 0, 0, 1),
+      border-color var(--frosted-surface-tone-transition-duration, 160ms) ease,
+      transform 150ms ease,
+      color var(--frosted-surface-tone-transition-duration, 160ms) ease,
+      box-shadow var(--frosted-surface-tone-transition-duration, 160ms) ease;
+  }
+
+  /* 插槽行盒统一锁 1em:更高的前后缀部件(icon-button 圆框 xs16/sm24 等)在
+     居中插槽内垂直溢出而非撑高胶囊,溢出落进 6px padding 区保持可见;
+     capsule-frame 全部派生组件(CapsuleButton/EditableCapsule/TagBar 芯片
+     等)自动继承。参照 tag-bread 的 :has 同款方案。 */
+  .capsule-frame__slot {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    flex: none;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    height: 1em;
+  }
+
+  .capsule-frame__slot svg {
+    width: 1em;
+    height: 1em;
+  }
+
+  /* 插槽内嵌 icon-button 时放开胶囊裁切:超出 padding 区的更大圆框(md 28px
+     等)保持完整命中区可见;材质层 inset:0 自带圆角,不依赖此处裁切。 */
+  .capsule-frame:has(.capsule-frame__slot .icon-button) {
+    overflow: visible;
+  }
+
+  .capsule-frame__content {
+    position: relative;
+    z-index: 1;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
+  }
+
+  .capsule-frame[data-interactive="true"] {
+    cursor: pointer;
+    appearance: none;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .capsule-frame[data-interactive="true"]:hover::before,
+    .capsule-frame[data-interactive="true"]:hover::after {
+      background: var(--capsule-frame-hover-background);
+    }
+  }
+
+  .capsule-frame[data-interactive="true"]:active {
+    transform: scale(var(--press-scale));
+  }
+
+  .capsule-frame[data-interactive="true"]:active::before,
+  .capsule-frame[data-interactive="true"]:active::after {
+    background: var(--capsule-frame-active-background);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .capsule-frame,
+    .capsule-frame.frosted-surface,
+    .capsule-frame::before,
+    .capsule-frame::after {
+      transition-duration: 1ms;
+    }
+  }
+}

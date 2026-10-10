@@ -1,0 +1,194 @@
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.weimo-sidebar-shell {
+  position: fixed;
+  inset-inline: 0;
+  top: 16px;
+  z-index: 20;
+  display: none;
+  justify-content: center;
+  height: calc(100svh - 32px);
+  padding-inline: var(--space-gutter);
+  pointer-events: none;
+}
+
+.weimo-sidebar-shell__frame {
+  display: flex;
+  width: 100%;
+  max-width: var(--size-layout-max-width);
+  padding-inline: var(--space-gutter);
+}
+
+/* 只负责占住侧边栏列宽,不裁切——普通面板经 card-surface 带真实阴影,须画出面板外 */
+.weimo-sidebar-shell__bleed {
+  width: var(--size-sidebar-width);
+  flex: none;
+}
+
+.weimo-sidebar {
+  --weimo-sidebar-close-glyph-size: 18px;
+
+  width: fit-content;
+  color: var(--color-text-primary);
+  border-radius: var(--radius);
+  scrollbar-width: none;
+}
+
+.weimo-sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+.weimo-sidebar--normal {
+  display: none;
+  width: var(--size-sidebar-width);
+  height: 100%;
+  overflow-y: auto;
+  pointer-events: auto;
+}
+
+.weimo-sidebar-drawer__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  padding: 0;
+  cursor: pointer;
+  border: 0;
+  background: var(--color-bg-backdrop);
+  backdrop-filter: blur(0);
+  opacity: 0;
+}
+
+.weimo-sidebar-drawer__backdrop[data-open] {
+  animation: weimo-sidebar-backdrop-in 300ms ease-out both;
+}
+
+.weimo-sidebar-drawer__backdrop[data-ending-style] {
+  animation: weimo-sidebar-backdrop-out 300ms ease-out both;
+}
+
+@keyframes weimo-sidebar-backdrop-in {
+  from {
+    backdrop-filter: blur(0);
+    opacity: 0;
+  }
+
+  to {
+    backdrop-filter: blur(var(--backdrop-blur));
+    opacity: 1;
+  }
+}
+
+@keyframes weimo-sidebar-backdrop-out {
+  from {
+    backdrop-filter: blur(var(--backdrop-blur));
+    opacity: 1;
+  }
+
+  to {
+    backdrop-filter: blur(0);
+    opacity: 0;
+  }
+}
+
+.weimo-sidebar-drawer__viewport {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: var(--space-gutter);
+  pointer-events: none;
+  touch-action: pan-y;
+}
+
+.weimo-sidebar-drawer__stage {
+  opacity: 1;
+  pointer-events: none;
+  touch-action: pan-y;
+  transform: translateX(var(--drawer-swipe-movement-x, 0px));
+  transition: transform 300ms ease-out;
+  will-change: transform;
+}
+
+.weimo-sidebar-drawer__stage[data-starting-style],
+.weimo-sidebar-drawer__stage[data-ending-style] {
+  transform: translateX(
+    calc((100% + var(--space-gutter)) * -1 + var(--drawer-swipe-movement-x, 0px))
+  );
+}
+
+/* 抽屉变体不挂 card-surface 类（自带卡片材质的独立复刻），描边自持；
+   普通变体经由 card-surface 继承材质的无边框默认。 */
+.weimo-sidebar--drawer {
+  position: relative;
+  z-index: 1;
+  width: min(var(--size-sidebar-width), calc(100vw - (var(--space-gutter) * 2)));
+  height: 100%;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-card);
+  pointer-events: auto;
+  outline: none;
+  touch-action: pan-y;
+}
+
+.weimo-sidebar__drawer-action {
+  position: absolute;
+  inset-block-start: var(--space-gutter);
+  inset-inline-end: var(--space-gutter);
+  z-index: 1;
+}
+
+.weimo-sidebar__close-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-icon-button-sm);
+  height: var(--size-icon-button-sm);
+  cursor: pointer;
+  color: var(--color-text-primary);
+  border-radius: var(--radius-round);
+  transition:
+    transform 150ms ease,
+    background-color 180ms ease;
+}
+
+.weimo-sidebar__close-button span {
+  font-size: var(--weimo-sidebar-close-glyph-size);
+  line-height: 1;
+  transform: translateY(-1px);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .weimo-sidebar__close-button:hover {
+    transform: scale(0.94);
+    background: var(--color-bg-hover);
+  }
+}
+
+.weimo-sidebar__close-button:active {
+  transform: scale(0.97);
+}
+
+@media (min-width: 700px) {
+  .weimo-sidebar-shell {
+    display: flex;
+  }
+
+  .weimo-sidebar--normal {
+    display: block;
+  }
+}

@@ -1,0 +1,46 @@
+@layer components {
+  .float-bar {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline: 0;
+    z-index: 1;
+    display: flex;
+    min-width: 0;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .float-bar__frame {
+    display: grid;
+    width: 100%;
+    min-width: 0;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: 8px;
+    pointer-events: none;
+  }
+
+  .float-bar__slot {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 8px;
+    pointer-events: none;
+  }
+
+  .float-bar__slot > * {
+    pointer-events: auto;
+  }
+
+  .float-bar__slot--left {
+    justify-content: flex-start;
+  }
+
+  .float-bar__slot--center {
+    justify-content: center;
+  }
+
+  .float-bar__slot--right {
+    justify-content: flex-end;
+  }
+}

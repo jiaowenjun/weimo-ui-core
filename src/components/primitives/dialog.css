@@ -1,0 +1,115 @@
+@import 'weimo-ui-core/styles/popup-surface.css';
+
+@layer components {
+  .coss-dialog__trigger,
+  .coss-dialog__close {
+    cursor: pointer;
+  }
+
+  .coss-dialog__backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    background: var(--color-bg-backdrop);
+    backdrop-filter: blur(var(--backdrop-blur));
+    opacity: 1;
+    transition:
+      opacity 160ms ease-out,
+      backdrop-filter 160ms ease-out;
+  }
+
+  .coss-dialog__backdrop[data-starting-style],
+  .coss-dialog__backdrop[data-ending-style] {
+    backdrop-filter: blur(0);
+    opacity: 0;
+  }
+
+  .coss-dialog__viewport {
+    position: fixed;
+    inset: 0;
+    z-index: 81;
+    display: grid;
+    min-width: 0;
+    place-items: center;
+    padding: 24px;
+    overflow: auto;
+  }
+
+  .coss-dialog__popup {
+    display: flex;
+    width: min(100%, 560px);
+    max-height: min(760px, calc(100vh - 48px));
+    min-width: 0;
+    flex-direction: column;
+    overflow: hidden;
+    outline: none;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition:
+      opacity 160ms ease-out,
+      transform 160ms ease-out;
+  }
+
+  .coss-dialog__popup[data-starting-style],
+  .coss-dialog__popup[data-ending-style] {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+
+  .coss-dialog__header {
+    display: grid;
+    gap: 6px;
+    min-width: 0;
+    padding: 16px 18px 14px;
+    border-bottom: 1px solid var(--color-border-divider, var(--color-border));
+  }
+
+  .coss-dialog__title {
+    min-width: 0;
+    margin: 0;
+    color: var(--color-text-primary);
+    font-size: var(--font-size-lg);
+    font-weight: 620;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+  }
+
+  .coss-dialog__description {
+    min-width: 0;
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+
+  .coss-dialog__panel {
+    min-width: 0;
+    min-height: 0;
+    flex: 1;
+    padding: 16px 18px;
+    overflow: auto;
+  }
+
+  .coss-dialog__footer {
+    display: flex;
+    min-width: 0;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 12px 18px 14px;
+    border-top: 1px solid var(--color-border-divider, var(--color-border));
+  }
+
+  @media (max-width: 640px) {
+    .coss-dialog__viewport {
+      align-items: end;
+      padding: 12px;
+    }
+
+    .coss-dialog__popup {
+      max-height: min(720px, calc(100vh - 24px));
+    }
+  }
+}

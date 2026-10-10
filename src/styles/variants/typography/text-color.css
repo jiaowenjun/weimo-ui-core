@@ -1,0 +1,29 @@
+@layer utilities {
+  .text-color--primary {
+    color: var(--color-text-primary);
+  }
+
+  .text-color--secondary {
+    color: var(--color-text-secondary);
+  }
+
+  .text-color--subtle {
+    color: var(--color-text-subtle);
+  }
+
+  .text-color--placeholder {
+    color: var(--color-text-placeholder);
+  }
+
+  .text-color--disable {
+    color: var(--color-text-disabled);
+  }
+
+  .text-color--danger {
+    color: var(--color-text-danger);
+  }
+
+  .text-color--inherit {
+    color: inherit;
+  }
+}

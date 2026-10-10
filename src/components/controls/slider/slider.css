@@ -1,0 +1,74 @@
+/* 自研滑块（源自玻璃预览卡的灰度滑块）：外观对齐原 coss Slider（轨道 4px、
+   滑块 14px、控制区高 20px），交互层是覆盖整个控制区的透明原生 range input。
+   thumb 与 indicator 的几何由 --fill 一个自定义属性驱动；平滑移动 = 纯 CSS
+   transition，按住（:active）期间禁用过渡保证拖动逐帧跟手。 */
+.slider {
+  /* 组件专属背景 token：定义在 .slider 内部、仅滑块子树可用，
+     值别名共享色板（禁裸色值），视觉与共享 token 保持单源同步。
+     填充指示条与滑块向宿主卡片底色收敛 15%：亮主题 15%→28%、
+     暗主题 96%→83%（解析值 27.75%/83.4%，展示取整），
+     与开关选中轨道同一收敛档位。 */
+  --slider-track-bg: var(--color-border);
+  --slider-indicator-bg: color-mix(in srgb, var(--color-bg-primary), var(--color-bg-card) 15%);
+  --slider-thumb-bg: color-mix(in srgb, var(--color-bg-primary), var(--color-bg-card) 15%);
+  position: relative;
+  width: 140px;
+  height: 20px;
+}
+
+.slider__input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.slider__track {
+  position: absolute;
+  inset-block-start: 50%;
+  width: 100%;
+  height: 4px;
+  translate: 0 -50%;
+  border-radius: var(--radius-round);
+  background: var(--slider-track-bg);
+  pointer-events: none;
+}
+
+.slider__indicator {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  /* 滑块中心行程 = 轨道宽 − 滑块宽（与 Base UI 的 inset 定位几何一致） */
+  inline-size: calc(7px + (100% - 14px) * var(--fill));
+  border-radius: inherit;
+  background: var(--slider-indicator-bg);
+  transition: inline-size 300ms ease-out;
+}
+
+.slider__thumb {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: calc(7px + (100% - 14px) * var(--fill));
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--color-bg-card);
+  border-radius: var(--radius-round);
+  background: var(--slider-thumb-bg);
+  translate: -50% -50%;
+  transition: inset-inline-start 300ms ease-out;
+  pointer-events: none;
+}
+
+.slider:active .slider__indicator,
+.slider:active .slider__thumb {
+  transition: none;
+}
+
+.slider__input:focus-visible ~ .slider__thumb {
+  outline: 2px solid var(--color-border-emphasis);
+  outline-offset: 2px;
+}

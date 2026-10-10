@@ -1,0 +1,17 @@
+@layer components {
+  .card-surface {
+    box-sizing: border-box;
+    color: var(--color-text-primary);
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    background: var(--color-bg-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  /* 卡片材质固定双态，不提供任何边框变体（嵌套也不例外）：
+     亮主题靠细微阴影分层（--shadow-card，边框保持透明几何）；
+     暗主题阴影不可见（--shadow-card 为 none），以默认边框 token 划出卡片轮廓。 */
+  .dark .card-surface {
+    border-color: var(--color-border);
+  }
+}

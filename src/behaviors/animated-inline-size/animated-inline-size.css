@@ -1,0 +1,24 @@
+@layer components {
+  .animated-inline-size__measure {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    inline-size: max-content;
+    max-inline-size: none;
+    overflow: visible;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .animated-inline-size__measure > * {
+    width: max-content;
+    max-width: none;
+  }
+
+  /* 测量目标是克隆盒自身的宽度，外边距从不参与——调用方类（如站点标题
+     的宽屏偏移）随克隆带上的 margin 会混进内联包围盒污染测量值，清零。 */
+  .animated-inline-size__measure,
+  .animated-inline-size__measure * {
+    margin: 0 !important;
+  }
+}

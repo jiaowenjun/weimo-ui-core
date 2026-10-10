@@ -1,0 +1,27 @@
+.bg-color--page {
+  background: var(--color-bg-page);
+}
+
+.bg-color--card {
+  background: var(--color-bg-card);
+}
+
+.bg-color--raised {
+  background: var(--color-bg-raised);
+}
+
+.bg-color--primary {
+  background: var(--color-bg-primary);
+}
+
+.bg-color--hover {
+  background: var(--color-bg-hover);
+}
+
+.bg-color--hover-on-hover {
+  background: var(--color-bg-nested-hover);
+}
+
+.bg-color--selected {
+  background: var(--color-bg-selected);
+}

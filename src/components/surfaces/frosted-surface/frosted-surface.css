@@ -1,0 +1,60 @@
+@property --frosted-surface-fg-opacity {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 1;
+}
+
+@layer components {
+  .frosted-surface {
+    --frosted-blur: 14px;
+    --frosted-surface-tone-transition-duration: 160ms;
+    --frosted-surface-muted-color: var(--frosted-surface-muted-fg);
+    --frosted-surface-hover-bg: color-mix(in srgb, currentColor 12%, transparent);
+
+    color: var(--frosted-surface-fg);
+    border: 1px solid transparent;
+    /* 透明同形投影：暗背景/未采样态视觉无阴影；保持「同形不同 alpha」而非 none，
+       tone 翻转时 box-shadow 走 alpha 插值平滑过渡（none 与实影之间会瞬跳）；
+       双层结构须与亮态逐层同形，插值才成立。 */
+    box-shadow: 0 1px 2px hsl(0 0% 0% / 0), 0 2px 8px hsl(0 0% 0% / 0);
+    backdrop-filter: blur(var(--frosted-blur));
+    -webkit-backdrop-filter: blur(var(--frosted-blur));
+    transition:
+      color var(--frosted-surface-tone-transition-duration) ease,
+      border-color var(--frosted-surface-tone-transition-duration) ease,
+      box-shadow var(--frosted-surface-tone-transition-duration) ease;
+  }
+
+  /* 描边为 opt-in：基类默认透明（1px 几何保留，与有边框实例并排时内边距节奏一致，
+     边框开关切换可走 border-color 过渡），下游材质调用者自动继承无边框默认。 */
+  .frosted-surface--bordered {
+    border-color: var(--frosted-surface-border);
+  }
+
+  /* 亮背景投影与卡片材质 --shadow-card 数值对齐（双层：1px 2px 黑 4% + 2px 8px 黑 6%）：
+     上晕 blur−offset=6px，稳留移动端顶栏上边距（gutter 12px+框内 2px≈14px）之内，
+     即使按最保守的「引擎以 blur 为外扩界」判定（8px）也不越界。曾对齐
+     --shadow-overlay（偏移 12px、模糊 40px），其上晕会越过布局视口顶，触发
+     iOS Safari 安全区回退（状态栏条带变不透明根背景、遮盖滚入内容），
+     2026-09-30 起与浮层分道并并入卡片配方：各侧持字面量互不引用，
+     改动须与 tokens.css 手动同步；暗背景维持无影（暗主题卡片同为无影）。
+     亮背景描边随投影隐藏（与浮层亮主题同构：层级由投影表达，1px 几何保留），
+     特异性 0-2-0 压过 --bordered 的 var 声明，插值边框色照常计算只是不再可见。 */
+  .frosted-surface[data-background-tone="light"] {
+    --frosted-surface-fg: var(--frosted-surface-fg-on-light);
+    --frosted-surface-muted-color: var(--frosted-surface-muted-fg-on-light);
+    border-color: transparent;
+    box-shadow: 0 1px 2px hsl(0 0% 0% / 0.04), 0 2px 8px hsl(0 0% 0% / 0.06);
+  }
+
+  .frosted-surface[data-background-tone="dark"] {
+    --frosted-surface-fg: var(--frosted-surface-fg-on-dark);
+    --frosted-surface-muted-color: var(--frosted-surface-muted-fg-on-dark);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .frosted-surface {
+      transition-duration: 1ms;
+    }
+  }
+}

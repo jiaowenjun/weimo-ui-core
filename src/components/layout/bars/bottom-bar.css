@@ -1,0 +1,25 @@
+@layer components {
+  .bottom-bar {
+    inset-block-start: auto;
+    inset-block-end: 0;
+    padding: 0 12px 12px;
+  }
+
+  .bottom-bar .float-bar__frame {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .bottom-bar .float-bar__slot--left {
+    min-width: 0;
+    overflow: visible;
+    grid-column: 1;
+  }
+
+  .bottom-bar .float-bar__slot--center {
+    display: none;
+  }
+
+  .bottom-bar .float-bar__slot--right {
+    grid-column: 2;
+  }
+}

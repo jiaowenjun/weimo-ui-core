@@ -1,0 +1,54 @@
+@layer components {
+  .top-bar {
+    position: fixed;
+    inset-inline: 0;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+    padding: var(--space-gutter) 0 0;
+  }
+
+  .top-bar__frame {
+    display: grid;
+    min-height: 46px;
+    width: 100%;
+    max-width: var(--size-layout-max-width);
+    min-width: 0;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 8px;
+    pointer-events: none;
+    background: transparent;
+    padding-inline: var(--space-gutter);
+    padding-block: var(--space-topbar-pad-block);
+  }
+
+  .top-bar__slot {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 8px;
+    pointer-events: none;
+  }
+
+  .top-bar__slot > * {
+    pointer-events: auto;
+  }
+
+  .top-bar__slot--left {
+    justify-content: flex-start;
+  }
+
+  .top-bar__slot--right {
+    flex: none;
+    justify-content: flex-end;
+  }
+
+  @media (min-width: 700px) {
+    .top-bar {
+      padding-inline: var(--space-gutter);
+    }
+  }
+}

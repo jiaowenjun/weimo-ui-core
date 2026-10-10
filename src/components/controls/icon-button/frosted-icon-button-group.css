@@ -1,0 +1,83 @@
+@layer components {
+  .frosted-icon-button-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    padding: 0;
+    border-radius: var(--radius-round);
+  }
+
+  /* 组高度与同级单个图标按钮严格一致：按钮盒纵向外溢 1px 抵消上下玻璃
+     描边占位。首尾按钮横向也外溢 1px，让内收后的悬停圆与端帽半圆同心，
+     玻璃环四周等距；中间按钮不外溢、命中区不重叠。
+     按钮自身无边框无底色，外溢落在描边上不可见。 */
+  .frosted-icon-button-group > .icon-button {
+    margin-block: -1px;
+    transition:
+      transform 150ms ease,
+      background-color 180ms ease,
+      color var(--frosted-surface-tone-transition-duration, 160ms) ease,
+      border-color 180ms ease;
+  }
+
+  .frosted-icon-button-group > .icon-button:first-child {
+    margin-inline-start: -1px;
+  }
+
+  .frosted-icon-button-group > .icon-button:last-child {
+    margin-inline-end: -1px;
+  }
+
+  /* 悬停蒙层内收 4px（默认档）：高亮圆与组描边之间留出等距玻璃环——
+     上下与端帽径向同为 3px 玻璃 + 1px 描边，相邻高亮圆间距 8px。
+     描边仅 bordered 时可见，几何间距与边框开关无关。 */
+  .frosted-icon-button-group > .icon-button--frosted::after {
+    inset: 4px;
+  }
+
+  /* 小号组维持 2px 紧凑环，与默认档的 4px 环区分节奏。 */
+  .frosted-icon-button-group > .icon-button--sm.icon-button--frosted::after {
+    inset: 2px;
+  }
+
+  /* xs 按钮盒仅 16px，内收 4px 后高亮圆(8px)会远小于 13px 图标，退回 2px 环。 */
+  .frosted-icon-button-group > .icon-button--xs.icon-button--frosted::after {
+    inset: 2px;
+  }
+
+  /* 组内按钮不叠自己的玻璃层：只取 icon-button--frosted 的悬停蒙层与按压缩放，
+     前景、悬停色从组的 .frosted-surface 变量继承，因此无边框、无独立模糊。
+     禁用色需直接写 color——按钮自身没有 frosted-surface 类，改写玻璃前景变量无效。 */
+  .frosted-icon-button-group > .icon-button--frosted:disabled {
+    color: var(--color-text-disabled);
+  }
+
+  .frosted-icon-button-group[data-background-tone='light'] > .icon-button--frosted:disabled {
+    color: var(--color-text-disabled-on-light);
+  }
+
+  .frosted-icon-button-group[data-background-tone='dark'] > .icon-button--frosted:disabled {
+    color: var(--color-text-disabled-on-dark);
+  }
+
+  /* 组是 div 无 :disabled 伪类，从子按钮推导禁用态：全部按钮禁用时，
+     组描边对齐玻璃图标按钮的禁用边框 token（icon-button--frosted:disabled 同款），
+     走 .frosted-surface 的 border-color 过渡动画切换；描边同样仅在 opt-in 边框组上出现。 */
+  .frosted-icon-button-group.frosted-surface--bordered:not(:has(> .icon-button--frosted:not(:disabled))) {
+    border-color: var(--color-border-disabled);
+  }
+
+  .frosted-icon-button-group.frosted-surface--bordered[data-background-tone='light']:not(:has(> .icon-button--frosted:not(:disabled))) {
+    border-color: var(--color-border-disabled-on-light);
+  }
+
+  .frosted-icon-button-group.frosted-surface--bordered[data-background-tone='dark']:not(:has(> .icon-button--frosted:not(:disabled))) {
+    border-color: var(--color-border-disabled-on-dark);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .frosted-icon-button-group > .icon-button {
+      transition-duration: 1ms;
+    }
+  }
+}

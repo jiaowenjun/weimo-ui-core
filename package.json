@@ -1,0 +1,110 @@
+{
+  "name": "weimo-ui-core",
+  "private": false,
+  "version": "0.1.0",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jiaowenjun/weimo-ui-core.git"
+  },
+  "packageManager": "pnpm@12.4.2+sha512.08adc6613180275c7c9edada39dcf08c9c61ad4e7eaf330a4f3461f102b0f907423454d117f98e72d47fef0616070644d7bffc973a6a57f5090a6d7c368b07c9",
+  "engines": {
+    "node": ">=20.19"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "exports": {
+    "./components/action-dialog": "./src/components/composites/action-dialog/action-dialog.tsx",
+    "./components/animated-inline-size": "./src/behaviors/animated-inline-size/animated-inline-size.tsx",
+    "./components/animated-inline-size-model": "./src/behaviors/animated-inline-size/animated-inline-size-model.ts",
+    "./components/bg-blur": "./src/styles/variants/background/bg-blur.ts",
+    "./components/bg-color": "./src/styles/variants/background/bg-color.ts",
+    "./components/border-color": "./src/styles/variants/border/border-color.ts",
+    "./components/border-radius": "./src/styles/variants/border/border-radius.ts",
+    "./components/bottom-bar": "./src/components/layout/bars/bottom-bar.tsx",
+    "./components/capsule-button": "./src/components/controls/capsule/capsule-button.tsx",
+    "./components/capsule-frame": "./src/components/controls/capsule/capsule-frame.ts",
+    "./components/card-surface": "./src/components/surfaces/card-surface/card-surface.tsx",
+    "./components/coss/button": "./src/components/primitives/button.tsx",
+    "./components/coss/dialog": "./src/components/primitives/dialog.tsx",
+    "./components/coss/switch": "./src/components/primitives/switch.tsx",
+    "./components/coss/table": "./src/components/primitives/table.tsx",
+    "./components/coss/tabs": "./src/components/primitives/tabs.tsx",
+    "./components/coss/toolbar": "./src/components/primitives/toolbar.tsx",
+    "./components/coss/tooltip": "./src/components/primitives/tooltip.tsx",
+    "./components/float-bar": "./src/components/layout/bars/float-bar.tsx",
+    "./components/font-size": "./src/styles/variants/typography/font-size.ts",
+    "./components/frosted-icon-button": "./src/components/controls/icon-button/frosted-icon-button.tsx",
+    "./components/frosted-icon-button-group": "./src/components/controls/icon-button/frosted-icon-button-group.tsx",
+    "./components/frosted-label": "./src/components/surfaces/frosted-surface/frosted-label.tsx",
+    "./components/frosted-surface": "./src/components/surfaces/frosted-surface/frosted-surface.tsx",
+    "./components/frosted-surface-model": "./src/components/surfaces/frosted-surface/frosted-surface-model.ts",
+    "./components/ghost-icon-button": "./src/components/controls/icon-button/ghost-icon-button.tsx",
+    "./components/icon-button-model": "./src/components/controls/icon-button/icon-button-model.ts",
+    "./components/labeled-switch": "./src/components/controls/labeled-switch/labeled-switch.tsx",
+    "./components/menu": "./src/components/composites/menu/menu.tsx",
+    "./components/popup-surface": "./src/components/surfaces/popup-surface/popup-surface.tsx",
+    "./components/pressable": "./src/styles/variants/background/pressable.ts",
+    "./components/sidebar": "./src/components/layout/sidebar/sidebar.tsx",
+    "./components/slider": "./src/components/controls/slider/slider.tsx",
+    "./components/text-button": "./src/components/controls/text-button/text-button.tsx",
+    "./components/text-color": "./src/styles/variants/typography/text-color.ts",
+    "./components/top-bar": "./src/components/layout/bars/top-bar.tsx",
+    "./lib/use-infinite-list-sentinel": "./src/lib/infinite-list-sentinel/use-infinite-list-sentinel.ts",
+    "./lib/utils": "./src/lib/utils.ts",
+    "./styles/action-dialog.css": "./src/components/composites/action-dialog/action-dialog.css",
+    "./styles/animated-inline-size.css": "./src/behaviors/animated-inline-size/animated-inline-size.css",
+    "./styles/bg-blur.css": "./src/styles/variants/background/bg-blur.css",
+    "./styles/bg-color.css": "./src/styles/variants/background/bg-color.css",
+    "./styles/border-color.css": "./src/styles/variants/border/border-color.css",
+    "./styles/bottom-bar.css": "./src/components/layout/bars/bottom-bar.css",
+    "./styles/capsule-frame.css": "./src/components/controls/capsule/capsule-frame.css",
+    "./styles/card-surface.css": "./src/components/surfaces/card-surface/card-surface.css",
+    "./styles/button.css": "./src/components/primitives/button.css",
+    "./styles/dialog.css": "./src/components/primitives/dialog.css",
+    "./styles/switch.css": "./src/components/primitives/switch.css",
+    "./styles/table.css": "./src/components/primitives/table.css",
+    "./styles/tabs.css": "./src/components/primitives/tabs.css",
+    "./styles/float-bar.css": "./src/components/layout/bars/float-bar.css",
+    "./styles/font-size.css": "./src/styles/variants/typography/font-size.css",
+    "./styles/frosted-icon-button-group.css": "./src/components/controls/icon-button/frosted-icon-button-group.css",
+    "./styles/frosted-label.css": "./src/components/surfaces/frosted-surface/frosted-label.css",
+    "./styles/frosted-surface.css": "./src/components/surfaces/frosted-surface/frosted-surface.css",
+    "./styles/icon-button.css": "./src/components/controls/icon-button/icon-button.css",
+    "./styles/labeled-switch.css": "./src/components/controls/labeled-switch/labeled-switch.css",
+    "./styles/menu.css": "./src/components/composites/menu/menu.css",
+    "./styles/popup-surface.css": "./src/components/surfaces/popup-surface/popup-surface.css",
+    "./styles/sidebar.css": "./src/components/layout/sidebar/sidebar.css",
+    "./styles/slider.css": "./src/components/controls/slider/slider.css",
+    "./styles/text-button.css": "./src/components/controls/text-button/text-button.css",
+    "./styles/text-color.css": "./src/styles/variants/typography/text-color.css",
+    "./styles/tooltip.css": "./src/components/primitives/tooltip.css",
+    "./styles/tokens.css": "./src/styles/tokens.css",
+    "./styles/top-bar.css": "./src/components/layout/bars/top-bar.css"
+  },
+  "scripts": {
+    "test:typecheck": "tsc -p tsconfig.json --noEmit --pretty false"
+  },
+  "dependencies": {
+    "@base-ui/react": "1.5.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "1.24.0",
+    "tailwind-merge": "3.6.0"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "~6.0.3"
+  }
+}

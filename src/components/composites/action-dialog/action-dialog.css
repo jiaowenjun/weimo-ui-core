@@ -1,0 +1,35 @@
+@layer components {
+  .action-dialog {
+    position: relative;
+  }
+
+  .action-dialog__bar {
+    padding: 10px 10px 0;
+  }
+
+  .action-dialog__bar .float-bar__frame {
+    min-height: 34px;
+  }
+
+  .action-dialog__actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .action-dialog__title {
+    min-width: 0;
+    overflow: hidden;
+    color: var(--color-text-primary);
+    font-size: var(--font-size-lg);
+    font-weight: 620;
+    line-height: 1.25;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .action-dialog__bar svg {
+    width: 16px;
+    height: 16px;
+  }
+}
