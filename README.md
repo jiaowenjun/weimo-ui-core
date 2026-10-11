@@ -19,7 +19,7 @@ pnpm add weimo-ui-core @base-ui/react react react-dom
 | Token | `styles/tokens.css` |
 | 材质 | `components/card-surface`、`frosted-surface`、`popup-surface` |
 | 按钮与控件 | `components/text-button`、`capsule-button`、`frosted-icon-button`、`ghost-icon-button`、`slider` |
-| 卡片与预览 | `components/base-card`、`component-preview-card`、`glass-preview-card` |
+| 卡片与预览 | `components/base-card`、`component-preview-card`、`frosted-preview-card` |
 | 组合组件 | `components/menu`、`action-dialog` |
 | 布局 | `components/sidebar`、`top-bar`、`bottom-bar`、`float-bar` |
 | 样式变体 | `components/font-size`、`text-color`、`bg-color`、`bg-blur`、`border-color`、`border-radius`、`pressable` |

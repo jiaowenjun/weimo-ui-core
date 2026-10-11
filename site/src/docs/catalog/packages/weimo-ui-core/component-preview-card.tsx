@@ -10,7 +10,7 @@ import { LabeledSwitch } from 'weimo-ui-core/components/labeled-switch'
 import { TextButton } from 'weimo-ui-core/components/text-button'
 import type { ComponentDefinition } from '../../component-docs'
 import { ComponentCardTitle } from '../../component-card-title'
-import { GlassPreviewCard } from 'weimo-ui-core/components/glass-preview-card'
+import { FrostedPreviewCard } from 'weimo-ui-core/components/frosted-preview-card'
 
 // 示例 token 行直接取真实 token 表（通用 hover 底色 + 基础圆角）。
 const previewCardItems = [
@@ -65,33 +65,33 @@ function PreviewCardDemo() {
       >
         <TextButton>内容区示例</TextButton>
       </ComponentPreviewCard>
-      <GlassPreviewCard
+      <FrostedPreviewCard
         className={debugClassName}
-        label={<ComponentCardTitle componentName="glass-preview-card">磨砂预览卡</ComponentCardTitle>}
+        label={<ComponentCardTitle componentName="frosted-preview-card">磨砂预览卡</ComponentCardTitle>}
       >
         <FrostedSurface className="frosted-surface-preview__tile">
-          <span className="frosted-surface-preview__title">Glass Preview</span>
+          <span className="frosted-surface-preview__title">Frosted Preview</span>
           <span className="frosted-surface-preview__meta">拖动灰度滑块验证磨砂材质</span>
         </FrostedSurface>
-      </GlassPreviewCard>
-      <GlassPreviewCard
+      </FrostedPreviewCard>
+      <FrostedPreviewCard
         aboveCanvas={
-          <div className="glass-canvas-preview__row">
+          <div className="frosted-canvas-preview__row">
             <TextButton>前置区文本按钮</TextButton>
           </div>
         }
-        className={`${debugClassName} glass-canvas-preview`}
+        className={`${debugClassName} frosted-canvas-preview`}
         label={
-          <ComponentCardTitle componentName="glass-preview-card">
+          <ComponentCardTitle componentName="frosted-preview-card">
             磨砂预览卡·画布前置区
           </ComponentCardTitle>
         }
       >
         <FrostedSurface className="frosted-surface-preview__tile">
-          <span className="frosted-surface-preview__title">Glass Preview</span>
+          <span className="frosted-surface-preview__title">Frosted Preview</span>
           <span className="frosted-surface-preview__meta">前置区渲染于磨砂画布上方，灰度滑块照常生效</span>
         </FrostedSurface>
-      </GlassPreviewCard>
+      </FrostedPreviewCard>
       <div className="docs-debug-toggle">
         <LabeledSwitch
           ariaLabel="切换 DEBUG 边框显示"

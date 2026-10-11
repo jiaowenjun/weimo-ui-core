@@ -50,7 +50,7 @@ export const coreCatalog = {
       registryName: 'component-preview-card',
       packageExport: './components/component-preview-card',
       components: [
-        { id: 'glass-preview-card', name: 'GlassPreviewCard', registryName: 'glass-preview-card', packageExport: './components/glass-preview-card' },
+        { id: 'frosted-preview-card', name: 'FrostedPreviewCard', registryName: 'frosted-preview-card', packageExport: './components/frosted-preview-card' },
       ],
     },
     {

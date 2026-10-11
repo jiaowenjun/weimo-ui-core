@@ -10,7 +10,7 @@ import {
   type ComponentPreviewCardProps,
 } from './component-preview-card'
 
-import './glass-preview-card.css'
+import './frosted-preview-card.css'
 
 function parseHslLightness(value: string) {
   const match = value.match(
@@ -20,14 +20,14 @@ function parseHslLightness(value: string) {
   return match ? Number(match[1]) : null
 }
 
-export const glassBackgroundGrayDark =
+export const frostedBackgroundGrayDark =
   parseHslLightness(bgColorToneMap.card.value.dark) ?? 12
-export const glassBackgroundGrayLight =
+export const frostedBackgroundGrayLight =
   parseHslLightness(bgColorToneMap.card.value.light) ?? 100
-export const glassBackgroundGrayMidpoint =
-  (glassBackgroundGrayDark + glassBackgroundGrayLight) / 2
+export const frostedBackgroundGrayMidpoint =
+  (frostedBackgroundGrayDark + frostedBackgroundGrayLight) / 2
 
-const glassGradientStops = [
+const frostedGradientStops = [
   { hue: 220, saturation: 0.58, spread: -16 },
   { hue: 262, saturation: 0.55, spread: -8 },
   { hue: 316, saturation: 0.5, spread: 0 },
@@ -35,10 +35,10 @@ const glassGradientStops = [
   { hue: 44, saturation: 0.72, spread: 16 },
 ] as const
 
-const glassStripeWidth = 48
-const glassStripePeriod = glassGradientStops.length * glassStripeWidth
+const frostedStripeWidth = 48
+const frostedStripePeriod = frostedGradientStops.length * frostedStripeWidth
 
-function glassHslToRgb(hue: number, saturation: number, lightness: number) {
+function frostedHslToRgb(hue: number, saturation: number, lightness: number) {
   const chroma = (1 - Math.abs(2 * lightness - 1)) * saturation
   const secondary = chroma * (1 - Math.abs(((hue / 60) % 2) - 1))
   const match = lightness - chroma / 2
@@ -62,25 +62,25 @@ function glassHslToRgb(hue: number, saturation: number, lightness: number) {
   ] as const
 }
 
-export function getGlassPreviewBackground(gray: number): CSSProperties {
-  const range = glassBackgroundGrayLight - glassBackgroundGrayDark
-  const progress = Math.min(Math.max((gray - glassBackgroundGrayDark) / range, 0), 1)
+export function getFrostedPreviewBackground(gray: number): CSSProperties {
+  const range = frostedBackgroundGrayLight - frostedBackgroundGrayDark
+  const progress = Math.min(Math.max((gray - frostedBackgroundGrayDark) / range, 0), 1)
   const colorfulness = progress <= 0 || progress >= 1 ? 0 : Math.sin(Math.PI * progress)
-  const stripes = glassGradientStops.map(({ hue, saturation, spread }, index) => {
+  const stripes = frostedGradientStops.map(({ hue, saturation, spread }, index) => {
     const boundedGray =
       colorfulness === 0 ? gray : Math.min(Math.max(gray + spread * colorfulness, 3), 100)
-    const [red, green, blue] = glassHslToRgb(
+    const [red, green, blue] = frostedHslToRgb(
       hue,
       saturation * colorfulness,
       boundedGray / 100,
     )
 
-    return `rgb(${red}, ${green}, ${blue}) ${index * glassStripeWidth}px ${(index + 1) * glassStripeWidth}px`
+    return `rgb(${red}, ${green}, ${blue}) ${index * frostedStripeWidth}px ${(index + 1) * frostedStripeWidth}px`
   })
 
   return {
     backgroundImage: `repeating-linear-gradient(90deg, ${stripes.join(', ')})`,
-    backgroundPositionX: `${-progress * glassStripePeriod}px`,
+    backgroundPositionX: `${-progress * frostedStripePeriod}px`,
   }
 }
 
@@ -88,17 +88,17 @@ function getInitialGray(initialGray: number | undefined) {
   if (initialGray !== undefined) return initialGray
 
   if (typeof document !== 'undefined' && document.documentElement.classList.contains('dark')) {
-    return glassBackgroundGrayDark
+    return frostedBackgroundGrayDark
   }
 
   return typeof window !== 'undefined' &&
     typeof window.matchMedia === 'function' &&
     window.matchMedia('(prefers-color-scheme: dark)').matches
-    ? glassBackgroundGrayDark
-    : glassBackgroundGrayLight
+    ? frostedBackgroundGrayDark
+    : frostedBackgroundGrayLight
 }
 
-export type GlassPreviewCardProps = Omit<
+export type FrostedPreviewCardProps = Omit<
   ComponentPreviewCardProps,
   'align' | 'children' | 'footer'
 > & {
@@ -108,15 +108,15 @@ export type GlassPreviewCardProps = Omit<
   onGrayChange?: (gray: number) => void
 }
 
-export function GlassPreviewCard({
+export function FrostedPreviewCard({
   aboveCanvas,
   children,
   className,
   initialGray,
   onGrayChange,
   ...props
-}: GlassPreviewCardProps) {
-  const [glassBackgroundGray, setGlassBackgroundGray] = useState(() =>
+}: FrostedPreviewCardProps) {
+  const [frostedBackgroundGray, setFrostedBackgroundGray] = useState(() =>
     getInitialGray(initialGray),
   )
 
@@ -124,11 +124,11 @@ export function GlassPreviewCard({
     if (typeof document === 'undefined' || typeof MutationObserver === 'undefined') return
 
     const syncThemeEndpoint = () => {
-      setGlassBackgroundGray(
+      setFrostedBackgroundGray(
         initialGray ??
           (document.documentElement.classList.contains('dark')
-            ? glassBackgroundGrayDark
-            : glassBackgroundGrayLight),
+            ? frostedBackgroundGrayDark
+            : frostedBackgroundGrayLight),
       )
     }
     const themeObserver = new MutationObserver(syncThemeEndpoint)
@@ -143,29 +143,29 @@ export function GlassPreviewCard({
   }, [initialGray])
 
   useEffect(() => {
-    onGrayChange?.(glassBackgroundGray)
-  }, [glassBackgroundGray, onGrayChange])
+    onGrayChange?.(frostedBackgroundGray)
+  }, [frostedBackgroundGray, onGrayChange])
 
   return (
     <ComponentPreviewCard
       {...props}
-      className={cn('glass-preview-card', className)}
+      className={cn('frosted-preview-card', className)}
       footer={
-        <div className="glass-preview-card__slider-row">
+        <div className="frosted-preview-card__slider-row">
           <Slider
             ariaLabel="背景灰度"
-            max={glassBackgroundGrayLight}
-            min={glassBackgroundGrayDark}
-            onValueChange={setGlassBackgroundGray}
-            value={glassBackgroundGray}
+            max={frostedBackgroundGrayLight}
+            min={frostedBackgroundGrayDark}
+            onValueChange={setFrostedBackgroundGray}
+            value={frostedBackgroundGray}
           />
         </div>
       }
     >
       {aboveCanvas}
       <div
-        className="glass-preview-card__canvas"
-        style={getGlassPreviewBackground(glassBackgroundGray)}
+        className="frosted-preview-card__canvas"
+        style={getFrostedPreviewBackground(frostedBackgroundGray)}
       >
         {children}
       </div>

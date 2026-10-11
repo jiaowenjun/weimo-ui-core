@@ -14,20 +14,20 @@ import {
 import { TopBar } from 'weimo-ui-core/components/top-bar'
 import type { ComponentDefinition } from '../../component-docs'
 import { ComponentCardTitle } from '../../component-card-title'
-import { GlassPreviewCard } from 'weimo-ui-core/components/glass-preview-card'
+import { FrostedPreviewCard } from 'weimo-ui-core/components/frosted-preview-card'
 
 // 磨砂标签:磨砂材质的标题文字胶囊(全胶囊圆角),文字色随画布 tone
 // 自适应;sm 档用于工具栏栏位标题,lg 档(粗体)用于页面标题。
 function FrostedLabelDemo() {
   return (
-    <GlassPreviewCard
+    <FrostedPreviewCard
       label={<ComponentCardTitle componentName="frosted-label">磨砂标签</ComponentCardTitle>}
     >
       <div aria-label="磨砂标签预览" className="frosted-label-preview">
         <FrostedLabel size="sm">浮动栏</FrostedLabel>
         <FrostedLabel size="lg">页面标题</FrostedLabel>
       </div>
-    </GlassPreviewCard>
+    </FrostedPreviewCard>
   )
 }
 
@@ -72,7 +72,7 @@ function BottomBarDemo() {
 // 规则),组件各自采样画布 tone 自适应;画布只负责网格排布。
 function FloatBarDemo() {
   return (
-    <GlassPreviewCard
+    <FrostedPreviewCard
       label={<ComponentCardTitle componentName="float-bar">浮动工具栏</ComponentCardTitle>}
     >
       <div className="frosted-toolbar-preview">
@@ -97,7 +97,7 @@ function FloatBarDemo() {
           }
         />
       </div>
-    </GlassPreviewCard>
+    </FrostedPreviewCard>
   )
 }
 
@@ -121,7 +121,7 @@ function renderTopBarSearchButton() {
 // 规则,图标钮用默认尺寸档),组件各自采样画布 tone 自适应。
 function TopBarDemo() {
   return (
-    <GlassPreviewCard
+    <FrostedPreviewCard
       label={<ComponentCardTitle componentName="top-bar">顶部工具栏</ComponentCardTitle>}
     >
       <div className="frosted-toolbar-preview">
@@ -136,7 +136,7 @@ function TopBarDemo() {
           rightSlot={renderTopBarSearchButton()}
         />
       </div>
-    </GlassPreviewCard>
+    </FrostedPreviewCard>
   )
 }
 

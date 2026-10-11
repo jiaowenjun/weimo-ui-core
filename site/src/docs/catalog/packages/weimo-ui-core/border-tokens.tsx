@@ -17,7 +17,7 @@ import {
 import {
   frostedSurfaceBorderAnchorMap,
 } from 'weimo-ui-core/components/frosted-surface-model'
-import { GlassPreviewCard } from 'weimo-ui-core/components/glass-preview-card'
+import { FrostedPreviewCard } from 'weimo-ui-core/components/frosted-preview-card'
 import type { ComponentDefinition } from '../../component-docs'
 
 const borderColorToneOrder = [
@@ -56,7 +56,7 @@ function FrostedBorderColorPreview() {
   )?.['--frosted-surface-border'] ?? null
 
   return (
-    <GlassPreviewCard
+    <FrostedPreviewCard
       aboveCanvas={
         <div aria-hidden="true" className="frosted-border-preview__row">
           {frostedBorderAnchorTokens.map((token) => (
@@ -85,7 +85,7 @@ function FrostedBorderColorPreview() {
       <div className="frosted-border-preview__probe" ref={setElementRef}>
         <FrostedSurface aria-hidden="true" bordered className="frosted-border-preview__tile" />
       </div>
-    </GlassPreviewCard>
+    </FrostedPreviewCard>
   )
 }
 

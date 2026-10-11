@@ -2,11 +2,11 @@
   /* 布局提级：内容区容器不生成盒，aboveCanvas 行与磨砂画布成为卡面 flex 列的
      直接布局子级——前置区行即「内容区」本体(aboveCanvas 可选)，画布填充剩余
      高度(必选)；行-画布分区间距由卡面 gap(--space-card-section-gap=1em)承担。 */
-  .glass-preview-card .base-card__content {
+  .frosted-preview-card .base-card__content {
     display: contents;
   }
 
-  .glass-preview-card__canvas {
+  .frosted-preview-card__canvas {
     display: grid;
     flex: 1 1 auto;
     min-height: 0;
@@ -15,7 +15,7 @@
     place-items: center;
   }
 
-  .glass-preview-card__slider-row {
+  .frosted-preview-card__slider-row {
     display: flex;
     justify-content: center;
   }

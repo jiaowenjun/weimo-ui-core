@@ -12,7 +12,7 @@ import { TextButton } from 'weimo-ui-core/components/text-button'
 import { LabeledSwitch } from 'weimo-ui-core/components/labeled-switch'
 import type { ComponentDefinition } from '../../component-docs'
 import { ComponentCardTitle } from '../../component-card-title'
-import { GlassPreviewCard } from 'weimo-ui-core/components/glass-preview-card'
+import { FrostedPreviewCard } from 'weimo-ui-core/components/frosted-preview-card'
 
 function TextButtonPreview() {
   const [disabled, setDisabled] = useState(false)
@@ -97,7 +97,7 @@ function FrostedIconButtonPreview() {
   const [disabled, setDisabled] = useState(false)
 
   return (
-    <GlassPreviewCard
+    <FrostedPreviewCard
       action={
         <LabeledSwitch
           ariaLabel="启用"
@@ -110,7 +110,7 @@ function FrostedIconButtonPreview() {
       label={<ComponentCardTitle componentName="frosted-icon-button">磨砂图标按钮</ComponentCardTitle>}
     >
       <FrostedIconButtonPreviewGroup disabled={disabled} />
-    </GlassPreviewCard>
+    </FrostedPreviewCard>
   )
 }
 
@@ -141,7 +141,7 @@ function FrostedIconButtonGroupPreview() {
   const [disabled, setDisabled] = useState(false)
 
   return (
-    <GlassPreviewCard
+    <FrostedPreviewCard
       action={
         <LabeledSwitch
           ariaLabel="启用"
@@ -154,7 +154,7 @@ function FrostedIconButtonGroupPreview() {
       label={<ComponentCardTitle componentName="frosted-icon-button-group">磨砂图标按钮组</ComponentCardTitle>}
     >
       <FrostedIconButtonGroupPreviewGroup disabled={disabled} />
-    </GlassPreviewCard>
+    </FrostedPreviewCard>
   )
 }
 

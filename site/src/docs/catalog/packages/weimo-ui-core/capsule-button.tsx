@@ -6,20 +6,20 @@ import { ComponentPreviewCard } from 'weimo-ui-core/components/component-preview
 import { LabeledSwitch } from 'weimo-ui-core/components/labeled-switch'
 import type { ComponentDefinition } from '../../component-docs'
 import { ComponentCardTitle } from '../../component-card-title'
-import { GlassPreviewCard } from 'weimo-ui-core/components/glass-preview-card'
+import { FrostedPreviewCard } from 'weimo-ui-core/components/frosted-preview-card'
 
 // 胶囊材质:普通(default 态)、磨砂(frosted 态)两例并列于灰度画布,拖动滑块
 // 可对比两种材质随背景的表现,磨砂文字色随自身 tone 采样自适应。
 function CapsuleMaterialDemo() {
   return (
-    <GlassPreviewCard
+    <FrostedPreviewCard
       label={<ComponentCardTitle componentName="capsule-button">胶囊材质</ComponentCardTitle>}
     >
       <div aria-label="胶囊材质预览" className="capsule-material-row">
         <CapsuleButton prefix={null} state="default">普通胶囊</CapsuleButton>
         <CapsuleButton prefix={null} state="frosted">磨砂胶囊</CapsuleButton>
       </div>
-    </GlassPreviewCard>
+    </FrostedPreviewCard>
   )
 }
 

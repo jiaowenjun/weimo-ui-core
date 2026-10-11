@@ -12,9 +12,9 @@ import {
 } from 'weimo-ui-core/components/bg-color'
 import { ComponentPreviewCard } from 'weimo-ui-core/components/component-preview-card'
 import {
-  GlassPreviewCard,
-  glassBackgroundGrayMidpoint,
-} from 'weimo-ui-core/components/glass-preview-card'
+  FrostedPreviewCard,
+  frostedBackgroundGrayMidpoint,
+} from 'weimo-ui-core/components/frosted-preview-card'
 import type { ComponentDefinition } from '../../component-docs'
 import { useIsDarkTheme } from '../../../previews/token-preview-color'
 
@@ -63,8 +63,8 @@ function BgColorPreview() {
         </div>
       </ComponentPreviewCard>
 
-      <GlassPreviewCard
-        initialGray={glassBackgroundGrayMidpoint}
+      <FrostedPreviewCard
+        initialGray={frostedBackgroundGrayMidpoint}
         items={bgBlurTones.map((tone) => ({
           token: getBgBlurBlurToken(tone),
           value: getBgBlurBlurValue(tone),
@@ -80,7 +80,7 @@ function BgColorPreview() {
             />
           ))}
         </div>
-      </GlassPreviewCard>
+      </FrostedPreviewCard>
     </>
   )
 }

@@ -308,8 +308,8 @@
 .base-card-debug:not(.base-card-debug--hidden) .base-card__meta,
 .base-card-debug:not(.base-card-debug--hidden) .base-card__content,
 .base-card-debug:not(.base-card-debug--hidden) .base-card__footer,
-.base-card-debug:not(.base-card-debug--hidden) .glass-preview-card__canvas,
-.base-card-debug:not(.base-card-debug--hidden) .glass-canvas-preview__row {
+.base-card-debug:not(.base-card-debug--hidden) .frosted-preview-card__canvas,
+.base-card-debug:not(.base-card-debug--hidden) .frosted-canvas-preview__row {
   outline: 1px solid var(--color-border);
   outline-offset: -1px;
 }
@@ -552,9 +552,9 @@
   border-radius: var(--radius-sm);
 }
 
-/* 四锚点静态方片行：置于 GlassPreviewCard 条纹画布上方（aboveCanvas 插槽）。
+/* 四锚点静态方片行：置于 FrostedPreviewCard 条纹画布上方（aboveCanvas 插槽）。
    行内 padding 已归零,row-gap/column-gap 是方片自身换行/列间距,与行-画布间距无关;
-   行-画布间距与画布填充由组件级 glass-preview-card.css 承担(内容区 contents 提级)。 */
+   行-画布间距与画布填充由组件级 frosted-preview-card.css 承担(内容区 contents 提级)。 */
 .frosted-border-preview__row {
   display: flex;
   width: 100%;
@@ -759,8 +759,8 @@
 }
 
 /* 画布前置区自演示(预览卡片页)：磨砂卡第三例启用 aboveCanvas，文本按钮示例行常驻磨砂画布上方。
-   行-画布间距与画布填充由组件级 glass-preview-card.css 承担(内容区 contents 提级)。 */
-.glass-canvas-preview__row {
+   行-画布间距与画布填充由组件级 frosted-preview-card.css 承担(内容区 contents 提级)。 */
+.frosted-canvas-preview__row {
   display: flex;
   width: 100%;
   flex-wrap: wrap;

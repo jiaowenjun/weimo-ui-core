@@ -4,7 +4,7 @@ import { PopupSurface } from 'weimo-ui-core/components/popup-surface'
 import { ComponentPreviewCard } from 'weimo-ui-core/components/component-preview-card'
 import type { ComponentDefinition } from '../../component-docs'
 import { ComponentCardTitle } from '../../component-card-title'
-import { GlassPreviewCard } from 'weimo-ui-core/components/glass-preview-card'
+import { FrostedPreviewCard } from 'weimo-ui-core/components/frosted-preview-card'
 
 function CardSurfacePreview() {
   return (
@@ -40,14 +40,14 @@ function PopupSurfacePreview() {
 
 function FrostedSurfacePreview() {
   return (
-    <GlassPreviewCard
+    <FrostedPreviewCard
       label={<ComponentCardTitle componentName="frosted-surface">磨砂材质</ComponentCardTitle>}
     >
       <FrostedSurface bordered className="frosted-surface-preview__tile">
         <span className="frosted-surface-preview__title">Frosted Surface</span>
         <span className="frosted-surface-preview__meta">前景色随背景亮度自适应明暗</span>
       </FrostedSurface>
-    </GlassPreviewCard>
+    </FrostedPreviewCard>
   )
 }
 
