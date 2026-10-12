@@ -352,6 +352,55 @@
   gap: var(--space-tag-gap);
 }
 
+/* 全屏卡片页:预览同样不套 ComponentPreviewCard,段间距挂在内容区上 */
+.fullscreen-card-docs-preview .base-card__content {
+  gap: 4px;
+}
+
+/* 底部输入栏演示:验证全屏时贴在软键盘上方 */
+.fullscreen-card-docs-preview__composer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.fullscreen-card-docs-preview__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-page);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+}
+
+.fullscreen-card-docs-preview__input::placeholder {
+  color: var(--color-text-placeholder);
+}
+
+/* 状态保持探针:进出全屏前后对照输入值是否保留 */
+.fullscreen-card-docs-preview__probe {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: var(--font-line-height-reading);
+}
+
+.fullscreen-card-docs-preview__probe input {
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-page);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+}
+
 .slider-preview {
   display: flex;
   width: 100%;

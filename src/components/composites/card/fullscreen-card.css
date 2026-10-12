@@ -1,0 +1,71 @@
+@layer components {
+  /* 普通模式:卡片经 slot→host 两层 display:contents 参与外部布局,
+     与直接渲染 BaseCard 等价(全屏切换只是把 host 搬进/搬出 body)。 */
+  .fullscreen-card__slot,
+  .fullscreen-card__host {
+    display: contents;
+  }
+
+  /* 全屏模式:host 钉在 body 下覆盖可视视口。
+     z-index 高于 sidebar(50),低于 tooltip(60)/dialog(80)/menu(90),
+     保证全屏卡片内部弹出的浮层仍在卡片之上。 */
+  .fullscreen-card__host--fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* 无 visualViewport 时的高度回退:100vh 感知不到移动端地址栏,
+       dvh 跟随地址栏收放;软键盘由组件内 visualViewport 同步处理。 */
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    z-index: 55;
+    opacity: 1;
+    transition: opacity 160ms ease-out;
+  }
+
+  @starting-style {
+    .fullscreen-card__host--fullscreen {
+      opacity: 0;
+    }
+  }
+
+  /* 卡片本体铺满 host:贴边全屏去掉圆角/阴影/描边,
+     选择器带 .card-surface 以盖过 .dark .card-surface 的暗色描边。 */
+  .fullscreen-card[data-fullscreen='true'].card-surface {
+    flex: 1 1 auto;
+    min-height: 0;
+    border-width: 0;
+    border-radius: 0;
+    box-shadow: none;
+    /* 刘海屏/灵动岛横屏下的系统安全区 */
+    padding-left: calc(var(--space-card-pad) + env(safe-area-inset-left, 0px));
+    padding-right: calc(var(--space-card-pad) + env(safe-area-inset-right, 0px));
+    padding-bottom: calc(var(--space-card-pad) + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* 全屏时内容区收编为内部滚动区(不向页面传递滚动),
+     底部栏(如输入区)始终钉在软键盘上方。 */
+  .fullscreen-card[data-fullscreen='true'] .base-card__content {
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .fullscreen-card .base-card__header-action {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .fullscreen-card__toggle {
+    color: var(--color-text-placeholder);
+  }
+
+  .fullscreen-card__toggle svg {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+  }
+}

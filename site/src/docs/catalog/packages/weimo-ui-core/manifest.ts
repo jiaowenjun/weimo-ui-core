@@ -43,6 +43,7 @@ export const coreCatalog = {
       ],
     },
     { id: 'base-card', name: '基础卡片', exportName: 'BaseCard', registryName: 'base-card', packageExport: './components/base-card' },
+    { id: 'fullscreen-card', name: '全屏卡片', exportName: 'FullscreenCard', registryName: 'fullscreen-card', packageExport: './components/fullscreen-card' },
     {
       id: 'component-preview-card',
       name: '预览卡片',

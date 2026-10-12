@@ -129,6 +129,10 @@
       "types": "./dist/components/surfaces/frosted-surface/frosted-surface-model.d.ts",
       "import": "./dist/components/surfaces/frosted-surface/frosted-surface-model.js"
     },
+    "./components/fullscreen-card": {
+      "types": "./dist/components/composites/card/fullscreen-card.d.ts",
+      "import": "./dist/components/composites/card/fullscreen-card.js"
+    },
     "./components/ghost-icon-button": {
       "types": "./dist/components/controls/icon-button/ghost-icon-button.d.ts",
       "import": "./dist/components/controls/icon-button/ghost-icon-button.js"
@@ -264,6 +268,10 @@
     "./styles/frosted-surface.css": {
       "types": "./dist/components/surfaces/frosted-surface/frosted-surface.d.css.ts",
       "default": "./dist/components/surfaces/frosted-surface/frosted-surface.css"
+    },
+    "./styles/fullscreen-card.css": {
+      "types": "./dist/components/composites/card/fullscreen-card.d.css.ts",
+      "default": "./dist/components/composites/card/fullscreen-card.css"
     },
     "./styles/frosted-preview-card.css": {
       "types": "./dist/components/composites/card/frosted-preview-card.d.css.ts",
