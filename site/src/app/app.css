@@ -352,63 +352,38 @@
   gap: var(--space-tag-gap);
 }
 
-/* 全屏卡片页:预览同样不套 ComponentPreviewCard,段间距挂在内容区上 */
-.fullscreen-card-docs-preview .base-card__content {
-  gap: 4px;
-}
-
-/* 底部输入栏演示:验证全屏时贴在软键盘上方 */
-.fullscreen-card-docs-preview__composer {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.fullscreen-card-docs-preview__input {
+/* 全屏卡片页:正文为一个 TextArea,普通模式给固有高度,全屏填满内容区 */
+.fullscreen-card-docs-preview__textarea {
+  display: block;
+  width: 100%;
   flex: 1 1 auto;
-  min-width: 0;
-  height: 32px;
-  padding: 0 10px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  background: var(--color-bg-page);
+  min-height: 180px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  resize: none;
+  background: transparent;
   color: var(--color-text-primary);
-  font-size: var(--font-size-sm);
-}
-
-.fullscreen-card-docs-preview__input::placeholder {
-  color: var(--color-text-placeholder);
-}
-
-/* 状态保持探针:进出全屏前后对照输入值是否保留 */
-.fullscreen-card-docs-preview__probe {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-top: 4px;
-  color: var(--color-text-secondary);
-  font-size: var(--font-size-sm);
+  font-family: var(--font-sans);
+  /* base 字号:除视觉一致外,iOS 聚焦 <16px 输入框会触发页面自动放大 */
+  font-size: var(--font-size-base);
   line-height: var(--font-line-height-reading);
 }
 
-.fullscreen-card-docs-preview__probe input {
-  height: 32px;
-  padding: 0 10px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  background: var(--color-bg-page);
-  color: var(--color-text-primary);
-  font-size: var(--font-size-sm);
+.fullscreen-card-docs-preview__textarea::placeholder {
+  color: var(--color-text-placeholder);
 }
 
-/* 正文与输入框统一 base 字号:除视觉一致外,iOS 聚焦 <16px 输入框会触发页面自动放大。
-   放在小节末尾以同名规则源顺序压过上方 __input/__probe 自带的 sm。 */
-.fullscreen-card-docs-preview .base-card__content,
-.fullscreen-card-docs-preview .base-card-docs-preview__note,
-.fullscreen-card-docs-preview__probe,
-.fullscreen-card-docs-preview__input,
-.fullscreen-card-docs-preview__probe input {
-  font-size: var(--font-size-base);
+/* 底部工具栏演示:与标题栏动作区同款幽灵图标钮,图标取 placeholder 色 */
+.fullscreen-card-docs-preview__toolbar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.fullscreen-card-docs-preview__toolbar .icon-button {
+  color: var(--color-text-placeholder);
 }
 
 .slider-preview {

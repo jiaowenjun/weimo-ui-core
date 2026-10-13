@@ -99,6 +99,16 @@ function observeVisualViewport(host: HTMLElement) {
   }
 }
 
+/* appendChild 搬运会把 host 内聚焦的元素重置回 body(进出全屏两个方向都
+   会发生),搬运前记录、搬运后恢复,保证"焦点保持"在转场中成立。 */
+function moveHostPreservingFocus(host: HTMLElement, appendTo: HTMLElement) {
+  const active = document.activeElement
+  const restore =
+    active instanceof HTMLElement && active !== host && host.contains(active)
+  appendTo.appendChild(host)
+  if (restore) active.focus()
+}
+
 export function FullscreenCard({
   actionSlot,
   children,
@@ -146,7 +156,7 @@ export function FullscreenCard({
       if (phaseRef.current === 'exiting') return
       host.className = 'fullscreen-card__host'
       host.removeAttribute('style')
-      slotElement.appendChild(host)
+      moveHostPreservingFocus(host, slotElement)
       return
     }
 
@@ -167,7 +177,7 @@ export function FullscreenCard({
       getBackdropElement(host)?.style.removeProperty('opacity')
       slotElement.classList.remove('fullscreen-card__slot--placeholder')
       slotElement.style.removeProperty('min-height')
-      slotElement.appendChild(host)
+      moveHostPreservingFocus(host, slotElement)
       phaseRef.current = 'idle'
     }
 
@@ -187,7 +197,7 @@ export function FullscreenCard({
        卡片与源卡片逐像素重合(外壳观感全程不变)。 */
     host.className =
       'fullscreen-card__host fullscreen-card__host--fullscreen fullscreen-card__host--preparing'
-    document.body.appendChild(host)
+    moveHostPreservingFocus(host, document.body)
     applyBox(host, {
       top: sourceRect.top,
       left: sourceRect.left,
