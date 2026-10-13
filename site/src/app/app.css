@@ -401,6 +401,16 @@
   font-size: var(--font-size-sm);
 }
 
+/* 正文与输入框统一 base 字号:除视觉一致外,iOS 聚焦 <16px 输入框会触发页面自动放大。
+   放在小节末尾以同名规则源顺序压过上方 __input/__probe 自带的 sm。 */
+.fullscreen-card-docs-preview .base-card__content,
+.fullscreen-card-docs-preview .base-card-docs-preview__note,
+.fullscreen-card-docs-preview__probe,
+.fullscreen-card-docs-preview__input,
+.fullscreen-card-docs-preview__probe input {
+  font-size: var(--font-size-base);
+}
+
 .slider-preview {
   display: flex;
   width: 100%;
