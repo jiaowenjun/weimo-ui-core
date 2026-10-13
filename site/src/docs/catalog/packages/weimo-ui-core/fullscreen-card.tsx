@@ -36,7 +36,7 @@ function FullscreenCardDemo() {
       }
     >
       <p className="base-card-docs-preview__body">
-        点击标题栏右侧的切换按钮进入全屏:卡片以容器扩展转场从原位延展铺满视口(圆角、阴影同步过渡,背景遮罩渐显),标题栏与底部栏钉在上下两端,内容区在内部滚动。
+        点击标题栏右侧的切换按钮进入全屏:卡片以容器扩展转场从原位延展为近全屏浮层,圆角与阴影外壳全程保留,与屏幕边缘保持页面沟槽间距;标题栏与底部栏钉在上下两端,内容区在内部滚动。
       </p>
       <p className="base-card-docs-preview__note">
         退出时反向收拢回原卡片位置,列表全程保持稳定;全屏尺寸跟随可视视口(visualViewport),移动端 Safari 的地址栏收放、软键盘弹起时,底部输入栏始终露在键盘上方。
@@ -56,7 +56,7 @@ function FullscreenCardDemo() {
 export const fullscreenCardDefinition = {
   id: 'fullscreen-card',
   summary:
-    '在 BaseCard 上增加普通/全屏双态:容器扩展转场从原卡片位置延展铺满可视视口并跟随移动端 Safari 地址栏与软键盘收缩,背景遮罩渐显、退出反向回位、列表保持稳定;进出全屏不重建子树,内部状态与焦点保持',
+    '在 BaseCard 上增加普通/全屏双态:容器扩展转场从原卡片位置延展为近全屏浮层,保留圆角与阴影外壳、与屏幕边缘保持沟槽间隙,并跟随移动端 Safari 地址栏与软键盘收缩;背景遮罩渐显、退出反向回位、列表保持稳定;进出全屏不重建子树,内部状态与焦点保持',
   status: 'Preview',
   frame: 'plain',
   preview: () => <FullscreenCardDemo />,

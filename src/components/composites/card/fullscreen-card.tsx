@@ -20,11 +20,13 @@ export type FullscreenCardProps = Omit<BaseCardProps, 'title'> & {
 }
 
 /* ===== 容器扩展转场(Container Transform)=====
-   卡片在视觉上从原位几何延展为全屏,退出时回位到原卡片处:
-   1. 首帧(绘制前,preparing):host 移入 body 并以内联样式钉在源矩形,
-      卡片以内联样式复刻普通观感(圆角/描边/阴影/内边距),遮罩透明;
+   卡片在视觉上从原位几何延展为近全屏浮层,退出时回位到原卡片处。
+   全屏态保留卡片外壳(圆角/描边/阴影),观感全程不变,转场只动几何:
+   1. 首帧(绘制前,preparing):host 移入 body 并以内联样式钉在源矩形
+      (内联 padding:0 抵消全屏边距,卡片与源卡片逐像素重合),遮罩透明;
    2. 播放(animating):撤掉首帧内联、写入目标盒(可视视口),
-      CSS transition 接管 top/left/width/height 与圆角/阴影/内边距/遮罩;
+      CSS transition 接管 top/left/width/height 与 padding —— host
+      边距由 0 过渡到全屏边距,卡片外壳悬浮于遮罩之上;
    3. 落位:定时器摘除 animating,此后 visualViewport 同步即时生效
       (键盘弹起不被 340ms 过渡拖慢)。
    退出反向:全屏期间 slot 以占位盒保持列表稳定("原列表稳定"),
@@ -76,22 +78,6 @@ function ensureBackdrop(host: HTMLElement) {
     host.appendChild(backdrop)
   }
   return backdrop
-}
-
-/* 普通观感的内联复刻:展开首帧让全屏卡片与源卡片观感一致,
-   撤除后由过渡滑向全屏观感;退出时反向作为过渡终点。 */
-function applyCardLook(card: HTMLElement) {
-  card.style.borderRadius = 'var(--radius)'
-  card.style.borderWidth = '1px'
-  card.style.boxShadow = 'var(--shadow-card)'
-  card.style.padding = 'var(--space-card-pad)'
-}
-
-function clearCardLook(card: HTMLElement) {
-  card.style.removeProperty('border-radius')
-  card.style.removeProperty('border-width')
-  card.style.removeProperty('box-shadow')
-  card.style.removeProperty('padding')
 }
 
 function observeVisualViewport(host: HTMLElement) {
@@ -160,8 +146,6 @@ export function FullscreenCard({
       if (phaseRef.current === 'exiting') return
       host.className = 'fullscreen-card__host'
       host.removeAttribute('style')
-      const card = getCardElement(host)
-      if (card) clearCardLook(card)
       slotElement.appendChild(host)
       return
     }
@@ -180,8 +164,6 @@ export function FullscreenCard({
       teardownRef.current = () => {}
       host.className = 'fullscreen-card__host'
       host.removeAttribute('style')
-      const currentCard = getCardElement(host)
-      if (currentCard) clearCardLook(currentCard)
       getBackdropElement(host)?.style.removeProperty('opacity')
       slotElement.classList.remove('fullscreen-card__slot--placeholder')
       slotElement.style.removeProperty('min-height')
@@ -201,7 +183,8 @@ export function FullscreenCard({
 
     const backdrop = ensureBackdrop(host)
 
-    /* 3. 首帧:host 移入 body 并钉在源矩形,卡片复刻普通观感。 */
+    /* 3. 首帧:host 移入 body 并钉在源矩形;内联 padding:0 抵消全屏边距,
+       卡片与源卡片逐像素重合(外壳观感全程不变)。 */
     host.className =
       'fullscreen-card__host fullscreen-card__host--fullscreen fullscreen-card__host--preparing'
     document.body.appendChild(host)
@@ -211,7 +194,7 @@ export function FullscreenCard({
       width: sourceRect.width,
       height: sourceRect.height,
     })
-    applyCardLook(card)
+    host.style.padding = '0'
     backdrop.style.opacity = '0'
 
     /* 全屏期间锁页面滚动(防触摸穿透带动背景)、Escape 退出、视口同步。 */
@@ -237,7 +220,7 @@ export function FullscreenCard({
     host.getBoundingClientRect()
     host.classList.remove('fullscreen-card__host--preparing')
     host.classList.add('fullscreen-card__host--animating')
-    clearCardLook(card)
+    host.style.removeProperty('padding')
     backdrop.style.removeProperty('opacity')
     viewportObserver.sync()
     phaseRef.current = 'entering'
@@ -268,7 +251,7 @@ export function FullscreenCard({
         width: slotRect.width,
         height: slotRect.height,
       })
-      applyCardLook(card)
+      host.style.padding = '0'
       backdrop.style.opacity = '0'
       phaseRef.current = 'exiting'
       morphTimerRef.current = setTimeout(
