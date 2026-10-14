@@ -3,7 +3,6 @@ import { backgroundTokensDefinition } from './packages/weimo-ui-core/background-
 import { borderTokensDefinition } from './packages/weimo-ui-core/border-tokens'
 import { surfaceDefinition } from './packages/weimo-ui-core/surface'
 import { baseCardDefinition } from './packages/weimo-ui-core/base-card'
-import { fullscreenCardDefinition } from './packages/weimo-ui-core/fullscreen-card'
 import { componentPreviewCardDefinition } from './packages/weimo-ui-core/component-preview-card'
 import { buttonDefinition } from './packages/weimo-ui-core/button'
 import { capsuleButtonDefinition } from './packages/weimo-ui-core/capsule-button'
@@ -22,7 +21,6 @@ export const componentDefinitionsById = {
   'border-tokens': borderTokensDefinition,
   surface: surfaceDefinition,
   'base-card': baseCardDefinition,
-  'fullscreen-card': fullscreenCardDefinition,
   'component-preview-card': componentPreviewCardDefinition,
   button: buttonDefinition,
   'capsule-button': capsuleButtonDefinition,

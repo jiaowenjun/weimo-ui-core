@@ -352,40 +352,6 @@
   gap: var(--space-tag-gap);
 }
 
-/* 全屏卡片页:正文为一个 TextArea,普通模式给固有高度,全屏填满内容区 */
-.fullscreen-card-docs-preview__textarea {
-  display: block;
-  width: 100%;
-  flex: 1 1 auto;
-  min-height: 180px;
-  margin: 0;
-  padding: 0;
-  border: none;
-  outline: none;
-  resize: none;
-  background: transparent;
-  color: var(--color-text-primary);
-  font-family: var(--font-sans);
-  /* base 字号:除视觉一致外,iOS 聚焦 <16px 输入框会触发页面自动放大 */
-  font-size: var(--font-size-base);
-  line-height: var(--font-line-height-reading);
-}
-
-.fullscreen-card-docs-preview__textarea::placeholder {
-  color: var(--color-text-placeholder);
-}
-
-/* 底部工具栏演示:与标题栏动作区同款幽灵图标钮,图标取 placeholder 色 */
-.fullscreen-card-docs-preview__toolbar {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.fullscreen-card-docs-preview__toolbar .icon-button {
-  color: var(--color-text-placeholder);
-}
-
 .slider-preview {
   display: flex;
   width: 100%;
