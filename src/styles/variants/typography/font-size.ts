@@ -49,7 +49,7 @@ export const fontSizeScaleMap = {
   lg: {
     label: '强调字号',
     token: '--font-size-lg',
-    value: '17px',
+    value: '18px',
     className: 'font-size--lg',
     description: '弹层标题和关键操作标题使用的轻强调字号。',
     uiUsage: 'ActionDialog title、Dialog title',
@@ -58,7 +58,7 @@ export const fontSizeScaleMap = {
   xl: {
     label: '大字号',
     token: '--font-size-xl',
-    value: '18px',
+    value: '20px',
     className: 'font-size--xl',
     description: '需要比默认正文更醒目的阅读内容和局部标题使用。',
     uiUsage: '开放给业务侧的强调阅读场景',
