@@ -25,6 +25,11 @@
     padding-block: var(--space-topbar-pad-block);
   }
 
+  /* variant=full-width:解除默认限宽,由 TopBar 的 variant prop 驱动 */
+  .top-bar__frame--full-width {
+    max-width: none;
+  }
+
   .top-bar__slot {
     display: flex;
     min-width: 0;
