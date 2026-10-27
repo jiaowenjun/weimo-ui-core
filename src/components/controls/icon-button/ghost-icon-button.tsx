@@ -1,5 +1,6 @@
-import { forwardRef, type ComponentPropsWithoutRef } from 'react'
+import { forwardRef, type ComponentPropsWithoutRef, type ReactNode } from 'react'
 
+import { withIconButtonTooltip } from './icon-button-tooltip'
 import { getIconButtonClassName, type IconButtonSize } from './icon-button-model'
 import { cn } from 'weimo-ui-core/lib/utils'
 
@@ -9,6 +10,8 @@ export type GhostIconButtonProps = ComponentPropsWithoutRef<'button'> & {
   /** 选中态（toggle 语义）：渲染 aria-pressed 与 data-active 样式钩子。 */
   active?: boolean
   size?: IconButtonSize
+  /** 悬停/聚焦提示：传入后按钮原地接入 Tooltip 原语，不新增 DOM 节点。 */
+  tooltip?: ReactNode
 }
 
 export const GhostIconButton = forwardRef<HTMLButtonElement, GhostIconButtonProps>(function GhostIconButton(
@@ -16,12 +19,13 @@ export const GhostIconButton = forwardRef<HTMLButtonElement, GhostIconButtonProp
     active,
     className,
     size,
+    tooltip,
     type = 'button',
     ...props
   },
   ref,
 ) {
-  return (
+  return withIconButtonTooltip(
     <button
       {...props}
       aria-pressed={active}
@@ -29,7 +33,8 @@ export const GhostIconButton = forwardRef<HTMLButtonElement, GhostIconButtonProp
       data-active={active === undefined ? undefined : active ? 'true' : 'false'}
       ref={ref}
       type={type}
-    />
+    />,
+    tooltip,
   )
 })
 

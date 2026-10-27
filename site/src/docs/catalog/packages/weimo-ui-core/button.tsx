@@ -44,13 +44,13 @@ function TextButtonPreview() {
 function GhostIconButtonPreviewGroup({ disabled }: { disabled: boolean }) {
   return (
     <div className="icon-preview__row" aria-label="GhostIconButton 幽灵外观预览">
-      <GhostIconButton aria-label="菜单" disabled={disabled}>
+      <GhostIconButton aria-label="菜单" disabled={disabled} tooltip="打开菜单">
         <Menu />
       </GhostIconButton>
-      <GhostIconButton aria-label="小号菜单" disabled={disabled} size="sm">
+      <GhostIconButton aria-label="小号菜单" disabled={disabled} size="sm" tooltip="小号 · 打开菜单">
         <Menu />
       </GhostIconButton>
-      <GhostIconButton aria-label="极小号菜单" disabled={disabled} size="xs">
+      <GhostIconButton aria-label="极小号菜单" disabled={disabled} size="xs" tooltip="极小号 · 打开菜单">
         <Menu />
       </GhostIconButton>
     </div>
@@ -83,10 +83,10 @@ function GhostIconButtonPreview() {
 function FrostedIconButtonPreviewGroup({ disabled }: { disabled: boolean }) {
   return (
     <div className="icon-preview__row" aria-label="FrostedIconButton 磨砂外观预览">
-      <FrostedIconButton aria-label="菜单" disabled={disabled}>
+      <FrostedIconButton aria-label="菜单" disabled={disabled} tooltip="打开菜单">
         <Menu />
       </FrostedIconButton>
-      <FrostedIconButton aria-label="小号菜单" disabled={disabled} size="sm">
+      <FrostedIconButton aria-label="小号菜单" disabled={disabled} size="sm" tooltip="小号 · 打开菜单">
         <Menu />
       </FrostedIconButton>
     </div>
@@ -118,18 +118,18 @@ function FrostedIconButtonGroupPreviewGroup({ disabled }: { disabled: boolean })
   return (
     <div className="icon-preview__row" aria-label="FrostedIconButtonGroup 磨砂按钮组预览">
       <FrostedIconButtonGroup aria-label="磨砂图标按钮组">
-        <FrostedIconGroupButton aria-label="分享" disabled={disabled}>
+        <FrostedIconGroupButton aria-label="分享" disabled={disabled} tooltip="分享">
           <Share />
         </FrostedIconGroupButton>
-        <FrostedIconGroupButton aria-label="更多" disabled={disabled}>
+        <FrostedIconGroupButton aria-label="更多" disabled={disabled} tooltip="更多">
           <Ellipsis />
         </FrostedIconGroupButton>
       </FrostedIconButtonGroup>
       <FrostedIconButtonGroup aria-label="小号磨砂图标按钮组">
-        <FrostedIconGroupButton aria-label="小号分享" disabled={disabled} size="sm">
+        <FrostedIconGroupButton aria-label="小号分享" disabled={disabled} size="sm" tooltip="小号 · 分享">
           <Share />
         </FrostedIconGroupButton>
-        <FrostedIconGroupButton aria-label="小号更多" disabled={disabled} size="sm">
+        <FrostedIconGroupButton aria-label="小号更多" disabled={disabled} size="sm" tooltip="小号 · 更多">
           <Ellipsis />
         </FrostedIconGroupButton>
       </FrostedIconButtonGroup>

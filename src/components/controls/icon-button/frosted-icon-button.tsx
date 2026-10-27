@@ -1,10 +1,11 @@
 import { forwardRef, useCallback } from 'react'
-import type { ComponentPropsWithoutRef, Ref } from 'react'
+import type { ComponentPropsWithoutRef, ReactNode, Ref } from 'react'
 
 import {
   getFrostedSurfaceClassName,
   useFrostedSurfaceBackgroundToneRef,
 } from 'weimo-ui-core/components/frosted-surface'
+import { withIconButtonTooltip } from './icon-button-tooltip'
 import { getIconButtonClassName, type IconButtonSize } from './icon-button-model'
 
 import 'weimo-ui-core/styles/frosted-surface.css'
@@ -13,6 +14,8 @@ import './icon-button.css'
 export type FrostedIconButtonProps = ComponentPropsWithoutRef<'button'> & {
   size?: IconButtonSize
   bordered?: boolean
+  /** 悬停/聚焦提示：传入后按钮原地接入 Tooltip 原语，不新增 DOM 节点。 */
+  tooltip?: ReactNode
 }
 
 export const FrostedIconButton = forwardRef<HTMLButtonElement, FrostedIconButtonProps>(function FrostedIconButton(
@@ -21,6 +24,7 @@ export const FrostedIconButton = forwardRef<HTMLButtonElement, FrostedIconButton
     className,
     size,
     style,
+    tooltip,
     type = 'button',
     ...props
   },
@@ -36,7 +40,7 @@ export const FrostedIconButton = forwardRef<HTMLButtonElement, FrostedIconButton
     assignButtonRef(ref, element)
   }, [ref, setFrostedSurfaceElementRef])
 
-  return (
+  return withIconButtonTooltip(
     <button
       {...props}
       className={getFrostedSurfaceClassName(
@@ -48,7 +52,8 @@ export const FrostedIconButton = forwardRef<HTMLButtonElement, FrostedIconButton
       ref={setElementRef}
       style={{ ...style, ...backgroundStyle }}
       type={type}
-    />
+    />,
+    tooltip,
   )
 })
 
