@@ -72,6 +72,9 @@
   .icon-button--frosted {
     --icon-button-glass-hover-opacity: 0;
 
+    /* 磨砂材质成立的前提是元素底透明；UA ButtonFace 灰盘会击穿
+       backdrop-blur 观感，故不依赖消费方 reset（与 ghost 变体对齐）。 */
+    background-color: transparent;
     position: relative;
     overflow: hidden;
     isolation: isolate;
