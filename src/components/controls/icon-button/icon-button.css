@@ -96,6 +96,11 @@
 
   .icon-button--ghost {
     background: transparent;
+
+    /* 幽灵语义完全无描边：UA 默认 button 边框（如 WebKit 2px outset）会在
+       无表单 reset 的消费站点透出，故不依赖消费方 reset（与背景声明对齐）。
+       frosted 系不适用：.frosted-surface 自带 1px 透明边框几何。 */
+    border: none;
   }
 
   .icon-button:disabled {
