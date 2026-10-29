@@ -4,6 +4,7 @@ import type { ComponentPropsWithoutRef, ComponentRef, ReactNode, RefObject } fro
 import { BaseCard } from './base-card'
 import { cn } from 'weimo-ui-core/lib/utils'
 
+import 'weimo-ui-core/styles/tokens.css'
 import './component-preview-card.css'
 
 const colorValuePattern =

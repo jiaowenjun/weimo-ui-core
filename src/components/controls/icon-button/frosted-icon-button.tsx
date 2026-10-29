@@ -8,6 +8,7 @@ import {
 import { withIconButtonTooltip } from './icon-button-tooltip'
 import { getIconButtonClassName, type IconButtonSize } from './icon-button-model'
 
+import 'weimo-ui-core/styles/tokens.css'
 import 'weimo-ui-core/styles/frosted-surface.css'
 import './icon-button.css'
 

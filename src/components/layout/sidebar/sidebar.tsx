@@ -11,6 +11,7 @@ import { getCardSurfaceClassName } from 'weimo-ui-core/components/card-surface'
 import { getFrostedSurfaceClassName } from 'weimo-ui-core/components/frosted-surface-model'
 import { cn } from 'weimo-ui-core/lib/utils'
 
+import 'weimo-ui-core/styles/tokens.css'
 import 'weimo-ui-core/styles/frosted-surface.css'
 import './sidebar.css'
 

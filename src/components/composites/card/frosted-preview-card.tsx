@@ -10,6 +10,7 @@ import {
   type ComponentPreviewCardProps,
 } from './component-preview-card'
 
+import 'weimo-ui-core/styles/tokens.css'
 import './frosted-preview-card.css'
 
 function parseHslLightness(value: string) {

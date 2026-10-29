@@ -2,6 +2,7 @@ import { type ComponentPropsWithoutRef, type ReactNode } from 'react'
 
 import { cn } from 'weimo-ui-core/lib/utils'
 
+import 'weimo-ui-core/styles/tokens.css'
 import './top-bar.css'
 
 export type TopBarProps = ComponentPropsWithoutRef<'div'> & {

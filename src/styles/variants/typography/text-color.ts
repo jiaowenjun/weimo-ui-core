@@ -1,3 +1,4 @@
+import 'weimo-ui-core/styles/tokens.css'
 import './text-color.css'
 
 export const textColorToneMap = {

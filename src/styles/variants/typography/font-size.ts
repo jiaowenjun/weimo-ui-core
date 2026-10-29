@@ -1,3 +1,4 @@
+import 'weimo-ui-core/styles/tokens.css'
 import './font-size.css'
 
 export const fontSizeScaleMap = {

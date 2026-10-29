@@ -13,6 +13,7 @@ import {
   type MenuItemStyleProps,
 } from './menu-variants'
 
+import 'weimo-ui-core/styles/tokens.css'
 import 'weimo-ui-core/styles/frosted-surface.css'
 import './menu.css'
 

@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 
 import { Switch } from 'weimo-ui-core/components/coss/switch'
 
+import 'weimo-ui-core/styles/tokens.css'
 import './labeled-switch.css'
 
 // 带状态标签的开关：可见文案随选中态在 labelOn/labelOff 之间切换，叠在

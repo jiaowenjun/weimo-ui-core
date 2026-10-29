@@ -15,6 +15,7 @@ import {
   useFrostedSurfaceBackgroundToneRef,
 } from 'weimo-ui-core/components/frosted-surface'
 
+import 'weimo-ui-core/styles/tokens.css'
 import './capsule-button.css'
 import './capsule-frame.css'
 import 'weimo-ui-core/styles/frosted-surface.css'

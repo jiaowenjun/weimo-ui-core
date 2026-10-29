@@ -2,6 +2,7 @@ import { forwardRef, type ComponentPropsWithoutRef } from 'react'
 
 import { cn } from 'weimo-ui-core/lib/utils'
 
+import 'weimo-ui-core/styles/tokens.css'
 import './text-button.css'
 
 export type TextButtonVariant = 'default' | 'ghost'

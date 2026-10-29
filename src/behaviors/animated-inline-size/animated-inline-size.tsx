@@ -2,6 +2,7 @@ import type { ComponentPropsWithoutRef, MutableRefObject, ReactNode } from 'reac
 
 import { cn } from 'weimo-ui-core/lib/utils'
 
+import 'weimo-ui-core/styles/tokens.css'
 import './animated-inline-size.css'
 
 export type AnimatedInlineSizeMeasureProps = Omit<

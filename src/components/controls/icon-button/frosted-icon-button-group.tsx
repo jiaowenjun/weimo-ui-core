@@ -9,6 +9,7 @@ import { withIconButtonTooltip } from './icon-button-tooltip'
 import { getIconButtonClassName, type IconButtonSize } from './icon-button-model'
 import { cn } from 'weimo-ui-core/lib/utils'
 
+import 'weimo-ui-core/styles/tokens.css'
 import './frosted-icon-button-group.css'
 
 export type FrostedIconButtonGroupProps = Omit<ComponentPropsWithoutRef<'div'>, 'children'> & {

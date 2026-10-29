@@ -3,6 +3,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 
 import { cn } from 'weimo-ui-core/lib/utils'
 
+import 'weimo-ui-core/styles/tokens.css'
 import './button.css'
 
 const buttonVariants = cva('coss-button', {

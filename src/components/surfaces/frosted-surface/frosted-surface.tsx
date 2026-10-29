@@ -8,6 +8,7 @@ import {
   type FrostedSurfaceBackgroundSample,
 } from './frosted-surface-model'
 
+import 'weimo-ui-core/styles/tokens.css'
 import './frosted-surface.css'
 
 const useIsomorphicLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect

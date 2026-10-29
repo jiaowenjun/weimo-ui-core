@@ -1,3 +1,4 @@
+import 'weimo-ui-core/styles/tokens.css'
 import './border-color.css'
 
 export const borderColorToneMap = {

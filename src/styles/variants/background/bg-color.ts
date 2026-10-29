@@ -1,3 +1,4 @@
+import 'weimo-ui-core/styles/tokens.css'
 import './bg-color.css'
 
 export const bgColorToneMap = {

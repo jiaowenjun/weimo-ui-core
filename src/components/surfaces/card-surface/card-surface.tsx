@@ -3,6 +3,7 @@ import type { ClassValue } from 'clsx'
 
 import { cn } from 'weimo-ui-core/lib/utils'
 
+import 'weimo-ui-core/styles/tokens.css'
 import './card-surface.css'
 
 export type CardSurfaceProps = ComponentPropsWithoutRef<'div'>

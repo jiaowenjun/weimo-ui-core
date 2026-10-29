@@ -1,3 +1,4 @@
+import 'weimo-ui-core/styles/tokens.css'
 import './bg-blur.css'
 
 export const bgBlurToneMap = {

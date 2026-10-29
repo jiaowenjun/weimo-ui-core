@@ -4,6 +4,7 @@ import type { ComponentPropsWithoutRef } from 'react'
 import { getPopupSurfaceClassName } from 'weimo-ui-core/components/popup-surface'
 import { cn } from 'weimo-ui-core/lib/utils'
 
+import 'weimo-ui-core/styles/tokens.css'
 import './dialog.css'
 
 type WithStringClassName<T> = Omit<T, 'className'> & {

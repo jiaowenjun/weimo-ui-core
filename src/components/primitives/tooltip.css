@@ -14,7 +14,7 @@
     font-weight: 500;
     line-height: 1.25;
     white-space: nowrap;
-    transform-origin: var(--transform-origin);
+    transform-origin: var(--transform-origin, center);
     transition:
       opacity 120ms ease,
       transform 120ms ease;

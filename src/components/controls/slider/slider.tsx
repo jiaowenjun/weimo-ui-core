@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react'
 
+import 'weimo-ui-core/styles/tokens.css'
 import './slider.css'
 
 // 自研滑块：透明原生 range input 作交互层（拖动/点击跳变/键盘步进/ARIA 全由浏览器

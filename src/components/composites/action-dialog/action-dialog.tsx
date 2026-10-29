@@ -14,6 +14,7 @@ import { FloatBar } from 'weimo-ui-core/components/float-bar'
 import { FrostedIconButton } from 'weimo-ui-core/components/frosted-icon-button'
 import { cn } from 'weimo-ui-core/lib/utils'
 
+import 'weimo-ui-core/styles/tokens.css'
 import './action-dialog.css'
 
 export type ActionDialogProps = DialogProps & {

@@ -40,15 +40,13 @@ pnpm add weimo-ui-core @base-ui/react react react-dom
 
 React 19 与 Base UI 是 peer 依赖，需要一并安装。
 
-### 2. 加载全局 token
+### 2. 使用组件（样式零配置）
 
-应用入口引入一次设计变量（颜色、字号、间距、圆角、阴影……）：
-
-```ts
-import 'weimo-ui-core/styles/tokens.css'
-```
-
-### 3. 使用组件
+样式随组件自动加载：引入任意组件或 variant 子路径，组件 JS 会一并带上自身
+结构样式与 `styles/tokens.css`（颜色、字号、间距、圆角、阴影……含 `.dark`
+暗色覆盖），无需在应用入口手动引任何 CSS。显式引入
+`weimo-ui-core/styles/tokens.css` 仍然无害——`:root` 定义幂等；要定制主题，
+在自己的 CSS 中覆盖对应变量即可（级联取后者）。
 
 ```tsx
 import { useState } from 'react'

@@ -2,6 +2,7 @@ import { Tabs as BaseTabs } from '@base-ui/react/tabs'
 
 import { cn } from 'weimo-ui-core/lib/utils'
 
+import 'weimo-ui-core/styles/tokens.css'
 import './tabs.css'
 
 export function Tabs({ className, ...props }: BaseTabs.Root.Props) {

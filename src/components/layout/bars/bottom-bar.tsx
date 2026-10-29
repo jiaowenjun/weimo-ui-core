@@ -3,6 +3,7 @@ import { forwardRef, type ComponentPropsWithoutRef, type ReactNode } from 'react
 import { FloatBar } from './float-bar'
 import { cn } from 'weimo-ui-core/lib/utils'
 
+import 'weimo-ui-core/styles/tokens.css'
 import './bottom-bar.css'
 
 export type BottomBarProps = ComponentPropsWithoutRef<'div'> & {

@@ -6,6 +6,7 @@ import { getCardSurfaceClassName } from 'weimo-ui-core/components/card-surface'
 import { GhostIconButton } from 'weimo-ui-core/components/ghost-icon-button'
 import { cn } from 'weimo-ui-core/lib/utils'
 
+import 'weimo-ui-core/styles/tokens.css'
 import './base-card.css'
 
 export type BaseCardProps = Omit<
