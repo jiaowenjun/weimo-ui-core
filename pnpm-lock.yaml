@@ -231,8 +231,8 @@ importers:
         specifier: workspace:*
         version: link:..
       weimo-ui-template:
-        specifier: ~0.3.1
-        version: 0.3.1(@base-ui/react@1.9.0(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(weimo-ui-core@+)
+        specifier: ~0.4.5
+        version: 0.4.5(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(weimo-ui-core@+)
     devDependencies:
       '@tailwindcss/vite':
         specifier: ^4.3.3
@@ -1338,10 +1338,9 @@ packages:
       jsdom:
         optional: true
 
-  weimo-ui-template@0.3.1:
-    resolution: {integrity: sha512-lTtyEqAhyZDdBubTGgNzpdkWCekUrvAGktSBZr5gRE7WOF0fvSJhVQpcFszoEQS6xXKQN2HGUgi3HvWBPvYBzQ==}
+  weimo-ui-template@0.4.5:
+    resolution: {integrity: sha512-/FeYiW5aTycc1l77B4aaCwd0rj6kwJTuD+Td+RsKUIa8zQ2deONItYZCklLPNNLz/StEiO5xMTTJqF/vK4JIjw==}
     peerDependencies:
-      '@base-ui/react': ^1.9.0
       react: ^19.0.0
       react-dom: ^19.0.0
       weimo-ui-core: ~0.2.0
@@ -2160,9 +2159,8 @@ snapshots:
     transitivePeerDependencies:
       - msw
 
-  weimo-ui-template@0.3.1(@base-ui/react@1.9.0(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(weimo-ui-core@+):
+  weimo-ui-template@0.4.5(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(weimo-ui-core@+):
     dependencies:
-      '@base-ui/react': 1.9.0(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       lucide-react: 1.54.0(@types/react@19.3.0)(react@19.3.1)
       react: 19.3.1
       react-dom: 19.3.1(react@19.3.1)
