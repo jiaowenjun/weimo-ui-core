@@ -17,8 +17,10 @@
        tone 翻转时 box-shadow 走 alpha 插值平滑过渡（none 与实影之间会瞬跳）；
        双层结构须与亮态逐层同形，插值才成立。 */
     box-shadow: 0 1px 2px hsl(0 0% 0% / 0), 0 2px 8px hsl(0 0% 0% / 0);
-    backdrop-filter: blur(var(--frosted-blur));
+    /* 顺序铁律:-webkit- 必须在前。构建器(Lightning CSS)对同值别名对按「后者胜出」去重,
+       若标准声明在后会被吞,产物只剩 Blink 不认识的 -webkit- 别名,磨砂全线消失。 */
     -webkit-backdrop-filter: blur(var(--frosted-blur));
+    backdrop-filter: blur(var(--frosted-blur));
     transition:
       color var(--frosted-surface-tone-transition-duration) ease,
       border-color var(--frosted-surface-tone-transition-duration) ease,

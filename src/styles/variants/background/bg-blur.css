@@ -1,5 +1,6 @@
 .bg-blur--backdrop {
   background: var(--color-bg-backdrop);
-  backdrop-filter: blur(var(--backdrop-blur));
+  /* 顺序铁律:-webkit- 在前,理由见 frosted-surface.css */
   -webkit-backdrop-filter: blur(var(--backdrop-blur));
+  backdrop-filter: blur(var(--backdrop-blur));
 }
