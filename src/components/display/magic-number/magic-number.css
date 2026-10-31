@@ -1,0 +1,8 @@
+@layer components {
+  /* 行内滚动数字:排版(字号/字重/颜色)全部继承宿主,组件只坚持一件事——
+     tabular 数字让每一位等宽,滚动期间读数列不随末位变化抖动
+     (与站点滑块读数 .slider-preview__value 同一约定)。 */
+  .magic-number {
+    font-variant-numeric: tabular-nums;
+  }
+}

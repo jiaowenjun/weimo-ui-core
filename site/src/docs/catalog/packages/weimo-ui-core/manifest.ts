@@ -68,6 +68,7 @@ export const coreCatalog = {
     { id: 'capsule-button', name: '按钮胶囊', exportName: 'CapsuleButton', registryName: 'capsule-button', packageExport: './components/capsule-button' },
     { id: 'labeled-switch', name: '开关', exportName: 'LabeledSwitch', registryName: 'labeled-switch', packageExport: './components/labeled-switch' },
     { id: 'slider', name: '滑块', exportName: 'Slider', registryName: 'slider', packageExport: './components/slider' },
+    { id: 'magic-number', name: '数字滚动', exportName: 'MagicNumber', registryName: 'magic-number', packageExport: './components/magic-number' },
     { id: 'menu', name: '菜单', exportName: 'Menu', registryName: 'menu', packageExport: './components/menu' },
     { id: 'action-dialog', name: '对话框', exportName: 'ActionDialog', registryName: 'action-dialog', packageExport: './components/action-dialog' },
     {

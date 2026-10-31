@@ -368,6 +368,66 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* 数字滚动页 */
+.magic-number-preview {
+  display: grid;
+  width: 100%;
+  min-height: 100%;
+  align-content: center;
+  justify-items: center;
+  gap: 20px;
+  padding: 24px 16px;
+}
+
+/* 统计大数字示例：大字号读数，千分位由 format 传入，tabular 由组件自带 */
+.magic-number-preview__stat {
+  color: var(--color-text-primary);
+  font-size: 40px;
+  font-weight: 650;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.magic-number-preview__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* 列表行计数示例：面板复刻标签树行列表的视觉语境 */
+.magic-number-preview__rows {
+  display: grid;
+  width: min(100%, 340px);
+  align-content: center;
+  padding: 10px 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg-card);
+  box-shadow: var(--shadow-card);
+}
+
+.magic-number-preview__row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px 5px 16px;
+}
+
+.magic-number-preview__row-tag {
+  flex: 1;
+  min-width: 0;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  font-weight: 560;
+}
+
+.magic-number-preview__row-count {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
 .tag-tree-preview {
   display: flex;
   width: 100%;

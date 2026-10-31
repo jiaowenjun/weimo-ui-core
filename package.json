@@ -145,6 +145,14 @@
       "types": "./dist/components/controls/labeled-switch/labeled-switch.d.ts",
       "import": "./dist/components/controls/labeled-switch/labeled-switch.js"
     },
+    "./components/magic-number": {
+      "types": "./dist/components/display/magic-number/magic-number.d.ts",
+      "import": "./dist/components/display/magic-number/magic-number.js"
+    },
+    "./components/magic-number-model": {
+      "types": "./dist/components/display/magic-number/magic-number-model.d.ts",
+      "import": "./dist/components/display/magic-number/magic-number-model.js"
+    },
     "./components/menu": {
       "types": "./dist/components/composites/menu/menu.d.ts",
       "import": "./dist/components/composites/menu/menu.js"
@@ -276,6 +284,10 @@
     "./styles/labeled-switch.css": {
       "types": "./dist/components/controls/labeled-switch/labeled-switch.d.css.ts",
       "default": "./dist/components/controls/labeled-switch/labeled-switch.css"
+    },
+    "./styles/magic-number.css": {
+      "types": "./dist/components/display/magic-number/magic-number.d.css.ts",
+      "default": "./dist/components/display/magic-number/magic-number.css"
     },
     "./styles/menu.css": {
       "types": "./dist/components/composites/menu/menu.d.css.ts",

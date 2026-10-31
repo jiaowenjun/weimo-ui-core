@@ -8,6 +8,7 @@ import { buttonDefinition } from './packages/weimo-ui-core/button'
 import { capsuleButtonDefinition } from './packages/weimo-ui-core/capsule-button'
 import { labeledSwitchDefinition } from './packages/weimo-ui-core/labeled-switch'
 import { sliderDefinition } from './packages/weimo-ui-core/slider'
+import { magicNumberDefinition } from './packages/weimo-ui-core/magic-number'
 import { menuDefinition } from './packages/weimo-ui-core/menu'
 import { actionDialogDefinition } from './packages/weimo-ui-core/action-dialog'
 import { barDefinition } from './packages/weimo-ui-core/bar'
@@ -26,6 +27,7 @@ export const componentDefinitionsById = {
   'capsule-button': capsuleButtonDefinition,
   'labeled-switch': labeledSwitchDefinition,
   slider: sliderDefinition,
+  'magic-number': magicNumberDefinition,
   menu: menuDefinition,
   'action-dialog': actionDialogDefinition,
   bar: barDefinition,

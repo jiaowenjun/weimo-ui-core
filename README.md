@@ -21,6 +21,7 @@
 | --- | --- |
 | 材质 | `components/card-surface`、`frosted-surface`、`popup-surface` |
 | 按钮与控件 | `components/text-button`、`capsule-button`、`frosted-icon-button`、`ghost-icon-button`、`slider`、`labeled-switch` |
+| 数据展示 | `components/magic-number` |
 | 卡片与预览 | `components/base-card`、`component-preview-card`、`frosted-preview-card` |
 | 组合组件 | `components/menu`、`action-dialog` |
 | 布局 | `components/sidebar`、`top-bar`、`bottom-bar`、`float-bar` |
