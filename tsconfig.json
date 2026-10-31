@@ -17,6 +17,7 @@
       "weimo-ui-core/components/card-surface": ["./src/components/surfaces/card-surface/card-surface.tsx"],
       "weimo-ui-core/components/coss/dialog": ["./src/components/primitives/dialog.tsx"],
       "weimo-ui-core/components/coss/switch": ["./src/components/primitives/switch.tsx"],
+      "weimo-ui-core/components/coss/tooltip": ["./src/components/primitives/tooltip.tsx"],
       "weimo-ui-core/components/float-bar": ["./src/components/layout/bars/float-bar.tsx"],
       "weimo-ui-core/components/frosted-icon-button": ["./src/components/controls/icon-button/frosted-icon-button.tsx"],
       "weimo-ui-core/components/frosted-surface": ["./src/components/surfaces/frosted-surface/frosted-surface.tsx"],

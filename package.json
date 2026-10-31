@@ -325,8 +325,9 @@
     "test": "vitest run",
     "test:site-template": "node scripts/site-template-contract.mjs",
     "test:css-tokens": "node scripts/css-token-contract.mjs",
+    "test:tsconfig-paths": "node scripts/tsconfig-paths-contract.mjs",
     "check:package": "pnpm build && publint && attw --pack . --profile esm-only --ignore-rules internal-resolution-error",
-    "verify": "pnpm typecheck && pnpm test && pnpm test:site-template && pnpm check:package && pnpm test:css-tokens && pnpm --dir site build",
+    "verify": "pnpm typecheck && pnpm test:tsconfig-paths && pnpm test && pnpm test:site-template && pnpm check:package && pnpm test:css-tokens && pnpm --dir site build",
     "prepack": "pnpm build"
   },
   "dependencies": {
