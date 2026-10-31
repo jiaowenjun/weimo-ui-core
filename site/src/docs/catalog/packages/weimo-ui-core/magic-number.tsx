@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Plus, RotateCcw } from 'lucide-react'
+import { RotateCcw } from 'lucide-react'
 
 import { ComponentPreviewCard } from 'weimo-ui-core/components/component-preview-card'
 import { GhostIconButton } from 'weimo-ui-core/components/ghost-icon-button'
@@ -12,14 +12,6 @@ import { ComponentCardTitle } from '../../component-card-title'
 const STAT_INITIAL_VALUE = 1024
 const STAT_MAX_VALUE = 99999
 const STAT_LIVE_INTERVAL_MS = 1200
-
-// 列表行计数示例的行数据:模拟 tagtree 标签行右侧的条目数量。
-const TAG_ROWS = [
-  { id: 'daily', name: '#日记录', initialCount: 12 },
-  { id: 'idea', name: '#灵感', initialCount: 3 },
-  { id: 'reading', name: '#读书笔记', initialCount: 7 },
-  { id: 'travel', name: '#旅行', initialCount: 21 },
-] as const
 
 // Docs definitions intentionally colocate preview components with exported page metadata.
 
@@ -87,55 +79,14 @@ function StatNumberDemo() {
   )
 }
 
-// 列表行计数(tagtree 场景):小字号次级色的行内计数,300ms 快速滚动,
-// 逐行 +1 演示窄空间里的滚动节奏;面板复刻标签树行列表的视觉语境。
-function TagRowDemo() {
-  const [counts, setCounts] = useState<Record<string, number>>(() =>
-    Object.fromEntries(TAG_ROWS.map((row) => [row.id, row.initialCount])),
-  )
-
-  const increment = (id: string) =>
-    setCounts((current) => ({ ...current, [id]: current[id] + 1 }))
-
-  return (
-    <ComponentPreviewCard
-      align="center"
-      label={<ComponentCardTitle componentName="magic-number">列表行计数</ComponentCardTitle>}
-    >
-      <div aria-label="列表行计数预览" className="magic-number-preview__rows">
-        {TAG_ROWS.map((row) => (
-          <div className="magic-number-preview__row" key={row.id}>
-            <span className="magic-number-preview__row-tag">{row.name}</span>
-            <span className="magic-number-preview__row-count">
-              <MagicNumber duration={300} value={counts[row.id]} />
-            </span>
-            <GhostIconButton
-              aria-label={`${row.name} 加一条`}
-              onClick={() => increment(row.id)}
-              size="xs"
-            >
-              <Plus aria-hidden="true" />
-            </GhostIconButton>
-          </div>
-        ))}
-      </div>
-    </ComponentPreviewCard>
-  )
-}
-
 function MagicNumberDemo() {
-  return (
-    <>
-      <StatNumberDemo />
-      <TagRowDemo />
-    </>
-  )
+  return <StatNumberDemo />
 }
 
 export const magicNumberDefinition = {
   id: 'magic-number',
   summary:
-    '数值变动时从当前显示值逐帧滚到新值的行内数字——排版随宿主,统计大数字与列表行计数共用',
+    '数值变动时从当前显示值逐帧滚到新值的行内数字——排版随宿主,统计大数字场景',
   status: 'Ready',
   frame: 'plain',
   preview: () => <MagicNumberDemo />,
