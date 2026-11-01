@@ -163,7 +163,9 @@ export function FrostedPreviewCard({
             onValueChange={setFrostedBackgroundGray}
             value={frostedBackgroundGray}
           />
-          {footerExtra}
+          {footerExtra != null && (
+            <div className="frosted-preview-card__footer-extra">{footerExtra}</div>
+          )}
         </div>
       }
     >

@@ -21,4 +21,13 @@
     justify-content: center;
     gap: 8px;
   }
+
+  /* 底栏扩展位:与滑条的合计间隙 = 行 gap 8px + 此处 8px = 16px,
+     大于组内 8px 间距,分组更强 */
+  .frosted-preview-card__footer-extra {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-inline-start: 8px;
+  }
 }
