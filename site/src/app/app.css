@@ -472,6 +472,11 @@
   transition: stroke-dashoffset 90ms linear;
 }
 
+/* 完成态图标:与进度弧同绿,满环后替换进度环、文案切「已完成」 */
+.top-bar-notice-demo__done-icon {
+  color: hsl(142 71% 45%);
+}
+
 .sidebar-preview {
   container: sidebar-preview / inline-size;
   gap: 16px;

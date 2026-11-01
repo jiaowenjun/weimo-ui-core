@@ -235,26 +235,37 @@ function TopBarDemo() {
         </>
       }
     >
-      <TopBar
-        className="top-bar-preview"
-        centerSlot={
-          <TopBarNotice
-            duration={loading == null ? 2400 : undefined}
-            onDismissed={() => setNotice(null)}
-          >
-            {loading != null ? (
-              <>
-                <span>加载中</span>
-                <TopBarNoticeProgressRing progress={loading.progress} />
-              </>
-            ) : notice == null ? null : (
-              <>
-                <notice.icon aria-hidden="true" size={14} />
-                {notice.text}
-              </>
-            )}
-          </TopBarNotice>
-        }
+          <TopBar
+            className="top-bar-preview"
+            centerSlot={
+              <TopBarNotice
+                duration={loading == null ? 2400 : undefined}
+                onDismissed={() => setNotice(null)}
+              >
+                {loading != null ? (
+                  loading.progress >= 100 ? (
+                    <>
+                      <span>已完成</span>
+                      <Check
+                        aria-hidden="true"
+                        className="top-bar-notice-demo__done-icon"
+                        size={14}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <span>加载中</span>
+                      <TopBarNoticeProgressRing progress={loading.progress} />
+                    </>
+                  )
+                ) : notice == null ? null : (
+                  <>
+                    <notice.icon aria-hidden="true" size={14} />
+                    {notice.text}
+                  </>
+                )}
+              </TopBarNotice>
+            }
         leftSlot={
           <>
             {renderTopBarSidebarButton()}
