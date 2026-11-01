@@ -466,6 +466,28 @@
   justify-items: center;
 }
 
+.top-bar-notice-demo__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* 常驻通知的环形进度:灰底环 + 绿色进度弧,90ms 线性过渡抹平 80ms 节拍 */
+.top-bar-notice-demo__ring {
+  width: 14px;
+  height: 14px;
+}
+
+.top-bar-notice-demo__ring-track {
+  stroke: hsl(0 0% 50% / 0.35);
+}
+
+.top-bar-notice-demo__ring-arc {
+  stroke: hsl(142 71% 45%);
+  transition: stroke-dashoffset 90ms linear;
+}
+
 .sidebar-preview {
   container: sidebar-preview / inline-size;
   gap: 16px;

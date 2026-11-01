@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Check, Copy, Menu, Moon, Plus, Search, X } from 'lucide-react'
 
 import { BottomBar } from 'weimo-ui-core/components/bottom-bar'
@@ -125,18 +125,88 @@ const topBarNoticeSamples = [
   { icon: Moon, text: '已切换到深色模式' },
 ]
 
+// 常驻通知(灵动岛加载态)的进度环参数:3.2s 走满,100% 后停留片刻再收起。
+// 进度按时间戳推进而非累加,节流环境(IAB 定时器 ~1s)下也能准点到满。
+const TOP_BAR_LOADING_DURATION = 3200
+const TOP_BAR_LOADING_HOLD = 350
+
+const TOP_BAR_RING_CIRCUMFERENCE = 2 * Math.PI * 6
+
+// 常驻通知的环形进度:灰底环 + 绿色进度弧,90ms 线性过渡抹平 80ms 节拍。
+function TopBarNoticeProgressRing({ progress }: { progress: number }) {
+  const dashOffset = Math.round(
+    TOP_BAR_RING_CIRCUMFERENCE * (1 - progress / 100) * 100,
+  ) / 100
+
+  return (
+    <svg aria-hidden="true" className="top-bar-notice-demo__ring" viewBox="0 0 16 16">
+      <circle
+        className="top-bar-notice-demo__ring-track"
+        cx="8"
+        cy="8"
+        fill="none"
+        r="6"
+        strokeWidth="2.5"
+      />
+      <circle
+        className="top-bar-notice-demo__ring-arc"
+        cx="8"
+        cy="8"
+        fill="none"
+        r="6"
+        strokeDasharray={Math.round(TOP_BAR_RING_CIRCUMFERENCE * 100) / 100}
+        strokeDashoffset={dashOffset}
+        strokeLinecap="round"
+        strokeWidth="2.5"
+        transform="rotate(-90 8 8)"
+      />
+    </svg>
+  )
+}
+
 // 顶部工具栏示例:标题胶囊与图标钮均为磨砂材质(与浮动/底部工具栏同
 // 规则,图标钮用默认尺寸档),组件各自采样画布 tone 自适应。居中槽位
-// 演示灵动岛通知:通知常驻 DOM、内容置空收起,2.4s 自动收起且退场
-// 动画完整;药丸浮于标题与搜索钮之上,自身采样 tone。
+// 演示灵动岛通知的两副面孔:短驻通知 2.4s 自动收起;常驻通知不设
+// duration,「加载中」标签 + 环形进度走满后由示例清空收起——两种都
+// 常驻 DOM、退场动画完整,中途互切即内容原地变形(岛形态切换)。
 function TopBarDemo() {
   const [notice, setNotice] = useState<(typeof topBarNoticeSamples)[number] | null>(null)
+  // 非 null 即常驻加载态:run 每次触发递增,重开计时器;progress 供进度弧
+  const [loading, setLoading] = useState<{ run: number; progress: number } | null>(null)
   const noticeIndexRef = useRef(-1)
 
   const showNotice = () => {
     noticeIndexRef.current = (noticeIndexRef.current + 1) % topBarNoticeSamples.length
+    setLoading(null)
     setNotice(topBarNoticeSamples[noticeIndexRef.current])
   }
+
+  const showLoadingNotice = () => {
+    setNotice(null)
+    setLoading((current) => ({ run: (current?.run ?? 0) + 1, progress: 0 }))
+  }
+
+  useEffect(() => {
+    if (loading == null) return
+
+    const startedAt = performance.now()
+    let holdTimer: ReturnType<typeof setTimeout> | undefined
+    const progressTimer = setInterval(() => {
+      const elapsed = performance.now() - startedAt
+      const next = Math.min(100, Math.round((elapsed / TOP_BAR_LOADING_DURATION) * 100))
+      setLoading((current) => (current ? { ...current, progress: next } : current))
+
+      if (next >= 100) {
+        clearInterval(progressTimer)
+        holdTimer = setTimeout(() => setLoading(null), TOP_BAR_LOADING_HOLD)
+      }
+    }, 80)
+
+    return () => {
+      clearInterval(progressTimer)
+      if (holdTimer !== undefined) clearTimeout(holdTimer)
+    }
+  }, [loading?.run])
 
   return (
     <FrostedPreviewCard
@@ -146,8 +216,16 @@ function TopBarDemo() {
         <TopBar
           className="top-bar-preview"
           centerSlot={
-            <TopBarNotice duration={2400} onDismissed={() => setNotice(null)}>
-              {notice == null ? null : (
+            <TopBarNotice
+              duration={loading == null ? 2400 : undefined}
+              onDismissed={() => setNotice(null)}
+            >
+              {loading != null ? (
+                <>
+                  <span>加载中</span>
+                  <TopBarNoticeProgressRing progress={loading.progress} />
+                </>
+              ) : notice == null ? null : (
                 <>
                   <notice.icon aria-hidden="true" size={14} />
                   {notice.text}
@@ -163,14 +241,24 @@ function TopBarDemo() {
           }
           rightSlot={renderTopBarSearchButton()}
         />
-        <CapsuleButton
-          aria-label="触发一条居中通知"
-          onClick={showNotice}
-          prefix={null}
-          state="frosted"
-        >
-          触发居中通知
-        </CapsuleButton>
+        <div className="top-bar-notice-demo__actions">
+          <CapsuleButton
+            aria-label="触发一条居中通知"
+            onClick={showNotice}
+            prefix={null}
+            state="frosted"
+          >
+            触发居中通知
+          </CapsuleButton>
+          <CapsuleButton
+            aria-label="触发一条常驻加载通知"
+            onClick={showLoadingNotice}
+            prefix={null}
+            state="frosted"
+          >
+            触发常驻通知
+          </CapsuleButton>
+        </div>
       </div>
     </FrostedPreviewCard>
   )
