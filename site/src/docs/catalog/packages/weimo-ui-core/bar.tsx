@@ -126,10 +126,11 @@ const topBarNoticeSamples = [
   { icon: Moon, text: '已切换到深色模式' },
 ]
 
-// 常驻通知(灵动岛加载态)的进度环参数:3.2s 走满,100% 后停留片刻再收起。
-// 进度按时间戳推进而非累加,节流环境(IAB 定时器 ~1s)下也能准点到满。
+// 常驻通知(灵动岛加载态)的进度环参数:3.2s 走满,100% 后停留 3s 供
+// 查看完成态再收起。进度按时间戳推进而非累加,节流环境(IAB 定时器
+// ~1s)下也能准点到满。
 const TOP_BAR_LOADING_DURATION = 3200
-const TOP_BAR_LOADING_HOLD = 350
+const TOP_BAR_LOADING_HOLD = 3000
 
 const TOP_BAR_RING_CIRCUMFERENCE = 2 * Math.PI * 6
 
