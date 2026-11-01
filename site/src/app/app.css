@@ -457,6 +457,15 @@
   padding: 0;
 }
 
+/* 顶部工具栏·灵动岛通知演示:工具栏与触发按钮纵向排布 */
+.top-bar-notice-demo {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  gap: 12px;
+  justify-items: center;
+}
+
 .sidebar-preview {
   container: sidebar-preview / inline-size;
   gap: 16px;

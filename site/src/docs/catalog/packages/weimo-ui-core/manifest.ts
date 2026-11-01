@@ -81,6 +81,7 @@ export const coreCatalog = {
         { id: 'bottom-bar', name: 'BottomBar', registryName: 'bottom-bar', packageExport: './components/bottom-bar' },
         { id: 'frosted-label', name: 'FrostedLabel', registryName: 'frosted-label', packageExport: './components/frosted-label' },
         { id: 'top-bar', name: 'TopBar', registryName: 'top-bar', packageExport: './components/top-bar' },
+        { id: 'top-bar-notice', name: 'TopBarNotice', registryName: 'top-bar-notice', packageExport: './components/top-bar-notice' },
       ],
     },
     { id: 'sidebar', name: '侧边栏', exportName: 'SideBar', registryName: 'sidebar', packageExport: './components/sidebar' },

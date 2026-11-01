@@ -6,6 +6,11 @@ import 'weimo-ui-core/styles/tokens.css'
 import './top-bar.css'
 
 export type TopBarProps = ComponentPropsWithoutRef<'div'> & {
+  /**
+   * 居中悬浮槽位:绝对居中浮于左右槽位之上(灵动岛式),不参与两列网格。
+   * 专为短驻通知设计,配 TopBarNotice 使用;不传不渲染任何节点。
+   */
+  centerSlot?: ReactNode
   leftSlot?: ReactNode
   rightSlot?: ReactNode
   /**
@@ -16,10 +21,11 @@ export type TopBarProps = ComponentPropsWithoutRef<'div'> & {
 }
 
 export function TopBar({
+  'aria-label': label,
+  centerSlot,
   className,
   leftSlot,
   role,
-  'aria-label': label,
   rightSlot,
   variant = 'contained',
   ...props
@@ -43,6 +49,9 @@ export function TopBar({
         <div className="top-bar__slot top-bar__slot--right">
           {rightSlot}
         </div>
+        {/* 悬浮层放最后:不占网格轨道,叠在左右槽位之上;条件渲染保证
+            未使用时 DOM 与旧版逐字节一致 */}
+        {centerSlot != null && <div className="top-bar__center">{centerSlot}</div>}
       </div>
     </div>
   )

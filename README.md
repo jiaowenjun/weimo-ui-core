@@ -24,7 +24,7 @@
 | 数据展示 | `components/magic-number` |
 | 卡片与预览 | `components/base-card`、`component-preview-card`、`frosted-preview-card` |
 | 组合组件 | `components/menu`、`action-dialog` |
-| 布局 | `components/sidebar`、`top-bar`、`bottom-bar`、`float-bar` |
+| 布局 | `components/sidebar`、`top-bar`、`top-bar-notice`、`bottom-bar`、`float-bar` |
 | 样式变体 | `components/font-size`、`text-color`、`bg-color`、`bg-blur`、`border-color`、`border-radius`、`pressable` |
 | 通用行为 | `components/animated-inline-size`、`lib/use-infinite-list-sentinel` |
 | 基础原语 | `components/coss/button`、`dialog`、`switch`、`table`、`tabs`、`toolbar`、`tooltip` |

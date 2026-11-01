@@ -1,0 +1,38 @@
+@layer components {
+  /* 灵动岛式通知胶囊:磨砂材质(文字/描边/投影随 tone)由 frosted-surface
+     基类提供,这里只持胶囊几何与进出场。常驻 DOM,data-visible 驱动
+     双向过渡;收起态 opacity 0 + 关闭点击,占位不消失保证退场完整。 */
+  .top-bar-notice {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+    max-width: 100%;
+    padding: 6px 12px;
+    border-radius: var(--radius-round);
+    font-family: var(--font-sans);
+    font-size: var(--font-size-sm);
+    line-height: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    opacity: 0;
+    transform: scale(0.72);
+    pointer-events: none;
+    transition:
+      opacity 180ms ease,
+      transform 260ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .top-bar-notice[data-visible='true'] {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .top-bar-notice {
+      transition-duration: 1ms;
+    }
+  }
+}

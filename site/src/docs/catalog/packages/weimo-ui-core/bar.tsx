@@ -1,4 +1,5 @@
-import { Check, Menu, Plus, Search, X } from 'lucide-react'
+import { useRef, useState } from 'react'
+import { Check, Copy, Menu, Moon, Plus, Search, X } from 'lucide-react'
 
 import { BottomBar } from 'weimo-ui-core/components/bottom-bar'
 import { CardSurface } from 'weimo-ui-core/components/card-surface'
@@ -12,6 +13,7 @@ import {
   FrostedIconGroupButton,
 } from 'weimo-ui-core/components/frosted-icon-button-group'
 import { TopBar } from 'weimo-ui-core/components/top-bar'
+import { TopBarNotice } from 'weimo-ui-core/components/top-bar-notice'
 import type { ComponentDefinition } from '../../component-docs'
 import { ComponentCardTitle } from '../../component-card-title'
 import { FrostedPreviewCard } from 'weimo-ui-core/components/frosted-preview-card'
@@ -117,16 +119,42 @@ function renderTopBarSearchButton() {
   )
 }
 
+const topBarNoticeSamples = [
+  { icon: Check, text: '已保存全部更改' },
+  { icon: Copy, text: '已复制到剪贴板' },
+  { icon: Moon, text: '已切换到深色模式' },
+]
+
 // 顶部工具栏示例:标题胶囊与图标钮均为磨砂材质(与浮动/底部工具栏同
-// 规则,图标钮用默认尺寸档),组件各自采样画布 tone 自适应。
+// 规则,图标钮用默认尺寸档),组件各自采样画布 tone 自适应。居中槽位
+// 演示灵动岛通知:通知常驻 DOM、内容置空收起,2.4s 自动收起且退场
+// 动画完整;药丸浮于标题与搜索钮之上,自身采样 tone。
 function TopBarDemo() {
+  const [notice, setNotice] = useState<(typeof topBarNoticeSamples)[number] | null>(null)
+  const noticeIndexRef = useRef(-1)
+
+  const showNotice = () => {
+    noticeIndexRef.current = (noticeIndexRef.current + 1) % topBarNoticeSamples.length
+    setNotice(topBarNoticeSamples[noticeIndexRef.current])
+  }
+
   return (
     <FrostedPreviewCard
       label={<ComponentCardTitle componentName="top-bar">顶部工具栏</ComponentCardTitle>}
     >
-      <div className="frosted-toolbar-preview">
+      <div className="top-bar-notice-demo">
         <TopBar
           className="top-bar-preview"
+          centerSlot={
+            <TopBarNotice duration={2400} onDismissed={() => setNotice(null)}>
+              {notice == null ? null : (
+                <>
+                  <notice.icon aria-hidden="true" size={14} />
+                  {notice.text}
+                </>
+              )}
+            </TopBarNotice>
+          }
           leftSlot={
             <>
               {renderTopBarSidebarButton()}
@@ -135,6 +163,14 @@ function TopBarDemo() {
           }
           rightSlot={renderTopBarSearchButton()}
         />
+        <CapsuleButton
+          aria-label="触发一条居中通知"
+          onClick={showNotice}
+          prefix={null}
+          state="frosted"
+        >
+          触发居中通知
+        </CapsuleButton>
       </div>
     </FrostedPreviewCard>
   )

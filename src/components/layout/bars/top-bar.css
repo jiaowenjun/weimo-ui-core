@@ -11,6 +11,8 @@
   }
 
   .top-bar__frame {
+    /* 悬浮槽位(居中通知)的定位锚点 */
+    position: relative;
     display: grid;
     min-height: 46px;
     width: 100%;
@@ -49,6 +51,25 @@
   .top-bar__slot--right {
     flex: none;
     justify-content: flex-end;
+  }
+
+  /* 居中悬浮槽位:绝对居中于 frame(inset+auto margin 双轴居中),
+   * 叠于左右槽位之上(灵动岛式,可短驻盖住两侧内容);
+   * max-width 留出两侧 gutter 呼吸位,点击穿透同槽位规则。 */
+  .top-bar__center {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    width: fit-content;
+    max-width: calc(100% - var(--space-gutter) * 2);
+    pointer-events: none;
+  }
+
+  .top-bar__center > * {
+    pointer-events: auto;
   }
 
   @media (min-width: 700px) {

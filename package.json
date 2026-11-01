@@ -185,6 +185,10 @@
       "types": "./dist/components/layout/bars/top-bar.d.ts",
       "import": "./dist/components/layout/bars/top-bar.js"
     },
+    "./components/top-bar-notice": {
+      "types": "./dist/components/layout/bars/top-bar-notice.d.ts",
+      "import": "./dist/components/layout/bars/top-bar-notice.js"
+    },
     "./lib/use-infinite-list-sentinel": {
       "types": "./dist/lib/infinite-list-sentinel/use-infinite-list-sentinel.d.ts",
       "import": "./dist/lib/infinite-list-sentinel/use-infinite-list-sentinel.js"
@@ -324,6 +328,10 @@
     "./styles/top-bar.css": {
       "types": "./dist/components/layout/bars/top-bar.d.css.ts",
       "default": "./dist/components/layout/bars/top-bar.css"
+    },
+    "./styles/top-bar-notice.css": {
+      "types": "./dist/components/layout/bars/top-bar-notice.d.css.ts",
+      "default": "./dist/components/layout/bars/top-bar-notice.css"
     }
   },
   "scripts": {
