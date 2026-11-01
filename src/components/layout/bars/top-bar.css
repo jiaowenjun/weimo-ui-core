@@ -54,7 +54,10 @@
   }
 
   /* 居中悬浮槽位:绝对居中于 frame(inset+auto margin 双轴居中),
-   * 叠于左右槽位之上(灵动岛式,可短驻盖住两侧内容);
+   * 叠于左右槽位之上(灵动岛式,可短驻盖住两侧内容)。
+   * height 必须同 width 一样取 fit-content:绝对定位元素 top/bottom
+   * 皆非 auto 而 height 为 auto 时会解析为撑满容器,药丸会被拉到
+   * 顶栏同高;收成内容高后由 auto margin 垂直居中。
    * max-width 留出两侧 gutter 呼吸位,点击穿透同槽位规则。 */
   .top-bar__center {
     position: absolute;
@@ -64,6 +67,7 @@
     justify-content: center;
     margin: auto;
     width: fit-content;
+    height: fit-content;
     max-width: calc(100% - var(--space-gutter) * 2);
     pointer-events: none;
   }
