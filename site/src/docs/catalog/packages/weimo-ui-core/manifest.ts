@@ -5,30 +5,16 @@ export const coreCatalog = {
   title: 'weimo-ui-core',
   pages: [
     {
-      id: 'text-tokens',
-      name: '文字样式',
+      id: 'text-background-border',
+      name: '文字背景边框',
       registryName: 'font-size',
       packageExport: './components/font-size',
       components: [
         { id: 'text-color', name: '字色', registryName: 'text-color', packageExport: './components/text-color' },
-      ],
-    },
-    {
-      id: 'background-tokens',
-      name: '背景样式',
-      registryName: 'bg-color',
-      packageExport: './components/bg-color',
-      components: [
+        { id: 'bg-color', name: '背景色', registryName: 'bg-color', packageExport: './components/bg-color' },
         { id: 'bg-blur', name: '背景模糊度', registryName: 'bg-blur', packageExport: './components/bg-blur' },
         { id: 'pressable', name: '按压反馈色', registryName: 'pressable', packageExport: './components/pressable' },
-      ],
-    },
-    {
-      id: 'border-tokens',
-      name: '边框样式',
-      registryName: 'border-color',
-      packageExport: './components/border-color',
-      components: [
+        { id: 'border-color', name: '边框色', registryName: 'border-color', packageExport: './components/border-color' },
         { id: 'border-radius', name: '边框圆角', registryName: 'border-radius', packageExport: './components/border-radius' },
       ],
     },
