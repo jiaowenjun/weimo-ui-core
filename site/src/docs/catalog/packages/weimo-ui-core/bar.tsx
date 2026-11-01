@@ -14,7 +14,7 @@ import {
 } from 'weimo-ui-core/components/frosted-icon-button-group'
 import { GhostIconButton } from 'weimo-ui-core/components/ghost-icon-button'
 import { TopBar } from 'weimo-ui-core/components/top-bar'
-import { TopBarNotice } from 'weimo-ui-core/components/top-bar-notice'
+import { TopBarNotice, TopBarNoticeRing } from 'weimo-ui-core/components/top-bar-notice'
 import type { ComponentDefinition } from '../../component-docs'
 import { ComponentCardTitle } from '../../component-card-title'
 import { FrostedPreviewCard } from 'weimo-ui-core/components/frosted-preview-card'
@@ -132,61 +132,6 @@ const topBarNoticeSamples = [
 const TOP_BAR_LOADING_DURATION = 3200
 const TOP_BAR_LOADING_HOLD = 3000
 
-const TOP_BAR_RING_CIRCUMFERENCE = 2 * Math.PI * 6
-
-// 常驻通知的环形进度:灰底环 + 绿色进度弧,90ms 线性过渡抹平 80ms 节拍。
-// 走满 100% 时不换图标——同一 SVG 内侧描出绿色对勾(线绘制动画,环到
-// 对勾一笔相承),整图再轻微弹性 pop,读感是「环变为了对勾」。
-function TopBarNoticeProgressRing({ progress }: { progress: number }) {
-  const done = progress >= 100
-  const dashOffset = Math.round(
-    TOP_BAR_RING_CIRCUMFERENCE * (1 - progress / 100) * 100,
-  ) / 100
-
-  return (
-    <svg
-      aria-hidden="true"
-      className="top-bar-notice-demo__ring"
-      data-done={done}
-      viewBox="0 0 16 16"
-    >
-      <circle
-        className="top-bar-notice-demo__ring-track"
-        cx="8"
-        cy="8"
-        fill="none"
-        r="6"
-        strokeWidth="2.5"
-      />
-      <circle
-        className="top-bar-notice-demo__ring-arc"
-        cx="8"
-        cy="8"
-        fill="none"
-        r="6"
-        strokeDasharray={Math.round(TOP_BAR_RING_CIRCUMFERENCE * 100) / 100}
-        strokeDashoffset={dashOffset}
-        strokeLinecap="round"
-        strokeWidth="2.5"
-        transform="rotate(-90 8 8)"
-      />
-      {done && (
-        <path
-          className="top-bar-notice-demo__ring-check"
-          d="M5 8.6 L7 10.6 L11 5.4"
-          fill="none"
-          pathLength={1}
-          strokeDasharray={1}
-          strokeDashoffset={0}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2.2"
-        />
-      )}
-    </svg>
-  )
-}
-
 // 顶部工具栏示例:标题胶囊与图标钮均为磨砂材质(与浮动/底部工具栏同
 // 规则,图标钮用默认尺寸档),组件各自采样画布 tone 自适应。居中槽位
 // 演示灵动岛通知的两副面孔:短驻通知 2.4s 自动收起;常驻通知不设
@@ -266,7 +211,7 @@ function TopBarDemo() {
                 {loading != null ? (
                   <>
                     <span>{loading.progress >= 100 ? '已完成' : '加载中'}</span>
-                    <TopBarNoticeProgressRing progress={loading.progress} />
+                    <TopBarNoticeRing progress={loading.progress} />
                   </>
                 ) : notice == null ? null : (
                   <>

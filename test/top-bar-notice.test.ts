@@ -70,3 +70,32 @@ describe('TopBarNotice 灵动岛协议', () => {
     expect(noticeTsx).toMatch(/getFrostedSurfaceClassName\('frosted-surface--bordered', 'top-bar-notice'\)/)
   })
 })
+
+describe('TopBarNoticeRing 环形进度协议', () => {
+  it('进度弧几何:周长两位小数参与 dasharray/dashoffset,dashoffset 随 progress 收缩', () => {
+    expect(noticeTsx).toMatch(/const RING_CIRCUMFERENCE = 2 \* Math\.PI \* 6/)
+    expect(noticeTsx).toMatch(/RING_CIRCUMFERENCE \* \(1 - progress \/ 100\) \* 100\) \/ 100/)
+  })
+
+  it('done 默认 progress >= 100 推导,可显式覆盖(进度先于真终态报满的场景)', () => {
+    expect(noticeTsx).toMatch(/const isDone = done \?\? progress >= 100/)
+  })
+
+  it('纯装饰对读屏静音,对勾仅完成态描出(pathLength=1 归一化线绘制)', () => {
+    expect(noticeTsx).toMatch(/aria-hidden="true"\s+className="top-bar-notice-ring"/)
+    expect(noticeTsx).toMatch(/\{isDone && \(/)
+    expect(noticeTsx).toMatch(/pathLength=\{1\}/)
+  })
+
+  it('灰底环+绿色进度弧,90ms 线性过渡抹平进度跳变', () => {
+    expect(noticeCss).toMatch(/\.top-bar-notice-ring-track \{[^}]*stroke: hsl\(0 0% 50% \/ 0\.35\)/s)
+    expect(noticeCss).toMatch(/\.top-bar-notice-ring-arc \{[^}]*stroke: hsl\(142 71% 45%\)/s)
+    expect(noticeCss).toMatch(/\.top-bar-notice-ring-arc \{[^}]*transition: stroke-dashoffset 90ms linear/s)
+  })
+
+  it('完成态对勾线绘制+整图弹性 pop,且尊重 prefers-reduced-motion', () => {
+    expect(noticeCss).toMatch(/top-bar-notice-ring-check-draw/)
+    expect(noticeCss).toMatch(/\.top-bar-notice-ring\[data-done='true'\] \{[^}]*top-bar-notice-ring-check-pop/s)
+    expect(noticeCss).toMatch(/prefers-reduced-motion: reduce/)
+  })
+})

@@ -89,3 +89,71 @@ export function TopBarNotice({
     </div>
   )
 }
+
+export type TopBarNoticeRingProps = {
+  /** 进度百分比 0-100,驱动绿色进度弧;90ms 线性过渡抹平轮询/节拍回填
+   *  时的进度跳变,只求不闪跳,弧的读感与文案数字同拍 */
+  progress: number
+  /** 完成态:满环内侧描出绿色对勾(线绘制动画,环到对勾一笔相承)再
+   *  轻微弹性 pop;默认 progress >= 100。进度来源可能先于任务真终态
+   *  报满(如后端 percent 到 100 但任务未结束),此时显式传 false 压住
+   *  对勾,等真完成再翻转 */
+  done?: boolean
+}
+
+/** 进度环几何:16 视框、r=6,周长两位小数参与 dasharray/dashoffset */
+const RING_CIRCUMFERENCE = 2 * Math.PI * 6
+
+/**
+ * 灵动岛通知的环形进度:灰底环 + 绿色进度弧,作 TopBarNotice 的
+ * children 使用(文字之后缀,胶囊自带 6px 间距)。纯装饰——播报归
+ * 胶囊的 role="status" 文字,aria-hidden 对读屏静音。
+ */
+export function TopBarNoticeRing({ done, progress }: TopBarNoticeRingProps) {
+  const isDone = done ?? progress >= 100
+  const dashOffset =
+    Math.round(RING_CIRCUMFERENCE * (1 - progress / 100) * 100) / 100
+
+  return (
+    <svg
+      aria-hidden="true"
+      className="top-bar-notice-ring"
+      data-done={isDone}
+      viewBox="0 0 16 16"
+    >
+      <circle
+        className="top-bar-notice-ring-track"
+        cx="8"
+        cy="8"
+        fill="none"
+        r="6"
+        strokeWidth="2.5"
+      />
+      <circle
+        className="top-bar-notice-ring-arc"
+        cx="8"
+        cy="8"
+        fill="none"
+        r="6"
+        strokeDasharray={Math.round(RING_CIRCUMFERENCE * 100) / 100}
+        strokeDashoffset={dashOffset}
+        strokeLinecap="round"
+        strokeWidth="2.5"
+        transform="rotate(-90 8 8)"
+      />
+      {isDone && (
+        <path
+          className="top-bar-notice-ring-check"
+          d="M5 8.6 L7 10.6 L11 5.4"
+          fill="none"
+          pathLength={1}
+          strokeDasharray={1}
+          strokeDashoffset={0}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2.2"
+        />
+      )}
+    </svg>
+  )
+}

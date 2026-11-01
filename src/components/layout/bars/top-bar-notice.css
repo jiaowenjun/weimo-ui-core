@@ -35,4 +35,59 @@
       transition-duration: 1ms;
     }
   }
+
+  /* 环形进度(TopBarNoticeRing,配通知胶囊的 14px 档):灰底环 + 绿色
+     进度弧,90ms 线性过渡抹平轮询/节拍回填的进度跳变;配色为字面量——
+     两种磨砂 tone 下同值均可读,等出现 tone 自适应诉求再token 化 */
+  .top-bar-notice-ring {
+    width: 14px;
+    height: 14px;
+  }
+
+  .top-bar-notice-ring-track {
+    stroke: hsl(0 0% 50% / 0.35);
+  }
+
+  .top-bar-notice-ring-arc {
+    stroke: hsl(142 71% 45%);
+    transition: stroke-dashoffset 90ms linear;
+  }
+
+  /* 完成态:满环内侧描出对勾(pathLength=1 归一化,线绘制 1→0),与
+     进度弧同绿;整图轻微弹性 pop,「环变为了对勾」 */
+  .top-bar-notice-ring-check {
+    stroke: hsl(142 71% 45%);
+    animation: top-bar-notice-ring-check-draw 300ms cubic-bezier(0.33, 1, 0.68, 1) both;
+  }
+
+  @keyframes top-bar-notice-ring-check-draw {
+    from {
+      stroke-dashoffset: 1;
+    }
+
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .top-bar-notice-ring[data-done='true'] {
+    animation: top-bar-notice-ring-check-pop 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  @keyframes top-bar-notice-ring-check-pop {
+    from {
+      scale: 0.8;
+    }
+
+    to {
+      scale: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .top-bar-notice-ring-check,
+    .top-bar-notice-ring[data-done='true'] {
+      animation-duration: 1ms;
+    }
+  }
 }
