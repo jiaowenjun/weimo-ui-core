@@ -33,6 +33,12 @@ describe('TopBar 居中悬浮槽位', () => {
     expect(topBarCss).toMatch(/\.top-bar__center > \* \{[^}]*pointer-events: auto/s)
   })
 
+  it('可用区域注入口:--top-bar-center-inset 参与行首锚点与 max-width(默认 0 兜底,不得在元素上声明默认值遮蔽继承)', () => {
+    expect(topBarCss).toMatch(/inset-inline: var\(--top-bar-center-inset, 0px\) 0/)
+    expect(topBarCss).toMatch(/max-width: [^;]*var\(--top-bar-center-inset, 0px\)/)
+    expect(topBarCss).not.toMatch(/\.top-bar__center \{[^}]*--top-bar-center-inset:/s)
+  })
+
   it('frame 持 position: relative 作悬浮锚点', () => {
     expect(topBarCss).toMatch(/\.top-bar__frame \{[^}]*position: relative/s)
   })
