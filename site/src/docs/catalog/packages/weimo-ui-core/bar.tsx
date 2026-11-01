@@ -135,13 +135,21 @@ const TOP_BAR_LOADING_HOLD = 3000
 const TOP_BAR_RING_CIRCUMFERENCE = 2 * Math.PI * 6
 
 // 常驻通知的环形进度:灰底环 + 绿色进度弧,90ms 线性过渡抹平 80ms 节拍。
+// 走满 100% 时不换图标——同一 SVG 内侧描出绿色对勾(线绘制动画,环到
+// 对勾一笔相承),整图再轻微弹性 pop,读感是「环变为了对勾」。
 function TopBarNoticeProgressRing({ progress }: { progress: number }) {
+  const done = progress >= 100
   const dashOffset = Math.round(
     TOP_BAR_RING_CIRCUMFERENCE * (1 - progress / 100) * 100,
   ) / 100
 
   return (
-    <svg aria-hidden="true" className="top-bar-notice-demo__ring" viewBox="0 0 16 16">
+    <svg
+      aria-hidden="true"
+      className="top-bar-notice-demo__ring"
+      data-done={done}
+      viewBox="0 0 16 16"
+    >
       <circle
         className="top-bar-notice-demo__ring-track"
         cx="8"
@@ -162,6 +170,19 @@ function TopBarNoticeProgressRing({ progress }: { progress: number }) {
         strokeWidth="2.5"
         transform="rotate(-90 8 8)"
       />
+      {done && (
+        <path
+          className="top-bar-notice-demo__ring-check"
+          d="M5 8.6 L7 10.6 L11 5.4"
+          fill="none"
+          pathLength={1}
+          strokeDasharray={1}
+          strokeDashoffset={0}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2.2"
+        />
+      )}
     </svg>
   )
 }
@@ -243,21 +264,10 @@ function TopBarDemo() {
                 onDismissed={() => setNotice(null)}
               >
                 {loading != null ? (
-                  loading.progress >= 100 ? (
-                    <>
-                      <span>已完成</span>
-                      <Check
-                        aria-hidden="true"
-                        className="top-bar-notice-demo__done-icon"
-                        size={14}
-                      />
-                    </>
-                  ) : (
-                    <>
-                      <span>加载中</span>
-                      <TopBarNoticeProgressRing progress={loading.progress} />
-                    </>
-                  )
+                  <>
+                    <span>{loading.progress >= 100 ? '已完成' : '加载中'}</span>
+                    <TopBarNoticeProgressRing progress={loading.progress} />
+                  </>
                 ) : notice == null ? null : (
                   <>
                     <notice.icon aria-hidden="true" size={14} />

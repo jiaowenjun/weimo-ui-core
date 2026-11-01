@@ -472,9 +472,42 @@
   transition: stroke-dashoffset 90ms linear;
 }
 
-/* 完成态图标:与进度弧同绿,满环后替换进度环、文案切「已完成」 */
-.top-bar-notice-demo__done-icon {
-  color: hsl(142 71% 45%);
+/* 完成态:满环内侧描出对勾(pathLength=1 归一化,线绘制 1→0),
+ * 与进度弧同绿;整图轻微弹性 pop,「环变为了对勾」 */
+.top-bar-notice-demo__ring-check {
+  stroke: hsl(142 71% 45%);
+  animation: top-bar-notice-demo-check-draw 300ms cubic-bezier(0.33, 1, 0.68, 1) both;
+}
+
+@keyframes top-bar-notice-demo-check-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.top-bar-notice-demo__ring[data-done='true'] {
+  animation: top-bar-notice-demo-check-pop 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes top-bar-notice-demo-check-pop {
+  from {
+    scale: 0.8;
+  }
+
+  to {
+    scale: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .top-bar-notice-demo__ring-check,
+  .top-bar-notice-demo__ring[data-done='true'] {
+    animation-duration: 1ms;
+  }
 }
 
 .sidebar-preview {
