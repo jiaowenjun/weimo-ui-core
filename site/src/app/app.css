@@ -457,22 +457,6 @@
   padding: 0;
 }
 
-/* 顶部工具栏·灵动岛通知演示:工具栏与触发按钮纵向排布 */
-.top-bar-notice-demo {
-  display: grid;
-  width: 100%;
-  min-width: 0;
-  gap: 12px;
-  justify-items: center;
-}
-
-.top-bar-notice-demo__actions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-}
-
 /* 常驻通知的环形进度:灰底环 + 绿色进度弧,90ms 线性过渡抹平 80ms 节拍 */
 .top-bar-notice-demo__ring {
   width: 14px;

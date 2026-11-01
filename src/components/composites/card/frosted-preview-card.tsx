@@ -105,6 +105,8 @@ export type FrostedPreviewCardProps = Omit<
 > & {
   aboveCanvas?: ReactNode
   children: ReactNode
+  /** 底栏滑条右侧的扩展位(演示触发钮等);不传时底栏与旧版完全一致。 */
+  footerExtra?: ReactNode
   initialGray?: number
   onGrayChange?: (gray: number) => void
 }
@@ -113,6 +115,7 @@ export function FrostedPreviewCard({
   aboveCanvas,
   children,
   className,
+  footerExtra,
   initialGray,
   onGrayChange,
   ...props
@@ -160,6 +163,7 @@ export function FrostedPreviewCard({
             onValueChange={setFrostedBackgroundGray}
             value={frostedBackgroundGray}
           />
+          {footerExtra}
         </div>
       }
     >

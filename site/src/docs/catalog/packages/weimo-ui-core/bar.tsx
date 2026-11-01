@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Check, Copy, Menu, Moon, Plus, Search, X } from 'lucide-react'
+import { Bell, Check, Copy, LoaderCircle, Menu, Moon, Plus, Search, X } from 'lucide-react'
 
 import { BottomBar } from 'weimo-ui-core/components/bottom-bar'
 import { CardSurface } from 'weimo-ui-core/components/card-surface'
@@ -12,6 +12,7 @@ import {
   FrostedIconButtonGroup,
   FrostedIconGroupButton,
 } from 'weimo-ui-core/components/frosted-icon-button-group'
+import { GhostIconButton } from 'weimo-ui-core/components/ghost-icon-button'
 import { TopBar } from 'weimo-ui-core/components/top-bar'
 import { TopBarNotice } from 'weimo-ui-core/components/top-bar-notice'
 import type { ComponentDefinition } from '../../component-docs'
@@ -169,6 +170,7 @@ function TopBarNoticeProgressRing({ progress }: { progress: number }) {
 // 演示灵动岛通知的两副面孔:短驻通知 2.4s 自动收起;常驻通知不设
 // duration,「加载中」标签 + 环形进度走满后由示例清空收起——两种都
 // 常驻 DOM、退场动画完整,中途互切即内容原地变形(岛形态切换)。
+// 触发钮为卡底栏滑条右侧的 GhostIconButton 纯图标钮(悬停有 tooltip)。
 function TopBarDemo() {
   const [notice, setNotice] = useState<(typeof topBarNoticeSamples)[number] | null>(null)
   // 非 null 即常驻加载态:run 每次触发递增,重开计时器;progress 供进度弧
@@ -211,55 +213,55 @@ function TopBarDemo() {
   return (
     <FrostedPreviewCard
       label={<ComponentCardTitle componentName="top-bar">顶部工具栏</ComponentCardTitle>}
-    >
-      <div className="top-bar-notice-demo">
-        <TopBar
-          className="top-bar-preview"
-          centerSlot={
-            <TopBarNotice
-              duration={loading == null ? 2400 : undefined}
-              onDismissed={() => setNotice(null)}
-            >
-              {loading != null ? (
-                <>
-                  <span>加载中</span>
-                  <TopBarNoticeProgressRing progress={loading.progress} />
-                </>
-              ) : notice == null ? null : (
-                <>
-                  <notice.icon aria-hidden="true" size={14} />
-                  {notice.text}
-                </>
-              )}
-            </TopBarNotice>
-          }
-          leftSlot={
-            <>
-              {renderTopBarSidebarButton()}
-              <FrostedLabel size="lg">页面标题</FrostedLabel>
-            </>
-          }
-          rightSlot={renderTopBarSearchButton()}
-        />
-        <div className="top-bar-notice-demo__actions">
-          <CapsuleButton
+      footerExtra={
+        <>
+          <GhostIconButton
             aria-label="触发一条居中通知"
             onClick={showNotice}
-            prefix={null}
-            state="frosted"
+            size="sm"
+            tooltip="触发居中通知"
           >
-            触发居中通知
-          </CapsuleButton>
-          <CapsuleButton
+            <Bell />
+          </GhostIconButton>
+          <GhostIconButton
             aria-label="触发一条常驻加载通知"
             onClick={showLoadingNotice}
-            prefix={null}
-            state="frosted"
+            size="sm"
+            tooltip="触发常驻通知"
           >
-            触发常驻通知
-          </CapsuleButton>
-        </div>
-      </div>
+            <LoaderCircle />
+          </GhostIconButton>
+        </>
+      }
+    >
+      <TopBar
+        className="top-bar-preview"
+        centerSlot={
+          <TopBarNotice
+            duration={loading == null ? 2400 : undefined}
+            onDismissed={() => setNotice(null)}
+          >
+            {loading != null ? (
+              <>
+                <span>加载中</span>
+                <TopBarNoticeProgressRing progress={loading.progress} />
+              </>
+            ) : notice == null ? null : (
+              <>
+                <notice.icon aria-hidden="true" size={14} />
+                {notice.text}
+              </>
+            )}
+          </TopBarNotice>
+        }
+        leftSlot={
+          <>
+            {renderTopBarSidebarButton()}
+            <FrostedLabel size="lg">页面标题</FrostedLabel>
+          </>
+        }
+        rightSlot={renderTopBarSearchButton()}
+      />
     </FrostedPreviewCard>
   )
 }

@@ -17,6 +17,8 @@
 
   .frosted-preview-card__slider-row {
     display: flex;
+    align-items: center;
     justify-content: center;
+    gap: 8px;
   }
 }
