@@ -18,7 +18,7 @@ export type MagicNumberFormat = (value: number) => string
 
 export type MagicNumberProps = Omit<HTMLAttributes<HTMLSpanElement>, 'children'> & {
   value: number
-  /** 滚动时长(毫秒),0 为瞬时跳变;默认 600。 */
+  /** 滚动时长(毫秒),0 为瞬时跳变;默认 1000。 */
   duration?: number
   /** 缓动函数,入参与返回均为 0~1 进度;默认 easeOutCubic。 */
   easing?: MagicNumberEasing
@@ -28,7 +28,7 @@ export type MagicNumberProps = Omit<HTMLAttributes<HTMLSpanElement>, 'children'>
   animateOnMount?: boolean
 }
 
-const DEFAULT_MAGIC_NUMBER_DURATION = 600
+const DEFAULT_MAGIC_NUMBER_DURATION = 1000
 
 function prefersReducedMotion() {
   return (
